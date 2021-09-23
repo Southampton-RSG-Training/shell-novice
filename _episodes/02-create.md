@@ -9,7 +9,6 @@ minutes: 15
 > *   Create files within directories using an editor or by copying and renaming existing files.
 > *   Display the contents of a file using the command line.
 > *   Delete specified files and/or directories.
-
 {: .objectives}
 
 We now know how to explore files and directories,
@@ -20,12 +19,11 @@ First, let's check where we are:
 ~~~
 $ pwd
 ~~~
-
 {: .bash}
+
 ~~~
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
-
 {: .output}
 
 If you're not in this directory, use the `cd` command to navigate to it as covered in the last lesson, for example:
@@ -33,7 +31,6 @@ If you're not in this directory, use the `cd` command to navigate to it as cover
 ~~~
 $ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
-
 {: .bash}
 
 ### Creating a new directory
@@ -43,13 +40,11 @@ Now let's use `ls -F` to see what our test directory contains:
 ~~~
 $ ls -F
 ~~~
-
 {: .bash}
 ~~~
 creatures/          molecules/          notes.txt           solar.pdf
 data/               north-pacific-gyre/ pizza.cfg           writing/
 ~~~
-
 {: .output}
 Let's create a new directory called `thesis` using the command `mkdir thesis`
 (which has no output):
@@ -57,7 +52,6 @@ Let's create a new directory called `thesis` using the command `mkdir thesis`
 ~~~
 $ mkdir thesis
 ~~~
-
 {: .bash}
 As you might (or might not) guess from its name,
 `mkdir` means "make directory".
@@ -68,7 +62,6 @@ the new directory is created in the current working directory:
 ~~~
 $ ls -F
 ~~~
-
 {: .bash}
 ~~~
 creatures/  north-pacific-gyre/  thesis/
@@ -76,7 +69,6 @@ data/       notes.txt            writing/
 Desktop/    pizza.cfg
 molecules/  solar.pdf
 ~~~
-
 {: .output}
 
 However, there's nothing in it yet - this will show no output:
@@ -84,7 +76,6 @@ However, there's nothing in it yet - this will show no output:
 ~~~
 $ ls -F thesis
 ~~~
-
 {: .bash}
 
 ### Creating a new text file
@@ -119,7 +110,6 @@ and then we'll use the `Nano` editor to create a text file called `draft.txt`, a
 $ cd thesis
 $ nano draft.txt
 ~~~
-
 {: .bash}
 
 We add a filename after the `nano` command to tell it that we want to edit (or in this case create) a file.
@@ -141,12 +131,10 @@ Now we've saved the file, we can use `ls` to see that there is a new file in the
 ~~~
 $ ls
 ~~~
-
 {: .bash}
 ~~~
 draft.txt
 ~~~
-
 {: .output}
 
 We can use the shell on its own to take a look at its contents using the `cat` command (which we can use to print the contents of files):
@@ -154,13 +142,11 @@ We can use the shell on its own to take a look at its contents using the `cat` c
 ~~~
 $ cat draft.txt
 ~~~
-
 {: .bash}
 ~~~
 It's not "publish or perish" any more,
 it's "share and thrive".
 ~~~
-
 {: .output}
 
 ### Deleting files and directories
@@ -170,7 +156,6 @@ Now, let's assume we didn't actually need to create this file. We can delete it 
 ~~~
 $ rm draft.txt
 ~~~
-
 {: .bash}
 
 This command removes files (`rm` is short for "remove").
@@ -181,7 +166,6 @@ which tells us that our file is gone:
 ~~~
 $ ls
 ~~~
-
 {: .bash}
 
 > ## Deleting Is Forever
@@ -202,34 +186,28 @@ and then move up one directory using `cd ..`:
 ~~~
 $ pwd
 ~~~
-
 {: .bash}
 ~~~
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis
 ~~~
-
 {: .output}
 ~~~
 $ nano draft.txt
 $ ls
 ~~~
-
 {: .bash}
 ~~~
 draft.txt
 ~~~
-
 {: .output}
 ~~~
 $ cd ..
 $ pwd
 ~~~
-
 {: .bash}
 ~~~
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
-
 {: .output}
 
 If we try to remove the entire `thesis` directory using `rm thesis`,
@@ -238,12 +216,10 @@ we get an error message:
 ~~~
 $ rm thesis
 ~~~
-
 {: .bash}
 ~~~
 rm: cannot remove `thesis': Is a directory
 ~~~
-
 {: .error}
 
 On a Mac, it may look a bit different (`rm: thesis: is a directory`), but means the same thing.
@@ -257,12 +233,10 @@ because the directory we're trying to remove isn't empty (again, it may look a b
 ~~~
 $ rmdir thesis
 ~~~
-
 {: .bash}
 ~~~
 rmdir: failed to remove `thesis': Directory not empty
 ~~~
-
 {: .error}
 
 This little safety feature can save you a lot of grief,
@@ -272,7 +246,6 @@ To really get rid of `thesis` we must first delete the file `draft.txt`:
 ~~~
 $ rm thesis/draft.txt
 ~~~
-
 {: .bash}
 
 The directory is now empty, so `rmdir` can delete it:
@@ -280,7 +253,6 @@ The directory is now empty, so `rmdir` can delete it:
 ~~~
 $ rmdir thesis
 ~~~
-
 {: .bash}
 
 > ## With Great Power Comes Great Responsibility
@@ -308,17 +280,14 @@ Let's create that directory and file one more time.
 ~~~
 $ pwd
 ~~~
-
 {: .bash}
 ~~~
 /Users/user/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
-
 {: .output}
 ~~~
 $ mkdir thesis
 ~~~
-
 {: .bash}
 
 Again, put anything you like in this file (note we're giving the `thesis` path to `nano` as well as the `draft.txt` filename, so we create it in that directory):
@@ -327,12 +296,10 @@ Again, put anything you like in this file (note we're giving the `thesis` path t
 $ nano thesis/draft.txt
 $ ls thesis
 ~~~
-
 {: .bash}
 ~~~
 draft.txt
 ~~~
-
 {: .output}
 
 `draft.txt` isn't a particularly informative name,
@@ -342,7 +309,6 @@ which is short for "move":
 ~~~
 $ mv thesis/draft.txt thesis/quotes.txt
 ~~~
-
 {: .bash}
 
 The first parameter tells `mv` what we're "moving",
@@ -356,12 +322,10 @@ Sure enough,
 ~~~
 $ ls thesis
 ~~~
-
 {: .bash}
 ~~~
 quotes.txt
 ~~~
-
 {: .output}
 
 Just for the sake of inconsistency,
@@ -379,7 +343,6 @@ the directory name we use is the special directory name `.` that we mentioned ea
 ~~~
 $ mv thesis/quotes.txt .
 ~~~
-
 {: .bash}
 
 The effect is to move the file from the directory it was in to the current working directory.
@@ -388,7 +351,6 @@ The effect is to move the file from the directory it was in to the current worki
 ~~~
 $ ls thesis
 ~~~
-
 {: .bash}
 
 Further,
@@ -398,13 +360,11 @@ We can use this to see that `quotes.txt` is still in our current directory:
 ~~~
 $ ls quotes.txt
 ~~~
-
 {: .bash}
 
 ~~~
 quotes.txt
 ~~~
-
 {: .output}
 
 ### Copying files
@@ -419,12 +379,10 @@ with two paths as parameters --- like most Unix commands,
 $ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-
 {: .bash}
 ~~~
 quotes.txt   thesis/quotations.txt
 ~~~
-
 {: .output}
 
 To prove that we made a copy,
@@ -435,13 +393,11 @@ and then run that same `ls` again (we can get to this command by pressing the up
 $ rm quotes.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-
 {: .bash}
 ~~~
 ls: cannot access quotes.txt: No such file or directory
 thesis/quotations.txt
 ~~~
-
 {: .error}
 
 This time it tells us that it can't find `quotes.txt` in the current directory,
@@ -507,7 +463,6 @@ but it does find the copy in `thesis` that we didn't delete.
 > $ ls analyzed
 > fructose.dat    sucrose.dat
 > ~~~
-
 {: .challenge}
 
 > ## Copy with Multiple Filenames
@@ -526,7 +481,6 @@ but it does find the copy in `thesis` that we didn't delete.
 > intro.txt    methods.txt    survey.txt
 > $ cp intro.txt methods.txt survey.txt
 > ~~~
-
 {: .challenge}
 
 
