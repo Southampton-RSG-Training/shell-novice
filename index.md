@@ -15,7 +15,7 @@ Use of the shell is fundamental to using a wide range of other powerful tools
 and computing resources (including "high-performance computing" supercomputers, like IRIDIS at the University of Southampton).
 These lessons will start you on a path towards using these resources effectively.
 
-> ## Prerequisites {.prereq}
+> ## Prerequisites
 >
 > This lesson guides you through the basics of file systems and the
 > shell.  If you have stored files on a computer at all and recognize
@@ -26,7 +26,7 @@ These lessons will start you on a path towards using these resources effectively
 > searching for files with `grep` and `find`, and writing simple loops
 > and scripts, you probably won't learn much from this lesson.
 
-> ## Getting ready {.getready}
+> ## Getting ready
 >
 > You need to download some files to follow this lesson. First, you need to open a terminal:
 >
@@ -44,20 +44,20 @@ These lessons will start you on a path towards using these resources effectively
 
 ## Topics
 
-1.  [Introducing the Shell](../../2020-10-29-socobio-crs/novice/shell/00-intro.html)
-2.  [Files and Directories](../../2020-10-29-socobio-crs/novice/shell/01-filedir.html)
-3.  [Creating Things](../../2020-10-29-socobio-crs/novice/shell/02-create.html)
-4.  [Pipes and Filters](../../2020-10-29-socobio-crs/novice/shell/03-pipefilter.html)
-5.  [Shell Scripts](../../2020-10-29-socobio-crs/novice/shell/04-script.html)
-6.  [Loops](../../2020-10-29-socobio-crs/novice/shell/05-loop.html)
-7.  [Finding Things](../../2020-10-29-socobio-crs/novice/shell/06-find.html)
-8.  [Additional Exercises](../../2020-10-29-socobio-crs/novice/shell/07-additional-exercises.html)
+1.  [Introducing the Shell](https://southampton-rsg.github.io/swc-shell-novice/00-intro/index.html)
+2.  [Files and Directories](https://southampton-rsg.github.io/swc-shell-novice/01-filedir/index.html)
+3.  [Creating Things](https://southampton-rsg.github.io/swc-shell-novice/02-create/index.html)
+4.  [Pipes and Filters](https://southampton-rsg.github.io/swc-shell-novice/03-pipefilter/index.html)
+5.  [Shell Scripts](https://southampton-rsg.github.io/swc-shell-novice/04-script/index.html)
+6.  [Loops](https://southampton-rsg.github.io/swc-shell-novice/05-loop/index.html)
+7.  [Finding Things](https://southampton-rsg.github.io/swc-shell-novice/06-find/index.html)
+8.  [Additional Exercises](https://southampton-rsg.github.io/swc-shell-novice/07-additional-exercises/index.html)
 
-The answers to the exercises can be found [here](../../2020-10-29-socobio-crs/novice/shell/answers.html).
+The answers to the exercises can be found [here](https://southampton-rsg.github.io/swc-shell-novice/answers/index.html).
 
 ## Other Resources and Further Learning
 
-*   [Bash command reference](../../2020-10-29-socobio-crs/novice/shell/reference.html)
+*   [Bash command reference](https://southampton-rsg.github.io/swc-shell-novice/reference/index.html)
 *   [Writing readable source code - a guide](https://software.ac.uk/resources/guides/writing-readable-source-code)
 *   [Bash tutorial with online exercises](https://learnshell.org/)
 *   [Intermediate guide to Bash](https://www.linode.com/docs/guides/an-intermediate-guide-to-bash-scripting/)
