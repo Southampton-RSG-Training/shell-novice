@@ -25,7 +25,7 @@ These lessons will start you on a path towards using these resources effectively
 > If you're already comfortable manipulating files and directories,
 > searching for files with `grep` and `find`, and writing simple loops
 > and scripts, you probably won't learn much from this lesson.
-{: .prerequisites}
+{: .prereq}
 
 > ## Getting ready
 >
@@ -38,10 +38,14 @@ These lessons will start you on a path towards using these resources effectively
 > Once you've done this, a window should appear. Type the following into the
 > prompt that appears (pressing enter/return after each line):
 >
-> ~~~ {.input}
+> ~~~
 > $ cd
 > $ git clone https://github.com/Southampton-RSG/2020-10-29-socobio-crs
 > ~~~
+> {: .input}
+{: .checklist}
+
+
 
 ## Topics
 
