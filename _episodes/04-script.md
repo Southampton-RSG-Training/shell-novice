@@ -3,12 +3,13 @@ layout: page
 title: Shell Scripts
 minutes: 15
 ---
-> ## Learning Objectives {.objectives}
+> ## Learning Objectives
 >
 > *   Write a shell script that runs a command or series of commands for a fixed set of files.
 > *   Run a shell script from the command line.
 > *   Write a shell script that operates on a set of files defined by the user on the command line.
 > *   Create pipelines that include user-written shell scripts.
+{: .objectives}
 
 We are finally ready to see what makes the shell such a powerful programming environment.
 We are going to take the commands we repeat frequently and save them in files
@@ -22,7 +23,8 @@ these are actually small programs.
 
 Let's start by going back to `novice/shell/data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ cd ~/2020-10-29-socobio-crs/novice/shell/data
 $ nano middle.sh
 ~~~
@@ -31,7 +33,8 @@ So why the .sh extension to the filename? Adding `.sh` is the convention to show
 
 Enter the following line into our new file, then save it and exit `nano` (using `Control-O` to save it and then `Control-X` to exit `nano`):
 
-~~~ {.bash}
+{: .bash}
+~~~
 head -15 sc_climate_data_1000.csv | tail -5
 ~~~
 
@@ -44,11 +47,13 @@ Once we have saved the file,
 we can ask the shell to execute the commands it contains.
 Our shell is called `bash`, so we run the following command:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash middle.sh
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 299196.8188,972890.0521,48.07,61.41,0.78
 324196.8188,972890.0521,48.20,-9999.00,0.72
 274196.8188,968890.0521,47.86,60.94,0.83
@@ -59,7 +64,7 @@ $ bash middle.sh
 Sure enough,
 our script's output is exactly what we would get if we ran that pipeline directly.
 
-> ## Text vs. Whatever {.callout}
+> ## Text vs. Whatever
 >
 > We usually call programs like Microsoft Word or LibreOffice Writer "text
 > editors", but we need to be a bit more careful when it comes to
@@ -70,6 +75,7 @@ our script's output is exactly what we would get if we ran that pipeline directl
 > nothing but the letters, digits, and punctuation on a standard computer
 > keyboard. When editing programs, therefore, you must either use a plain
 > text editor, or be careful to save files as plain text.
+{: .callout}
 
 ### Enabling our script to run on any file
 
@@ -79,11 +85,13 @@ but that would probably take longer than just retyping the command.
 Instead,
 let's edit `middle.sh` and replace `sc_climate_data_1000.csv` with a special variable called `$1`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ nano middle.sh
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 head -15 "$1" | tail -5
 ~~~
 
@@ -91,11 +99,13 @@ Inside a shell script,
 `$1` means the first filename (or other argument) passed to the script on the command line.
 We can now run our script like this:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash middle.sh sc_climate_data_1000.csv
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 299196.8188,972890.0521,48.07,61.41,0.78
 324196.8188,972890.0521,48.20,-9999.00,0.72
 274196.8188,968890.0521,47.86,60.94,0.83
@@ -105,11 +115,13 @@ $ bash middle.sh sc_climate_data_1000.csv
 
 or on a different file like this (our full data set!):
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash middle.sh sc_climate_data.csv
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 299196.8188,972890.0521,48.07,61.41,0.78
 324196.8188,972890.0521,48.20,-9999.00,0.72
 274196.8188,968890.0521,47.86,60.94,0.83
@@ -119,7 +131,7 @@ $ bash middle.sh sc_climate_data.csv
 
 Note the output is the same, since our full data set contains the same first 1000 lines as `sc_climate_data_1000.csv`.
 
-> ## Double-Quotes Around Arguments {.callout}
+> ## Double-Quotes Around Arguments
 >
 > We put the `$1` inside of double-quotes in case the filename happens to contain any spaces.
 > The shell uses whitespace to separate arguments,
@@ -132,6 +144,7 @@ Note the output is the same, since our full data set contains the same first 100
 >
 > This would call `head` on two separate files, `climate` and `data.csv`,
 > which is probably not what we intended.
+{: .callout}
 
 ### Adding more arguments to our script
 
@@ -139,21 +152,25 @@ However, if we want to adjust the range of lines to extract, we still need to ed
 Less than ideal!
 Let's fix that by using the special variables `$2` and `$3`. These represent the second and third arguments passed on the command line:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ nano middle.sh
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 head "$2" "$1" | tail "$3"
 ~~~
 
 So now we can pass the `head` and `tail` line range arguments to our script:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash middle.sh sc_climate_data_1000.csv -20 -5
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 252196.8188,961890.0521,46.22,60.94,1.43
 152196.8188,960890.0521,48.81,-9999.00,1.08
 148196.8188,959890.0521,48.81,59.43,1.08
@@ -165,11 +182,13 @@ This does work,
 but it may take the next person who reads `middle.sh` a moment to figure out what it does.
 We can improve our script by adding some **comments** at the top:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ cat middle.sh
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 # Select lines from the middle of a file.
 # Usage: middle.sh filename -end_line -num_lines
 head "$2" "$1" | tail "$3"
@@ -191,7 +210,8 @@ an explanation that sends the reader in the wrong direction is worse than none a
 What if we want to process many files in a single pipeline?
 For example, if we want to sort our `.csv` files by length, we would type:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ wc -l *.csv | sort -n
 ~~~
 
@@ -213,24 +233,28 @@ to handle the case of parameters containing spaces
 
 Here's an example. Edit a new file called `sort.sh`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ nano sorted.sh
 ~~~
 
 And in that file enter:
 
-~~~ {.output}
+{: .output}
+~~~
 wc -l "$@" | sort -n
 ~~~
 When we run it with some wildcarded file arguments:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 ~~~
 
 We have the following output:
 
-~~~ {.output}
+{: .output}
+~~~
       11 sc_climate_data_10.csv
      155 ../test_directory/creatures/minotaur.dat
      163 ../test_directory/creatures/basilisk.dat
@@ -240,7 +264,7 @@ We have the following output:
  1050073 total
 ~~~
 
-> ## Why Isn't It Doing Anything? {.callout}
+> ## Why Isn't It Doing Anything?
 >
 > What happens if a script is supposed to process a bunch of files, but we
 > don't give it any filenames? For example, what if we type:
@@ -259,15 +283,17 @@ We have the following output:
 >
 > If you find yourself in this situation pressing `Control-C` will stop the
 > command from taking input and return you to the command line prompt.
+{: .callout}
 
 Again, we should explain what we are trying to do here using a comment, for example:
 
-~~~ {.bash}
+{: .bash}
+~~~
 # List given files sorted by number of lines
 wc -l "$@" | sort -n
 ~~~
 
-> ## What did I type to get that to work? {.callout}
+> ## What did I type to get that to work?
 >
 > Here's something that can be useful as an aid to memory.
 > Suppose we have just run a series of commands that did something useful. For example,
@@ -278,7 +304,8 @@ wc -l "$@" | sort -n
 > (and potentially getting them wrong)
 > we can do this:
 >
-> ~~~ {.bash}
+> {: .bash}
+>~~~
 > $ history | tail -4 > redo-figure-3.sh
 > ~~~
 >
@@ -301,10 +328,11 @@ wc -l "$@" | sort -n
 > what they discover about their data and their workflow with one call to `history`
 > and a bit of editing to clean up the output
 > and save it as a shell script.
+{: .callout}
 
 ## Exercises
 
-> ## Variables in shell scripts {.challenge}
+> ## Variables in shell scripts
 >
 > In the `test_directory/molecules` directory, you have a shell script called `script.sh` containing the
 > following commands:
@@ -331,8 +359,9 @@ wc -l "$@" | sort -n
 > 2. The first and the last line of each file ending in `*.pdb` in the molecules directory
 > 3. The first and the last line of each file in the molecules directory
 > 4. An error because of the quotes around `*.pdb`
+{: .challenge}
 
-> ## Script reading comprehension {.challenge}
+> ## Script reading comprehension
 >
 > Joel's `data` directory contains three files: `fructose.dat`,
 > `glucose.dat`, and `sucrose.dat`. Explain what a script called
@@ -356,5 +385,6 @@ wc -l "$@" | sort -n
 > # Script 3
 > echo $@.dat
 > ~~~
+{: .challenge}
 
-### [Next: Loops](../../2020-10-29-socobio-crs/novice/shell/05-loop.html)
+### [Next: Loops](https://southampton-rsg.github.io/swc-shell-novice/05-loop/index.html)
