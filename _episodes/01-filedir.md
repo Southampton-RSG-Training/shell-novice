@@ -28,7 +28,8 @@ let's open a shell window:
 
 ~~~
 $
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 The dollar sign is a **prompt**,
 which represents our input interface to the shell.
@@ -36,7 +37,6 @@ It shows us that the shell is waiting for input;
 your shell may show something more elaborate.
 
 ### Working out who we are and where we are
-
 Type the command `whoami`,
 then press the `Enter` key (sometimes called `Return`) to send the command to the shell.
 The command's output is the identity of the current user,
@@ -44,10 +44,12 @@ i.e., it shows us who the shell thinks we are (yours will be something different
 
 ~~~
 $ whoami
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 nelle
-~~~ {: .output}
+~~~
+{: .output}
 
 So what's happening? When we type `whoami` the shell:
 
@@ -69,10 +71,12 @@ which is Nelle's **home directory**:
 
 ~~~
 $ pwd
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 /Users/nelle
-~~~ {: .output}
+~~~
+{: .output}
 
 > ## Home directory
 >
@@ -162,7 +166,8 @@ which stands for "listing" (the `...` refers to other files and directories that
 
 ~~~
 $ ls
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 2020-10-29-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
@@ -171,7 +176,8 @@ Development            Notes.txt              VirtualBox VMs
 Documents              Pictures               bin
 Downloads              Pizza.cfg              mbox
 ...
-~~~ {: .output}
+~~~
+{: .output}
 
 Of course, this listing will depend on what you have in your own home directory.
 
@@ -185,10 +191,12 @@ Before we do this,
 
 ~~~
 $ pwd
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 /Users/nelle
-~~~ {: .output}
+~~~
+{: .output}
 
 We can use `cd` followed by a directory name to change our working directory.
 `cd` stands for "change directory",
@@ -198,17 +206,20 @@ it changes the shell's idea of what directory we are in.
 
 ~~~
 $ cd 2020-10-29-socobio-crs
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 `cd` doesn't print anything,
 but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`:
 
 ~~~
 $ pwd
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 /Users/nelle/2020-10-29-socobio-crs
-~~~ {: .output}
+~~~
+{: .output}
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
@@ -218,7 +229,8 @@ because that's where we now are:
 
 ~~~
 $ ls
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 ~~~
 404.html           Makefile           deck.js            requirements.txt
@@ -228,7 +240,8 @@ CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
 LICENSE.md         css                reference.html
-~~~ {: .output}
+~~~
+{: .output}
 
 `ls` prints the names of the files and directories in the current directory in alphabetical order,
 arranged neatly into columns (where there is space to do so).
@@ -237,7 +250,8 @@ which tells `ls` to add a trailing `/` to the names of directories:
 
 ~~~
 $ ls -F
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 404.html            Makefile            deck.js/            requirements.txt
 CONDUCT.md          README.md           index.html          schedule.html
@@ -246,7 +260,8 @@ CUSTOMIZATION.md    _config.yml         novice/             template/
 DESIGN.md           _includes/          prerequisites.html  tools/
 FAQ.md              _layouts/           prerequisites.md    welcome/
 LICENSE.md          css/                reference.html
-~~~ {: .output}
+~~~
+{: .output}
 
 Here,
 we can see that this directory contains a number of **sub-directories**.
@@ -283,14 +298,16 @@ For this exercise, we need to change our working directory to `novice`, and then
 
 ~~~
 $ cd novice/shell
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 Note that we are able to add directories together by using `/`.
 Now if we view the contents of that directory:
 
 ~~~
 $ ls -F
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 00-intro.html          AUTHORS                img/
 00-intro.md            CONDUCT.md             index.html
@@ -306,7 +323,8 @@ $ ls -F
 05-script.md           discussion.html        shell-novice-data.zip
 06-find.html           discussion.md          test_directory/
 06-find.md             fig/                   tools/
-~~~ {: .output}
+~~~
+{: .output}
 
 Note that under Git Bash in Windows, the `/` is appended automatically.
 
@@ -315,11 +333,13 @@ we want a listing of something other than our current working directory:
 
 ~~~
 $ ls -F test_directory
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 creatures/          molecules/          notes.txt           solar.pdf
 data/               north-pacific-gyre/ pizza.cfg           writing/
-~~~ {: .output}
+~~~
+{: .output}
 
 The output shows us that there are some files and sub-directories.
 Organising things hierarchically in this way helps us keep track of our work:
@@ -349,10 +369,12 @@ because `/test_directory` is an **absolute path**:
 
 ~~~
 $ ls -F /test_directory
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 ls: /test_directory: No such file or directory
-~~~ {: .output}
+~~~
+{: .output}
 
 The leading `/` tells the computer to follow the path from the root of the file system,
 so it always refers to exactly one directory,
@@ -363,13 +385,15 @@ Typing `ls -F test_directory` is a bit painful, so a handy shortcut is to type i
 
 ~~~
 $ ls -F tes
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 Pressing *TAB*, the shell automatically completes the directory name:
 
 ~~~
 $ ls -F test_directory/
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 This is known as *tab completion* on any matches with those first few letters.
 If there are more than one files or directories that match those letters, the shell will show you both --- you can then enter more characters (then using *TAB* again) until it is able to identify the precise file you want and finish the tab completion.
@@ -378,7 +402,8 @@ Let's change our directory to `test_directory`:
 
 ~~~
 $ cd test_directory
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 We know how to go down the directory tree:
 but how do we go up?
@@ -388,13 +413,16 @@ but it's almost always simpler to use `cd ..` to go up one level:
 
 ~~~
 $ pwd
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
-~~~ {: .output}
+~~~
+{: .output}
 ~~~
 $ cd ..
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 `..` is a special directory name meaning
 "the directory containing this one",
@@ -403,28 +431,33 @@ the **parent** of the current directory.
 
 ~~~
 $ pwd
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/
-~~~ {: .output}
+~~~
+{: .output}
 
 Let's go back into our test directory:
 
 ~~~
 $ cd test_directory
-~~~ {: .bash}
+~~~
+{: .language-bash}
 
 The special directory `..` doesn't usually show up when we run `ls`.
 If we want to display it, we can give `ls` the `-a` flag:
 
 ~~~
 $ ls -F -a
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 ./                  data/               notes.txt           writing/
 ../                 molecules/          pizza.cfg
 creatures/          north-pacific-gyre/ solar.pdf
-~~~ {: .output}
+~~~
+{: .output}
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
@@ -451,7 +484,8 @@ Another handy feature is that we can reference our home directory with `~`, e.g.
 
 ~~~
 $ ls ~/2020-10-29-socobio-crs
-~~~ {: .bash}
+~~~
+{: .language-bash}
 ~~~
 404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
@@ -460,7 +494,8 @@ CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
 LICENSE.md         css                reference.html
-~~~ {: .output}
+~~~
+{: .output}
 
 Which again shows us our repository directory.
 
@@ -489,7 +524,8 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 >
 > ~~~
 > pnas-sub/ pnas-final/ original/
-> ~~~ {: .bash}
+> ~~~
+{: .language-bash}
 >
 > 1.  `ls pwd`
 > 2.  `ls -r -F`
