@@ -3,12 +3,13 @@ layout: page
 title: Loops
 minutes: 15
 ---
-> ## Learning Objectives {.objectives}
+> ## Learning Objectives
 >
 > *   Write a loop that applies one or more commands separately to each file in a set of files.
 > *   Trace the values taken on by a loop variable during execution of the loop.
 > *   Explain the difference between a variable's name and its value.
 > *   Demonstrate how to see what commands have recently been executed.
+{: .objectives}
 
 Wildcards and tab completion are two ways to reduce typing as well as typing mistakes.
 Another is to tell the shell to do something over and over again, which could save us considerable time,
@@ -23,11 +24,13 @@ but the principles can be applied to many many more files at once.
 Let's first go to the `creatures` directory (using tab completion to enter the full directory will save considerable
 typing here!):
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory/creatures
 $ ls
 ~~~
-~~~ {.output}
+{: .output}
+~~~
 basilisk.dat minotaur.dat unicorn.dat
 ~~~
 
@@ -35,25 +38,27 @@ We would like to modify these files, but also save a version of the original fil
 as `original-basilisk.dat`, `original-minotaur.dat`, `original-unicorn.dat`.
 We can't use the following (don't type this, it's just for illustrative purposes):
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ mv *.dat original-*.dat
 ~~~
 
 Because as we learnt previously, with wildcards that would expand to:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat
 ~~~
 
 This wouldn't back up our files, instead we would get an error. If on a Mac or Linux it would look like:
 
-~~~ {.error}
+~~~ {: .error}
 mv: target `original-*.dat' is not a directory
 ~~~
 
 Or if on Windows using Git Bash, we would see:
 
-~~~ {.error}
+~~~ {: .error}
 usage: mv [-f | -i | -n] [-v] source target
        mv [-f | -i | -n] [-v] source ... directory
 ~~~
@@ -72,13 +77,15 @@ Here's a simple example that displays the first three lines of each file in turn
 
 Let's create a new shell script using `nano` called `top.sh` that uses a loop.
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ nano top.sh
 ~~~
 
 In that file enter the following:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for filename in basilisk.dat minotaur.dat unicorn.dat
 do
     head -3 $filename
@@ -87,10 +94,12 @@ done
 
 After saving it by using `Control-O` and `Control-X`, run the script:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash top.sh
 ~~~
-~~~ {.output}
+{: .output}
+~~~
 COMMON NAME: basilisk
 CLASSIFICATION: basiliscus vulgaris
 UPDATED: 1745-05-02
@@ -111,7 +120,7 @@ Each time through the loop,
 the name of the thing currently being operated on is assigned to
 the **variable** called `filename`.
 
-> ## What is a variable? {.callout}
+> ## What is a variable?
 >
 > Variables are used to store information that we want to refer to later, and are a fundamental concept in
 > general programming. Think of a variable as a container with a name
@@ -124,6 +133,7 @@ the **variable** called `filename`.
 > When we need it later, we extract that value from the container by referencing that container's name 'count'.
 > We can also change what's in the container, essentially changing the value of the variable. From that point on,
 > when we extract the value from the variable, it will be the new value.
+{: .callout}
 
 Inside the loop,
 we get the variable's value by putting `$` in front of it:
@@ -159,7 +169,8 @@ in order to make its purpose clearer to human readers.
 The shell itself doesn't care what the variable is called;
 if we wrote this loop as:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for x in basilisk.dat minotaur.dat unicorn.dat
 do
     head -3 $x
@@ -168,7 +179,8 @@ done
 
 or:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for temperature in basilisk.dat minotaur.dat unicorn.dat
 do
     head -3 $temperature
@@ -188,7 +200,8 @@ run a loop over them all?
 Here's a slightly more complicated loop to try next.
 Change our `top.sh` script to the following:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for filename in *.dat
 do
     echo $filename
@@ -205,13 +218,15 @@ then executes two commands for each of those files.
 The first, `echo`, just prints its command-line parameters to standard output.
 For example:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ echo hello there
 ~~~
 
 prints:
 
-~~~ {.output}
+{: .output}
+~~~
 hello there
 ~~~
 
@@ -220,7 +235,8 @@ since the shell expands `$filename` to be the name of a file,
 `echo $filename` just prints the name of the file.
 Note that we can't write this as:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for filename in *.dat
 do
     $filename
@@ -234,13 +250,15 @@ Finally,
 the `head` and `tail` combination selects lines 81-100 from whatever file is being processed.
 Run this revised script now:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ bash top.sh
 ~~~
 
 And you should see (the `...` indicates more gene sequences that appear in the output, but are omitted for clarity):
 
-~~~ {.output}
+{: .output}
+~~~
 basilisk.dat
 CGGTACCGAA
 AAGGGTCGCG
@@ -264,7 +282,7 @@ GTTCTGCTAA
 ...
 ~~~
 
-> ## Spaces in filenames {.callout}
+> ## Spaces in filenames
 >
 > Filename expansion in loops is another reason you should not use spaces in filenames.
 > Suppose our data files are named:
@@ -316,6 +334,8 @@ GTTCTGCTAA
 > ~~~
 >
 > but it's simpler just to avoid using spaces (or other special characters) in filenames.
+{: .callout}
+
 
 ### File renaming revisited
 
@@ -323,7 +343,8 @@ Going back to our original file renaming problem, using what we've learnt
 we can solve it using the following loop.
 In a new script called `rename.sh` enter the following:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for filename in *.dat
 do
     mv $filename original-$filename
@@ -335,26 +356,30 @@ The first time,
 when `$filename` expands to `basilisk.dat`,
 the shell executes:
 
-~~~ {.bash}
+{: .bash}
+~~~
 mv basilisk.dat original-basilisk.dat
 ~~~
 
 The second time, the command is:
 
-~~~ {.bash}
+{: .bash}
+~~~
 mv minotaur.dat original-minotaur.dat
 ~~~
 
 The third time, the command is:
 
-~~~ {.bash}
+{: .bash}
+~~~
 mv unicorn.dat original-unicorn.dat
 ~~~
 
 Note that once you've run this command once, running it again has an interesting effect that we
 likely don't intend - the `.dat` files we end up with are:
 
-~~~ {.output}
+{: .output}
+~~~
 original-original-basilisk.dat original-original-unicorn.dat
 original-original-minotaur.dat
 ~~~
@@ -364,7 +389,7 @@ This is because the `.dat` files picked up by `for filename in *.dat` will now m
 `original-` prefix added to it. This is another example of why you should always ensure you have a backup of
 files before you operate on them!
 
-> ## Measure Twice, Run Once {.callout}
+> ## Measure Twice, Run Once
 >
 > A loop is a way to do many things at once --- or to make many mistakes at
 > once if it does the wrong thing. One way to check what a loop *would* do
@@ -390,11 +415,12 @@ files before you operate on them!
 > then press "enter" to run the loop with the actual `mv` commands. This
 > isn't foolproof, but it's a handy way to see what's going to happen when
 > you're still learning how loops work.
+{: .callout}
 
 
 ## Exercises
 
-> ## Variables in Loops {.challenge}
+> ## Variables in Loops
 >
 > Suppose that `ls` initially displays:
 >
@@ -421,8 +447,10 @@ files before you operate on them!
 > ~~~
 >
 > Why do these two loops give you different outputs?
+{: .challenge}
 
-> ## Saving to a File in a Loop - Part One {.challenge}
+
+> ## Saving to a File in a Loop - Part One
 >
 > In the same directory, what is the effect of this loop?
 >
@@ -440,8 +468,10 @@ files before you operate on them!
 > 3.  Prints `fructose.dat`, `glucose.dat`, `sucrose.dat`, and
 >     `xylose.dat`, and the text from `sucrose.dat` will be saved to a file called `xylose.dat`.
 > 4.  None of the above.
+{: .challenge}
 
-> ## Saving to a File in a Loop - Part Two {.challenge}
+
+> ## Saving to a File in a Loop - Part Two
 >
 > In another directory, where `ls` returns:
 >
@@ -465,13 +495,16 @@ files before you operate on them!
 >     would be concatenated and saved to a file called `sugar.dat`.
 > 4.  All of the text from `fructose.dat`, `glucose.dat` and `sucrose.dat` would be printed
 >     to the screen and saved to a file called `sugar.dat`
+{: .challenge}
 
-> ## Doing a Dry Run {.challenge}
+
+> ## Doing a Dry Run
 >
 > Suppose we want to preview the commands the following loop will execute
 > without actually running those commands:
 >
-> ~~~ {.bash}
+> {: .bash}
+> ~~~
 > for file in *.dat
 > do
 >   analyze $file > analyzed-$file
@@ -481,7 +514,8 @@ files before you operate on them!
 > What is the difference between the the two loops below, and which one would we
 > want to run?
 >
-> ~~~ {.bash}
+> {: .bash}
+> ~~~
 > # Version 1
 > for file in *.dat
 > do
@@ -489,12 +523,14 @@ files before you operate on them!
 > done
 > ~~~
 >
-> ~~~ {.bash}
+> {: .bash}
+> ~~~
 > # Version 2
 > for file in *.dat
 > do
 >   echo "analyze $file > analyzed-$file"
 > done
 > ~~~
+{: .challenge}
 
-### [Next: Finding Things](../../2020-10-29-socobio-crs/novice/shell/06-find.html)
+### [Next: Finding Things](https://southampton-rsg.github.io/swc-shell-novice/06-find/index.html)
