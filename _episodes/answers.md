@@ -142,7 +142,8 @@ Copying files with new filenames
 
 - Assuming the output directory is named `copied`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 today_date=$(date +"%d-%m-%y")
 
 for file in data/*.csv
@@ -157,7 +158,8 @@ Filtering our output
 - The `Max_temp_jul_F` column is the fourth column in each data file
 - Assuming the input directory is named `copied` and the output directory is named `filtered`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 for file in copied/*.csv
 do
     base_file=$(basename $file)
