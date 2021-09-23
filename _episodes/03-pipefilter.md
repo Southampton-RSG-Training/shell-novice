@@ -3,13 +3,14 @@ layout: page
 title: Pipes and Filters
 minutes: 15
 ---
-> ## Learning Objectives {.objectives}
+> ## Learning Objectives
 >
 > *   Capture a command's output in a file using redirection.
 > *   Use redirection to have a command use a file's contents instead of keyboard input.
 > *   Add commands together in a sequence using pipes, so output of one command becomes input of another.
 > *   Explain what usually happens if a program or pipeline isn't given any input to process.
 > *   Explain Unix's "small pieces, loosely joined" philosophy.
+{: .objectives}
 
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
@@ -24,14 +25,16 @@ in a file, and use that file as the input to another command.
 We'll start with a directory called `data`, which is in the `novice/shell`
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ cd ..
 $ cd data
 ~~~
 
 Doing `ls` shows us three files in this directory:
 
-~~~ {.output}
+{: .output}
+~~~
 sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv
 ~~~
 
@@ -46,7 +49,7 @@ We'll largely be working on the 10-row version, since this allows us to more
 easily reason about the data in the file and the operations we're performing on
 it.
 
-> ## Why not just use the entire 20MB data set? {.callout}
+> ## Why not just use the entire 20MB data set?
 >
 > Running various commands over a 20MB data set could take some time.
 > It's generally good practice when developing code, scripts, or just using
@@ -55,6 +58,7 @@ it.
 > Otherwise, we'll be here all day!
 > Once we're confident our commands, code, scripts, etc. work the way we want, we
 > can then test them on the entire data set.
+{: .callout}
 
 The `.csv` extension indicates that these files are in Comma Separated Value
 format,
@@ -66,11 +70,13 @@ Let's run the command `wc *.csv`:
 * `wc` is the "word count" command, it counts the number of lines, words, and characters in files.
 * The `*` in `*.csv` matches zero or more characters, so the shell turns `*.csv` into a complete list of `.csv` files:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ wc *.csv
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
  1048576 1048577 21005037 sc_climate_data.csv
       11      12     487 sc_climate_data_10.csv
     1001    1002   42301 sc_climate_data_1000.csv
@@ -110,11 +116,13 @@ themselves. It's the shell, not the other programs, that expands the wildcards.
 Going back to `wc`, if we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ wc -l *.csv
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
  1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
@@ -129,7 +137,8 @@ It's an easy question to answer when there are only three files,
 but what if there were 6000?
 Our first step toward a solution is to run the command:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ wc -l *.csv > lengths.txt
 ~~~
 
@@ -142,11 +151,13 @@ everything that `wc` would have printed has gone into the file `lengths.txt` ins
 
 `ls lengths.txt` confirms that the file exists:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ ls lengths.txt
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
 lengths.txt
 ~~~
 
@@ -155,11 +166,13 @@ We can now send the content of `lengths.txt` to the screen using `cat lengths.tx
 There's only one file in this case,
 so `cat` just shows us what it contains:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ cat lengths.txt
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
  1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
@@ -172,11 +185,13 @@ numerical instead of alphabetical.
 This does *not* change the file;
 instead, it sends the sorted result to the screen:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ sort -n lengths.txt
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1048576 sc_climate_data.csv
@@ -189,12 +204,14 @@ just as we used `> lengths.txt` to put the output of `wc` into `lengths.txt`.
 Once we've done that,
 we can run another command called `head` to get the first few lines in `sorted-lengths.txt`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
       11 sc_climate_data_10.csv
 ~~~
 
@@ -216,11 +233,13 @@ Fortunately, there's a way to make this much simpler.
 
 We can make it easier to understand by running `sort` and `head` together:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ sort -n lengths.txt | head -1
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
       11 sc_climate_data_10.csv
 ~~~
 
@@ -236,11 +255,13 @@ we don't have to know or care.
 We can even use another pipe to send the output of `wc` directly to `sort`,
 which then sends its output to `head`:
 
-~~~ {.bash}
+{: .bash}
+~~~
 $ wc -l *.csv | sort -n | head -1
 ~~~
 
-~~~ {.output}
+{: .output}
+~~~
       11 sc_climate_data_10.csv
 ~~~
 
@@ -269,7 +290,7 @@ can be combined with every other program that behaves this way as well.
 You can *and should* write your programs this way
 so that you and other people can put those programs into pipes to multiply their power.
 
-> ## Redirecting Input {.callout}
+> ## Redirecting Input
 >
 > As well as using `>` to redirect a program's output, we can use `<` to
 > redirect its input, i.e., to read from a file instead of from standard
@@ -279,12 +300,13 @@ so that you and other people can put those programs into pipes to multiply their
 > any command line parameters, so it reads from standard input, but we
 > have told the shell to send the contents of `sc_climate_data_10.csv` to `wc`'s
 > standard input.
+{: .callout}
 
 If you're interested in how pipes work in more technical detail, see the description after the exercises.
 
 ## Exercises
 
-> ## What does `sort -n` do? {.challenge}
+> ## What does `sort -n` do?
 >
 > If we run `sort` on this file:
 >
@@ -317,8 +339,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Explain why `-n` has this effect.
+{: .challenge}
 
-> ## What does `>>` mean? {.challenge}
+> ## What does `>>` mean?
 >
 > What is the difference between:
 >
@@ -333,8 +356,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Hint: Try executing each command twice in a row and then examining the output files.
+{: .challenge}
 
-> ## Piping commands together {.challenge}
+> ## Piping commands together
 >
 > In our current directory, we want to find the 3 files which have the least number of
 > lines. Which command listed below would work?
@@ -343,8 +367,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 2. `wc -l * | sort -n | head 1-3`
 > 3. `wc -l * | head -3 | sort -n`
 > 4. `wc -l * | sort -n | head -3`
+{: .challenge}
 
-> ## Why does `uniq` only remove adjacent duplicates? {.challenge}
+> ## Why does `uniq` only remove adjacent duplicates?
 >
 > The command `uniq` removes adjacent duplicated lines from its input.
 > For example, if a file `salmon.txt` contains:
@@ -370,8 +395,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > Why do you think `uniq` only removes *adjacent* duplicated lines?
 > (Hint: think about very large data sets.) What other command could
 > you combine with it in a pipe to remove all duplicated lines?
+{: .challenge}
 
-> ## Pipe reading comprehension {.challenge}
+> ## Pipe reading comprehension
 >
 > A file called `animals.txt` contains the following data:
 >
@@ -391,10 +417,11 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 > cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 > ~~~
+{: .challenge}
 
 For those interested in the technical details of how pipes work:
 
-> ## What's happening 'under the hood' - pipes in more detail {.callout}
+> ## What's happening 'under the hood' - pipes in more detail
 >
 > Here's what actually happens behind the scenes when we create a pipe.
 > When a computer runs a program --- any program --- it creates a **process**
@@ -434,5 +461,7 @@ For those interested in the technical details of how pipes work:
 > and from `sort` through `head` to the screen.
 >
 > ![1. Redirects and Pipes](../../2020-10-29-socobio-crs/novice/shell/fig/redirects-and-pipes.png)
+{: .callout}
 
-### [Next: Shell Scripts](../../2020-10-29-socobio-crs/novice/shell/04-script.html)
+
+### [Next: Shell Scripts](https://southampton-rsg.github.io/swc-shell-novice/04-script/index.html)
