@@ -115,7 +115,7 @@ We add a filename after the `nano` command to tell it that we want to edit (or i
 
 Now, let's type in a few lines of text, for example:
 
-![Nano in action](../../2020-10-29-socobio-crs/novice/shell/fig/nano-screenshot.png)
+![Nano in action](../fig/nano-screenshot.png)
 
 Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press
 `Enter` to confirm the filename.

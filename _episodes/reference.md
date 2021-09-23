@@ -3,7 +3,7 @@ layout: page
 title: The Unix Shell
 subtitle: Reference
 ---
-## [Introducing the Shell](../../2020-10-29-socobio-crs/novice/shell/00-intro.html)
+## [Introducing the Shell](../00-intro.html)
 
 *   A shell is a program whose primary purpose is to read commands and run other programs.
 *   The shell's main advantages are its high action-to-keystroke ratio,
@@ -12,7 +12,7 @@ subtitle: Reference
 *   The shell's main disadvantages are its primarily textual nature
     and how cryptic its commands and operation can be.
 
-## [Files and Directories](../../2020-10-29-socobio-crs/novice/shell/01-filedir.html)
+## [Files and Directories](../01-filedir.html)
 
 *   The file system is responsible for managing information on the disk.
 *   Information is stored in files, which are stored in directories (folders).
@@ -34,7 +34,7 @@ subtitle: Reference
     but is normally used to indicate the type of data in the file.
 *   Most commands take options (flags) which begin with a '-'.
 
-## [Creating Things](../../2020-10-29-socobio-crs/novice/shell/02-create.html)
+## [Creating Things](../02-create.html)
 
 *   `cp old new` copies a file.
 *   `mkdir path` creates a new directory.
@@ -45,7 +45,7 @@ subtitle: Reference
 *   The shell does not have a trash bin: once something is deleted, it's really gone.
 *   Nano is a very simple text editor --- please use something else for real work.
 
-## [Pipes and Filters](../../2020-10-29-socobio-crs/novice/shell/03-pipefilter.html)
+## [Pipes and Filters](../03-pipefilter.html)
 
 *   `cat` displays the contents of its inputs.
 *   `head` displays the first few lines of its input.
@@ -56,7 +56,7 @@ subtitle: Reference
 *   `first | second` is a pipeline: the output of the first command is used as the input to the second.
 *   The best way to use the shell is to use pipes to combine simple single-purpose programs (filters).
 
-## [Shell Scripts](../../2020-10-29-socobio-crs/novice/shell/04-script.html)
+## [Shell Scripts](../04-script.html)
 
 *   Save commands in files (usually called shell scripts) for re-use.
 *   `bash filename` runs the commands saved in a file.
@@ -65,7 +65,7 @@ subtitle: Reference
 *   Place variables in quotes if the values might have spaces in them.
 *   Letting users decide what files to process is more flexible and more consistent with built-in Unix commands.
 
-## [Loops](../../2020-10-29-socobio-crs/novice/shell/05-loop.html)
+## [Loops](../05-loop.html)
 
 *   A `for` loop repeats commands once for every thing in a list.
 *   Every `for` loop needs a variable to refer to the current "thing".
@@ -76,7 +76,7 @@ subtitle: Reference
 *   Use "control-r" to search through the previously entered commands.
 *   Use `history` to display recent commands, and `!number` to repeat a command by number.
 
-## [Finding Things](../../2020-10-29-socobio-crs/novice/shell/06-find.html)
+## [Finding Things](../06-find.html)
 
 *   `find` finds files with specific properties that match patterns.
 *   `grep` selects lines in files that match patterns.

@@ -125,7 +125,7 @@ this is the leading slash in `/Users/nelle`.
 
 Let's continue looking at Nelle's hypothetical file system as an example. Inside the `/` directory are several other directories, for example:
 
-![1. The File System](../../2020-10-29-socobio-crs/novice/shell/fig/filesystem.svg)
+![1. The File System](../fig/filesystem.svg)
 
 So here we have the following directories:
 
@@ -147,7 +147,7 @@ we find one directory for each user with an account on this machine, e.g.:
 and ours in `/Users/nelle`,
 which is why `nelle` is the last part of the directory's name.
 
-![2. Home Directories](../../2020-10-29-socobio-crs/novice/shell/fig/home-directories.svg)
+![2. Home Directories](../fig/home-directories.svg)
 
 > ## Path
 >
@@ -504,7 +504,7 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 
 ## Exercises
 
-![3. File System for Challenge Questions](../../2020-10-29-socobio-crs/novice/shell/fig/filesystem-challenge.svg)
+![3. File System for Challenge Questions](../fig/filesystem-challenge.svg)
 
 > ## Relative path resolution
 >

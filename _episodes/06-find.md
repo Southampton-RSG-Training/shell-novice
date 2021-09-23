@@ -248,7 +248,7 @@ Again,
 it has a lot of options;
 to show how the simplest ones work, we'll use the directory tree shown below.
 
-![1. File Tree for Find Example](../../2020-10-29-socobio-crs/novice/shell/fig/find-file-tree.svg)
+![1. File Tree for Find Example](../fig/find-file-tree.svg)
 
 Nelle's `writing` directory contains one file called `haiku.txt` and four subdirectories:
 `thesis` (which is sadly empty),

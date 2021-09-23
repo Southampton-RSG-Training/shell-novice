@@ -460,7 +460,7 @@ For those interested in the technical details of how pipes work:
 > through `wc` to `sort`,
 > and from `sort` through `head` to the screen.
 >
-> ![1. Redirects and Pipes](../../2020-10-29-socobio-crs/novice/shell/fig/redirects-and-pipes.png)
+> ![1. Redirects and Pipes](../fig/redirects-and-pipes.png)
 {: .callout}
 
 
