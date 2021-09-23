@@ -3,10 +3,11 @@ layout: page
 title: Introducing the Shell
 minutes: 5
 ---
-> ## Learning Objectives  {: .objectives}
+> ## Learning Objectives
 >
 > *   Explain what the shell is and how it relates to graphical interfaces.
 > *   Explain the benefits of using the shell.
+{: .objectives}
 
 ## What is the shell?
 
@@ -42,4 +43,4 @@ You can already use the Bash shell on computers like Macs and those that run Lin
 
 Now on the flip side, it does have a steeper learning curve generally than using graphical programs. Applications and programs also need to work on the command line to be able to take advantage of it. But knowing just a little can be very useful, and in your careers you will very likely come across quite a few programs that have command line interfaces so it's helpful to have some experience with it.
 
-### [Next: Files and Directories](../../2020-10-29-socobio-crs/novice/shell/01-filedir.html)
+### [Next: Files and Directories](https://southampton-rsg.github.io/swc-shell-novice/01-filedir/index.html)
