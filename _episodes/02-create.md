@@ -530,4 +530,4 @@ but it does find the copy in `thesis` that we didn't delete.
 {: .challenge}
 
 
-### [Next: Pipes and Filters](https://southampton-rsg.github.io/swc-shell-novice/01-filedir/03-pipefilter/index.html)
+### [Next: Pipes and Filters](https://southampton-rsg.github.io/swc-shell-novice/03-pipefilter/index.html)

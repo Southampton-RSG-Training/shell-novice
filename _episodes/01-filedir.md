@@ -533,4 +533,4 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 4.  Either \#2 or \#3 above, but not \#1.
 {: .challenge}
 
-### [Next: Creating Things](../../2020-10-29-socobio-crs/novice/shell/02-create.html)
+### [Next: Creating Things](https://southampton-rsg.github.io/swc-shell-novice/02-create/index.html)
