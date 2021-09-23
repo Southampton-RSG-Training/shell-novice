@@ -100,7 +100,6 @@ Now we'll create a new file using a text editor in this new directory.
 >
 > Your choice of editor will depend on the size of project you're working on,
 > and how comfortable you are with the terminal.
-
 {: .callout}
 
 Let's first change our working directory to `thesis` using `cd`,
@@ -177,7 +176,6 @@ $ ls
 > recovering deleted files do exist, but there's no guarantee they'll
 > work in any particular situation, since the computer may recycle the
 > file's disk space right away.
-
 {: .callout}
 
 But what if we want to delete a directory, perhaps one that already contains a file? Let's re-create that file
@@ -269,7 +267,6 @@ $ rmdir thesis
 > the directory contains sub-directories, `rm -r` does the same thing to
 > them, and so on. It's very handy, but can do a lot of damage if used
 > without care.
-
 {: .callout}
 
 
