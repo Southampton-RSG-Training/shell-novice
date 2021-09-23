@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Additional Exercises
+title: Additional Exercises
 minutes: 45
 ---
 > ## Learning Objectives {.objectives}
@@ -28,11 +27,11 @@ $ today_date=$(date +“%d-%m-%y”)
 ~~~
 
 > ## Copying files with new filenames {.challenge}
-> 
+>
 > Write a script in the `novice/shell` directory that goes through each `.csv` file in the `data` directory (that resides in
 > the `novice/shell` directory) and
 > creates a copy of that file with today’s date at the start of the filename, e.g. `16-11-20-sc_climate_data.csv`.
-> 
+>
 > Hints:
 >
 > - With the input data files we’re going to use held in the data directory, create a new directory which will be used to hold your output files. When writing scripts or programs that generate output from input, it is a good idea to separate where you keep your input and output files. This allows you to more easily distinguish between the two, makes it easier to understand, and retains your original input which is invaluable if your script has a fault and corrupts your input data. It also means that if you add an additional processing step that will work on the output data and generate new output, you can logically extend this by adding a new script and a new directory to hold *that* new output, and so on.
@@ -52,7 +51,7 @@ Will output `3`.
 The `-d` argument specifies, within quotes, the delimiter that separates the columns on each line, whilst the `-f` argument indicates the column (or columns) you wish to extract.
 
 > ## Filtering our output {.challenge}
-> 
+>
 > Let’s extend our pipeline to extract a specific column of data from each of our newly copied files.
-> 
+>
 > Create a new script that takes each new file we created in the earlier exercise and creates a new file (again, in another separate output directory), which contains only the data held in the `Max_temp_jul_F` column.

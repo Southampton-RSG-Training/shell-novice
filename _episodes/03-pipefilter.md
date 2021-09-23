@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Pipes and Filters
+title: Pipes and Filters
 minutes: 15
 ---
 > ## Learning Objectives {.objectives}

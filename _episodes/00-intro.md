@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Introducing the Shell
+title: Introducing the Shell
 minutes: 5
 ---
 > ## Learning Objectives {.objectives}

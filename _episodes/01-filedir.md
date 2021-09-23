@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Files and Directories
+title: Files and Directories
 minutes: 15
 ---
 > ## Learning Objectives {.objectives}

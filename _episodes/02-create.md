@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Creating Things
+title: Creating Things
 minutes: 15
 ---
 > ## Learning Objectives {.objectives}

@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Shell Scripts
+title: Shell Scripts
 minutes: 15
 ---
 > ## Learning Objectives {.objectives}

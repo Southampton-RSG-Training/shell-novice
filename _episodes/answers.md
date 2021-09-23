@@ -1,7 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
-subtitle: Exercise Answers
+title: Exercise Answers
 minutes: 0
 ---
 
@@ -50,7 +49,7 @@ Copy with Multiple Filenames
 
 What does sort -n do?
 
- - `sort -n` will perform a sort interpreting numerical digits as proper numbers - a numerical sort. `sort` on its own will 
+ - `sort -n` will perform a sort interpreting numerical digits as proper numbers - a numerical sort. `sort` on its own will
 perform a sort assuming any numerical digits are just sequences of characters, e.g. `10` will come before `2` since `1` comes before `2`.
 
 What does >> mean?

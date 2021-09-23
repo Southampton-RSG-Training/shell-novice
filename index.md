@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Bash Shell
+title: Getting Started
 ---
 The Bash shell has been around longer than many of its users have been alive.
 It has survived so long because it's a power tool
