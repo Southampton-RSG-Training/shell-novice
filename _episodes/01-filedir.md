@@ -2,17 +2,19 @@
 layout: page
 title: Files and Directories
 minutes: 15
+objectives:
+-   Explain the steps in the shell's read-run-print cycle.
+-   Explain the similarities and differences between a file and a directory.
+-   Re-run recently executed commands without retyping them.
+-   Translate an absolute path into a relative path and vice versa.
+-   Construct absolute and relative paths that identify specific files and directories.
+-   List the contents of directories.
+-   Identify the actual command, flags, and filenames in a command-line call.
+-   Demonstrate the use of tab completion and other key shortcuts and explain their advantages.
 ---
 > ## Learning Objectives  {: .objectives}
 >
-> *   Explain the steps in the shell's read-run-print cycle.
-> *   Explain the similarities and differences between a file and a directory.
-> *   Re-run recently executed commands without retyping them.
-> *   Translate an absolute path into a relative path and vice versa.
-> *   Construct absolute and relative paths that identify specific files and directories.
-> *   List the contents of directories.
-> *   Identify the actual command, flags, and filenames in a command-line call.
-> *   Demonstrate the use of tab completion and other key shortcuts and explain their advantages.
+
 
 The part of the operating system responsible for managing files and directories is called the **file system**.
 It organizes our data into files,
