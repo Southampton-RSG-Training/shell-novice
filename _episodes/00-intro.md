@@ -3,7 +3,7 @@ layout: page
 title: Introducing the Shell
 minutes: 5
 ---
-> ## Learning Objectives {.objectives}
+> ## Learning Objectives  {: .objectives}
 >
 > *   Explain what the shell is and how it relates to graphical interfaces.
 > *   Explain the benefits of using the shell.
