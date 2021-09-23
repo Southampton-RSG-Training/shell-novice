@@ -3,7 +3,7 @@ layout: page
 title: Files and Directories
 minutes: 15
 ---
-> ## Learning Objectives  {: .objectives}
+> ## Learning Objectives
 >
 > *   Explain the steps in the shell's read-run-print cycle.
 > *   Explain the similarities and differences between a file and a directory.
@@ -13,6 +13,7 @@ minutes: 15
 > *   List the contents of directories.
 > *   Identify the actual command, flags, and filenames in a command-line call.
 > *   Demonstrate the use of tab completion and other key shortcuts and explain their advantages.
+{: .objectives}
 
 The part of the operating system responsible for managing files and directories is called the **file system**.
 It organizes our data into files,
@@ -25,9 +26,9 @@ The shell has a notion of *where you currently are*, and as we'll see, works by 
 To start exploring them,
 let's open a shell window:
 
-~~~  {: .bash}
-$
 ~~~
+$
+~~~ {: .bash}
 
 The dollar sign is a **prompt**,
 which represents our input interface to the shell.
@@ -41,12 +42,12 @@ then press the `Enter` key (sometimes called `Return`) to send the command to th
 The command's output is the identity of the current user,
 i.e., it shows us who the shell thinks we are (yours will be something different!):
 
-~~~  {: .bash}
+~~~
 $ whoami
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 nelle
-~~~
+~~~ {: .output}
 
 So what's happening? When we type `whoami` the shell:
 
@@ -66,14 +67,14 @@ Here,
 the computer's response is `/Users/nelle`,
 which is Nelle's **home directory**:
 
-~~~  {: .bash}
+~~~
 $ pwd
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 /Users/nelle
-~~~
+~~~ {: .output}
 
-> ## Home directory  {: .callout}
+> ## Home directory
 >
 > The home directory path will look different on different operating systems.
 > On Linux it will look like `/home/nelle`,
@@ -81,8 +82,9 @@ $ pwd
 > and on Windows itself it will be similar to `C:\Users\nelle`.
 > Note that it may also look slightly different for different versions of
 > Windows.
+{: .callout}
 
-> ## Alphabet Soup  {: .callout}
+> ## Alphabet Soup
 >
 > If the command to find out who we are is `whoami`, the command to find
 > out where we are ought to be called `whereami`, so why is it `pwd`
@@ -94,8 +96,9 @@ $ pwd
 > Unix one by one, without any master plan, by people who were immersed in
 > its jargon. The result is as inconsistent as the roolz uv Inglish
 > speling, but we're stuck with it now.
+{: .callout}
 
-> ## Real typing timesavers  {: .callout}
+> ## Real typing timesavers
 >
 > Save yourself some unnecessary keypresses!
 >
@@ -105,6 +108,7 @@ $ pwd
 > We can also move to the beginning of a line in the shell by typing `^A`
 > (which means Control-A) and to the end using `^E`. Much quicker on long
 > lines than just using the left/right arrow keys.
+{: .callout}
 
 ### How file systems are organised
 
@@ -141,12 +145,13 @@ which is why `nelle` is the last part of the directory's name.
 
 ![2. Home Directories](../../2020-10-29-socobio-crs/novice/shell/fig/home-directories.svg)
 
-> ## Path  {: .callout}
+> ## Path
 >
 > Notice that there are two meanings for the `/` character.
 > When it appears at the front of a file or directory name,
 > it refers to the root directory. When it appears *inside* a name,
 > it's just a separator.
+{: .callout}
 
 ### Listing the contents of directories and moving around
 
@@ -155,10 +160,10 @@ But how can we tell what's in directories, and how can we move around the file s
 We're currently in our home directory, and can see what's in it by running `ls`,
 which stands for "listing" (the `...` refers to other files and directories that have been left out for clarity):
 
-~~~  {: .bash}
-$ ls
 ~~~
-~~~  {: .output}
+$ ls
+~~~ {: .bash}
+~~~
 2020-10-29-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
@@ -166,7 +171,7 @@ Development            Notes.txt              VirtualBox VMs
 Documents              Pictures               bin
 Downloads              Pizza.cfg              mbox
 ...
-~~~
+~~~ {: .output}
 
 Of course, this listing will depend on what you have in your own home directory.
 
@@ -178,12 +183,12 @@ We need to get into the repository directory `2020-10-29-socobio-crs`, so what i
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.
 
-~~~  {: .bash}
+~~~
 $ pwd
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 /Users/nelle
-~~~
+~~~ {: .output}
 
 We can use `cd` followed by a directory name to change our working directory.
 `cd` stands for "change directory",
@@ -191,19 +196,19 @@ which is a bit misleading:
 the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
-~~~  {: .bash}
-$ cd 2020-10-29-socobio-crs
 ~~~
+$ cd 2020-10-29-socobio-crs
+~~~ {: .bash}
 
 `cd` doesn't print anything,
 but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`:
 
-~~~  {: .bash}
+~~~
 $ pwd
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 /Users/nelle/2020-10-29-socobio-crs
-~~~
+~~~ {: .output}
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
@@ -211,11 +216,11 @@ If we run `ls` without arguments now,
 it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
 because that's where we now are:
 
-~~~  {: .bash}
-$ ls
 ~~~
+$ ls
+~~~ {: .bash}
 
-~~~  {: .output}
+~~~
 404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
 CONTRIBUTING.md    SETUP.md           js                 setup
@@ -223,17 +228,17 @@ CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
 LICENSE.md         css                reference.html
-~~~
+~~~ {: .output}
 
 `ls` prints the names of the files and directories in the current directory in alphabetical order,
 arranged neatly into columns (where there is space to do so).
 We can make its output more comprehensible by using the **flag** `-F`,
 which tells `ls` to add a trailing `/` to the names of directories:
 
-~~~  {: .bash}
-$ ls -F
 ~~~
-~~~  {: .output}
+$ ls -F
+~~~ {: .bash}
+~~~
 404.html            Makefile            deck.js/            requirements.txt
 CONDUCT.md          README.md           index.html          schedule.html
 CONTRIBUTING.md     SETUP.md            js/                 setup/
@@ -241,7 +246,7 @@ CUSTOMIZATION.md    _config.yml         novice/             template/
 DESIGN.md           _includes/          prerequisites.html  tools/
 FAQ.md              _layouts/           prerequisites.md    welcome/
 LICENSE.md          css/                reference.html
-~~~
+~~~ {: .output}
 
 Here,
 we can see that this directory contains a number of **sub-directories**.
@@ -253,7 +258,7 @@ without it,
 the shell thinks we're trying to run a command called `ls-F`,
 which doesn't exist.
 
-> ## What's In A Name?  {: .callout}
+> ## What's In A Name?
 >
 > You may have noticed that all of these files' names are "something dot
 > something". This is just a convention: we can call a file `mythesis` or
@@ -272,20 +277,21 @@ which doesn't exist.
 > magically turn it into a recording of whalesong, though it *might*
 > cause the operating system to try to open it with a music player
 > when someone double-clicks it.
+{: .callout}
 
 For this exercise, we need to change our working directory to `novice`, and then `shell` (within the `novice` directory). We can do this by:
 
-~~~  {: .bash}
-$ cd novice/shell
 ~~~
+$ cd novice/shell
+~~~ {: .bash}
 
 Note that we are able to add directories together by using `/`.
 Now if we view the contents of that directory:
 
-~~~  {: .bash}
-$ ls -F
 ~~~
-~~~  {: .output}
+$ ls -F
+~~~ {: .bash}
+~~~
 00-intro.html          AUTHORS                img/
 00-intro.md            CONDUCT.md             index.html
 01-filedir.html        CONTRIBUTING.md        index.md
@@ -300,20 +306,20 @@ $ ls -F
 05-script.md           discussion.html        shell-novice-data.zip
 06-find.html           discussion.md          test_directory/
 06-find.md             fig/                   tools/
-~~~
+~~~ {: .output}
 
 Note that under Git Bash in Windows, the `/` is appended automatically.
 
 Now let's take a look at what's in the directory `test_directory`, by running `ls -F test_directory`. So here, we're giving the shell the command `ls` with the **arguments** `-F` and `test_directory`. The first argument is the `-F` flag we've seen before. The second argument --- the one *without* a leading dash --- tells `ls` that
 we want a listing of something other than our current working directory:
 
-~~~  {: .bash}
-$ ls -F test_directory
 ~~~
-~~~  {: .output}
+$ ls -F test_directory
+~~~ {: .bash}
+~~~
 creatures/          molecules/          notes.txt           solar.pdf
 data/               north-pacific-gyre/ pizza.cfg           writing/
-~~~
+~~~ {: .output}
 
 The output shows us that there are some files and sub-directories.
 Organising things hierarchically in this way helps us keep track of our work:
@@ -327,7 +333,7 @@ And it doesn't begin with a slash because it's a **relative path** -
 it tells `ls` how to find something from where we are,
 rather than from the root of the file system.
 
-> ## Parameters vs. Arguments  {: .callout}
+> ## Parameters vs. Arguments
 >
 > According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
 > the terms argument and **parameter**
@@ -336,16 +342,17 @@ rather than from the root of the file system.
 > however,
 > most people use them interchangeably or inconsistently,
 > so we will too.
+{: .callout}
 
 If we run `ls -F /test_directory` (*with* a leading slash) we get a different response,
 because `/test_directory` is an **absolute path**:
 
-~~~  {: .bash}
+~~~
 $ ls -F /test_directory
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 ls: /test_directory: No such file or directory
-~~~
+~~~ {: .output}
 
 The leading `/` tells the computer to follow the path from the root of the file system,
 so it always refers to exactly one directory,
@@ -354,24 +361,24 @@ In this case, there is no `data` directory in the root of the file system.
 
 Typing `ls -F test_directory` is a bit painful, so a handy shortcut is to type in the first few letters and press the *TAB* key, for example:
 
-~~~  {: .bash}
-$ ls -F tes
 ~~~
+$ ls -F tes
+~~~ {: .bash}
 
 Pressing *TAB*, the shell automatically completes the directory name:
 
-~~~  {: .bash}
-$ ls -F test_directory/
 ~~~
+$ ls -F test_directory/
+~~~ {: .bash}
 
 This is known as *tab completion* on any matches with those first few letters.
 If there are more than one files or directories that match those letters, the shell will show you both --- you can then enter more characters (then using *TAB* again) until it is able to identify the precise file you want and finish the tab completion.
 
 Let's change our directory to `test_directory`:
 
-~~~  {: .bash}
-$ cd test_directory
 ~~~
+$ cd test_directory
+~~~ {: .bash}
 
 We know how to go down the directory tree:
 but how do we go up?
@@ -379,45 +386,45 @@ We could use an absolute path, e.g. `cd /Users/nelle/2020-10-29-socobio-crs/novi
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
-~~~  {: .bash}
+~~~
 $ pwd
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+~~~ {: .output}
 ~~~
-~~~  {: .bash}
 $ cd ..
-~~~
+~~~ {: .bash}
 
 `..` is a special directory name meaning
 "the directory containing this one",
 or more succinctly,
 the **parent** of the current directory.
 
-~~~  {: .bash}
+~~~
 $ pwd
+~~~ {: .bash}
 ~~~
-~~~  {: .output}
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/
-~~~
+~~~ {: .output}
 
 Let's go back into our test directory:
 
-~~~  {: .bash}
-$ cd test_directory
 ~~~
+$ cd test_directory
+~~~ {: .bash}
 
 The special directory `..` doesn't usually show up when we run `ls`.
 If we want to display it, we can give `ls` the `-a` flag:
 
-~~~  {: .bash}
-$ ls -F -a
 ~~~
-~~~  {: .output}
+$ ls -F -a
+~~~ {: .bash}
+~~~
 ./                  data/               notes.txt           writing/
 ../                 molecules/          pizza.cfg
 creatures/          north-pacific-gyre/ solar.pdf
-~~~
+~~~ {: .output}
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
@@ -428,7 +435,7 @@ which means "the current working directory".
 It may seem redundant to have a name for it,
 but we'll see some uses for it soon.
 
-> ## Special Names  {: .callout}
+> ## Special Names
 >
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
@@ -439,13 +446,13 @@ but we'll see some uses for it soon.
 >
 > How `.`, `..` and `~` behave is a feature of how Bash represents
 > your computer's file system, not any particular program you can run in it.
-
+{: .callout}
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
-~~~  {: .bash}
-$ ls ~/2020-10-29-socobio-crs
 ~~~
-~~~  {: .output}
+$ ls ~/2020-10-29-socobio-crs
+~~~ {: .bash}
+~~~
 404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
 CONTRIBUTING.md    SETUP.md           js                 setup
@@ -453,7 +460,7 @@ CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
 LICENSE.md         css                reference.html
-~~~
+~~~ {: .output}
 
 Which again shows us our repository directory.
 
@@ -464,7 +471,7 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 
 ![3. File System for Challenge Questions](../../2020-10-29-socobio-crs/novice/shell/fig/filesystem-challenge.svg)
 
-> ## Relative path resolution  {: .challenge}
+> ## Relative path resolution
 >
 > If `pwd` displays `/Users/thing`, what will `ls ../backup` display?
 >
@@ -472,8 +479,9 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 2.  `2012-12-01 2013-01-08 2013-01-27`
 > 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
 > 4.  `original pnas_final pnas_sub`
+{: .challenge}
 
-> ## `ls` reading comprehension  {: .challenge}
+> ## `ls` reading comprehension
 >
 > If `pwd` displays `/Users/backup`,
 > and `-r` tells `ls` to display things in reverse order,
@@ -481,11 +489,12 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 >
 > ~~~
 > pnas-sub/ pnas-final/ original/
-> ~~~
+> ~~~ {: .bash}
 >
 > 1.  `ls pwd`
 > 2.  `ls -r -F`
 > 3.  `ls -r -F /Users/backup`
 > 4.  Either \#2 or \#3 above, but not \#1.
+{: .challenge}
 
 ### [Next: Creating Things](../../2020-10-29-socobio-crs/novice/shell/02-create.html)
