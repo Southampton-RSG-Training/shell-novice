@@ -169,7 +169,7 @@ $ ls
 ~~~
 {: .language-bash}
 ~~~
-2020-10-29-socobio-crs Misc                   Solar.pdf
+swc-shell-novice       Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -185,7 +185,7 @@ If you're using Git Bash on Windows, you'll find that it looks a little differen
 This is because Git Bash automatically tries to highlight the type of thing it is. For example, `/` indicates that entry is a directory.
 There's a way to also highlight this on Mac and Linux machines which we'll see shortly!
 
-We need to get into the repository directory `2020-10-29-socobio-crs`, so what if we want to change our current working directory?
+We need to get into the repository directory `swc-shell-novice`, so what if we want to change our current working directory?
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.
 
@@ -205,26 +205,26 @@ the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
 ~~~
-$ cd 2020-10-29-socobio-crs
+$ cd swc-shell-novice
 ~~~
 {: .language-bash}
 
 `cd` doesn't print anything,
-but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`:
+but if we run `pwd` after it, we can see that we are now in `/Users/nelle/swc-shell-novice`:
 
 ~~~
 $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/nelle/2020-10-29-socobio-crs
+/Users/nelle/swc-shell-novice
 ~~~
 {: .output}
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
+it lists the contents of `/Users/nelle/swc-shell-novice`,
 because that's where we now are:
 
 ~~~
@@ -407,7 +407,7 @@ $ cd test_directory
 
 We know how to go down the directory tree:
 but how do we go up?
-We could use an absolute path, e.g. `cd /Users/nelle/2020-10-29-socobio-crs/novice/shell`.
+We could use an absolute path, e.g. `cd /Users/nelle/swc-shell-novice/novice/shell`.
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
@@ -416,7 +416,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/swc-shell-novice/novice/shell/test_directory
 ~~~
 {: .output}
 ~~~
@@ -434,7 +434,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/
+/Users/nelle/swc-shell-novice/novice/shell/
 ~~~
 {: .output}
 
@@ -461,7 +461,7 @@ creatures/          north-pacific-gyre/ solar.pdf
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory`, refers to the `/Users/nelle/2020-10-29-socobio-crs/novice/shell` directory).
+such as `..` (which, if we're in `/Users/nelle/swc-shell-novice/novice/shell/test_directory`, refers to the `/Users/nelle/swc-shell-novice/novice/shell` directory).
 As you can see,
 it also displays another special directory that's just called `.`,
 which means "the current working directory".
@@ -473,7 +473,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/2020-10-29-socobio-crs`,
+> if we are in `/Users/nelle/swc-shell-novice`,
 > the command `ls ..` will give us a listing of `/Users/nelle`,
 > and the command `cd ..` will take us back to `/Users/nelle` as well.
 >
@@ -483,7 +483,7 @@ but we'll see some uses for it soon.
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
 ~~~
-$ ls ~/2020-10-29-socobio-crs
+$ ls ~/swc-shell-novice
 ~~~
 {: .language-bash}
 ~~~
