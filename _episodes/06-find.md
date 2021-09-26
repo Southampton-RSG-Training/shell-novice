@@ -28,7 +28,7 @@ we're going to be working in the `writing` subdirectory:
 
 {: .bash}
 ~~~
-$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory/writing
+$ cd ~/swc-shell-novice/novice/shell/test_directory/writing
 $ ls
 ~~~
 {: .output}

@@ -22,14 +22,14 @@ $ pwd
 {: .bash}
 
 ~~~
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/swc-shell-novice/shell/test_directory
 ~~~
 {: .output}
 
 If you're not in this directory, use the `cd` command to navigate to it as covered in the last lesson, for example:
 
 ~~~
-$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory
+$ cd ~/swc-shell-novice/shell/test_directory
 ~~~
 {: .bash}
 
@@ -186,7 +186,7 @@ $ pwd
 ~~~
 {: .bash}
 ~~~
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis
+/Users/nelle/swc-shell-novice/shell/test_directory/thesis
 ~~~
 {: .output}
 ~~~
@@ -204,7 +204,7 @@ $ pwd
 ~~~
 {: .bash}
 ~~~
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/swc-shell-novice/shell/test_directory
 ~~~
 {: .output}
 
@@ -279,7 +279,7 @@ $ pwd
 ~~~
 {: .bash}
 ~~~
-/Users/user/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/user/swc-shell-novice/shell/test_directory
 ~~~
 {: .output}
 ~~~

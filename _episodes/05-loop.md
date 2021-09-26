@@ -26,7 +26,7 @@ typing here!):
 
 {: .bash}
 ~~~
-$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory/creatures
+$ cd ~/swc-shell-novice/novice/shell/test_directory/creatures
 $ ls
 ~~~
 {: .output}

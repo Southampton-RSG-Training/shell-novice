@@ -25,7 +25,7 @@ Let's start by going back to `novice/shell/data` and putting some commands into 
 
 {: .bash}
 ~~~
-$ cd ~/2020-10-29-socobio-crs/novice/shell/data
+$ cd ~/swc-shell-novice/novice/shell/data
 $ nano middle.sh
 ~~~
 
