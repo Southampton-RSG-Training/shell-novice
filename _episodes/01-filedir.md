@@ -294,10 +294,10 @@ which doesn't exist.
 > when someone double-clicks it.
 {: .callout}
 
-For this exercise, we need to change our working directory to `novice`, and then `shell` (within the `novice` directory). We can do this by:
+For this exercise, we need to change our working directory to `swc-shell-novice`, and then `shell` (within the `swc-shell-novice` directory). We can do this by:
 
 ~~~
-$ cd novice/shell
+$ cd swc-shell-novice/shell
 ~~~
 {: .language-bash}
 
@@ -309,20 +309,8 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-00-intro.html          AUTHORS                img/
-00-intro.md            CONDUCT.md             index.html
-01-filedir.html        CONTRIBUTING.md        index.md
-01-filedir.md          LICENSE.html           instructors.html
-02-create.html         LICENSE.md             instructors.md
-02-create.md           Makefile               js/
-03-pipefilter.html     README.md              motivation.html
-03-pipefilter.md       _includes/             motivation.md
-04-loop.html           _layouts/              reference.html
-04-loop.md             css/                   reference.md
-05-script.html         data/                  requirements.txt
-05-script.md           discussion.html        shell-novice-data.zip
-06-find.html           discussion.md          test_directory/
-06-find.md             fig/                   tools/
+data/     shell-novice-data.zip  test_directory/
+fig/      tools/
 ~~~
 {: .output}
 
