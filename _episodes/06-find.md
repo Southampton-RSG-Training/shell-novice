@@ -31,6 +31,7 @@ we're going to be working in the `writing` subdirectory:
 $ cd ~/swc-shell-novice/shell/test_directory/writing
 $ ls
 ~~~
+
 {: .output}
 ~~~
 data      haiku.txt old       thesis    tools
@@ -42,6 +43,7 @@ Let's have a look at the `haiku.txt` file:
 ~~~
 $ cat haiku.txt
 ~~~
+
 {: .output}
 ~~~
 The Tao that is seen
@@ -70,6 +72,7 @@ Let's find lines that contain the word "not":
 ~~~
 $ grep not haiku.txt
 ~~~
+
 {: .output}
 ~~~
 Is not the true Tao, until
@@ -89,6 +92,7 @@ Let's try a different pattern: "day".
 ~~~
 $ grep day haiku.txt
 ~~~
+
 {: .output}
 ~~~
 Yesterday it worked
@@ -115,6 +119,7 @@ want to search for a single word, but a phrase. This is also easy to do with
 ~~~
 $ grep -w "is not" haiku.txt
 ~~~
+
 {: .output}
 ~~~
 Today it is not working
@@ -128,6 +133,7 @@ Another useful option is `-n`, which numbers the lines that match:
 ~~~
 $ grep -n "it" haiku.txt
 ~~~
+
 {: .output}
 ~~~
 5:With searching comes loss
@@ -145,6 +151,7 @@ the option `-w` to find the lines that contain the word "the" and `-n` to number
 ~~~
 $ grep -n -w "the" haiku.txt
 ~~~
+
 {: .output}
 ~~~
 2:Is not the true Tao, until
@@ -157,6 +164,7 @@ Now we want to use the option `-i` to make our search case-insensitive:
 ~~~
 $ grep -n -w -i "the" haiku.txt
 ~~~
+
 {: .output}
 ~~~
 1:The Tao that is seen
@@ -171,6 +179,7 @@ the lines that *do not* contain the word "the".
 ~~~
 $ grep -n -w -v "the" haiku.txt
 ~~~
+
 {: .output}
 ~~~
 1:The Tao that is seen
@@ -191,6 +200,7 @@ contain the complete word "saw" in all files within the `data` directory:
 ~~~
 $ grep -w saw data/*
 ~~~
+
 {: .output}
 ~~~
 data/two.txt:handsome! And his sisters are charming women. I never in my life saw
@@ -208,6 +218,7 @@ argument to specify that we want to search recursively into every subdirectory:
 ~~~
 $ grep -R format *
 ~~~
+
 {: .output}
 ~~~
 data/two.txt:little information, and uncertain temper. When she was discontented,
@@ -270,6 +281,7 @@ Sure enough,
 ~~~
 $ find . -type d
 ~~~
+
 {: .output}
 ~~~
 ./
@@ -289,6 +301,7 @@ we get a listing of all the files instead:
 ~~~
 $ find . -type f
 ~~~
+
 {: .output}
 ~~~
 ./haiku.txt
@@ -310,6 +323,7 @@ we can use `-maxdepth` to restrict the depth of search:
 ~~~
 $ find . -maxdepth 1 -type f
 ~~~
+
 {: .output}
 ~~~
 ./haiku.txt
@@ -323,6 +337,7 @@ which tells `find` to only report things that are at or below a certain depth.
 ~~~
 $ find . -mindepth 2 -type f
 ~~~
+
 {: .output}
 ~~~
 ./data/one.txt
@@ -340,6 +355,7 @@ Now let's try matching by name:
 ~~~
 $ find . -name *.txt
 ~~~
+
 {: .output}
 ~~~
 ./haiku.txt
@@ -368,6 +384,7 @@ This way,
 ~~~
 $ find . -name '*.txt'
 ~~~
+
 {: .output}
 ~~~
 ./data/one.txt
@@ -399,6 +416,7 @@ The simplest way is to put the `find` command inside `$()`:
 ~~~
 $ wc -l $(find . -name '*.txt')
 ~~~
+
 {: .output}
 ~~~
     70 ./data/one.txt
@@ -432,6 +450,7 @@ by looking for the string "FE" in all the `.pdb` files above the current directo
 ~~~
 $ grep "FE" $(find .. -name '*.pdb')
 ~~~
+
 {: .output}
 ~~~
 ../data/pdb/heme.pdb:ATOM     25 FE           1      -0.924   0.535  -0.518
