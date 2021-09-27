@@ -52,13 +52,15 @@ $ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat
 
 This wouldn't back up our files, instead we would get an error. If on a Mac or Linux it would look like:
 
-~~~ {: .error}
+{: .error}
+~~~
 mv: target `original-*.dat' is not a directory
 ~~~
 
 Or if on Windows using Git Bash, we would see:
 
-~~~ {: .error}
+{: .error}
+~~~
 usage: mv [-f | -i | -n] [-v] source target
        mv [-f | -i | -n] [-v] source ... directory
 ~~~
