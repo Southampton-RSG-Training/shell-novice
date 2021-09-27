@@ -235,7 +235,7 @@ $ ls
 ~~~
 404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
-CONTRIBUTING.md    SETUP.md           js                 setup
+CONTRIBUTING.md    js                 setup
 CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
@@ -255,7 +255,7 @@ $ ls -F
 ~~~
 404.html            Makefile            deck.js/            requirements.txt
 CONDUCT.md          README.md           index.html          schedule.html
-CONTRIBUTING.md     SETUP.md            js/                 setup/
+CONTRIBUTING.md     js/                 setup/
 CUSTOMIZATION.md    _config.yml         novice/             template/
 DESIGN.md           _includes/          prerequisites.html  tools/
 FAQ.md              _layouts/           prerequisites.md    welcome/
@@ -477,7 +477,7 @@ $ ls ~/swc-shell-novice
 ~~~
 404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
-CONTRIBUTING.md    SETUP.md           js                 setup
+CONTRIBUTING.md    js                 setup
 CUSTOMIZATION.md   _config.yml        novice             template
 DESIGN.md          _includes          prerequisites.html tools
 FAQ.md             _layouts           prerequisites.md   welcome
