@@ -100,6 +100,7 @@ After saving it by using `Control-O` and `Control-X`, run the script:
 ~~~
 $ bash top.sh
 ~~~
+
 {: .output}
 ~~~
 COMMON NAME: basilisk
