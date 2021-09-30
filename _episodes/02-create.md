@@ -1,15 +1,27 @@
 ---
-layout: page
 title: Creating Things
-minutes: 15
+teaching: 15
+exercises: 5
+questions:
+- "How do I run programs using the shell?"
+- "How do I navigate my computer using the shell?"
+objectives:
+- "Create new directories, also known as folders."
+- "Create files within directories using an editor or by copying and renaming existing files."
+- "Display the contents of a file using the command line."
+- "Delete specified files and/or directories."
+keypoints:
+- "Command line text editors let you edit files in the terminal."
+- "You can open up files with either command-line or graphical text editors." 
+- "`nano [path]` creates a new text file at the location `[path]`, or edits an existing one."
+- "`cat [path]` prints the contents of a file."
+- "`rmdir [path]` deletes an (empty) directory."
+- "`rm [path]` deletes a file, `rm -r [path]` deletes a directory (and contents!)."
+- "`mv [old_path] [new_path]` moves a file or directory from `[old_path]` to `[new_path]`."
+- "`mv` can be used to rename files, e.g. `mv a.txt b.txt`."
+- "Using `.` in `mv` can move a file without renaming it, e.g. `mv a/file.txt b/.`."
+- "`cp [original_path] [copy_path]` creates a copy of a file at a new location."
 ---
-> ## Learning Objectives
->
-> *   Create new directories, also known as folders.
-> *   Create files within directories using an editor or by copying and renaming existing files.
-> *   Display the contents of a file using the command line.
-> *   Delete specified files and/or directories.
-{: .objectives}
 
 We now know how to explore files and directories,
 but how do we create them in the first place?
@@ -19,7 +31,7 @@ First, let's check where we are:
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 /Users/nelle/swc-shell-novice/shell/test_directory
@@ -31,7 +43,7 @@ If you're not in this directory, use the `cd` command to navigate to it as cover
 ~~~
 $ cd ~/swc-shell-novice/shell/test_directory
 ~~~
-{: .bash}
+{: .language-bash}
 
 ### Creating a new directory
 
@@ -40,7 +52,7 @@ Now let's use `ls -F` to see what our test directory contains:
 ~~~
 $ ls -F
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 creatures/          molecules/          notes.txt           solar.pdf
 data/               north-pacific-gyre/ pizza.cfg           writing/
@@ -62,7 +74,7 @@ the new directory is created in the current working directory:
 ~~~
 $ ls -F
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 creatures/  north-pacific-gyre/  thesis/
 data/       notes.txt            writing/
@@ -76,7 +88,7 @@ However, there's nothing in it yet - this will show no output:
 ~~~
 $ ls -F thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 ### Creating a new text file
 
@@ -109,7 +121,7 @@ and then we'll use the `Nano` editor to create a text file called `draft.txt`, a
 $ cd thesis
 $ nano draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 We add a filename after the `nano` command to tell it that we want to edit (or in this case create) a file.
 
@@ -130,7 +142,7 @@ Now we've saved the file, we can use `ls` to see that there is a new file in the
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 draft.txt
 ~~~
@@ -141,7 +153,7 @@ We can use the shell on its own to take a look at its contents using the `cat` c
 ~~~
 $ cat draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 It's not "publish or perish" any more,
 it's "share and thrive".
@@ -155,7 +167,7 @@ Now, let's assume we didn't actually need to create this file. We can delete it 
 ~~~
 $ rm draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 This command removes files (`rm` is short for "remove").
 If we run `ls` again,
@@ -165,7 +177,7 @@ which tells us that our file is gone:
 ~~~
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## Deleting Is Forever
 >
@@ -184,7 +196,7 @@ and then move up one directory using `cd ..`:
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 /Users/nelle/swc-shell-novice/shell/test_directory/thesis
 ~~~
@@ -193,7 +205,7 @@ $ pwd
 $ nano draft.txt
 $ ls
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 draft.txt
 ~~~
@@ -202,7 +214,7 @@ draft.txt
 $ cd ..
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 /Users/nelle/swc-shell-novice/shell/test_directory
 ~~~
@@ -214,7 +226,7 @@ we get an error message:
 ~~~
 $ rm thesis
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 rm: cannot remove `thesis': Is a directory
 ~~~
@@ -231,7 +243,7 @@ because the directory we're trying to remove isn't empty (again, it may look a b
 ~~~
 $ rmdir thesis
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 rmdir: failed to remove `thesis': Directory not empty
 ~~~
@@ -244,14 +256,14 @@ To really get rid of `thesis` we must first delete the file `draft.txt`:
 ~~~
 $ rm thesis/draft.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 The directory is now empty, so `rmdir` can delete it:
 
 ~~~
 $ rmdir thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 > ## With Great Power Comes Great Responsibility
 >
@@ -262,6 +274,7 @@ $ rmdir thesis
 > ~~~
 > $ rm -r thesis
 > ~~~
+> {: .language-bash}
 >
 > This removes everything in the directory, then the directory itself. If
 > the directory contains sub-directories, `rm -r` does the same thing to
@@ -277,7 +290,7 @@ Let's create that directory and file one more time.
 ~~~
 $ pwd
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 /Users/user/swc-shell-novice/shell/test_directory
 ~~~
@@ -285,7 +298,7 @@ $ pwd
 ~~~
 $ mkdir thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 Again, put anything you like in this file (note we're giving the `thesis` path to `nano` as well as the `draft.txt` filename, so we create it in that directory):
 
@@ -293,7 +306,7 @@ Again, put anything you like in this file (note we're giving the `thesis` path t
 $ nano thesis/draft.txt
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 draft.txt
 ~~~
@@ -306,7 +319,7 @@ which is short for "move":
 ~~~
 $ mv thesis/draft.txt thesis/quotes.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 The first parameter tells `mv` what we're "moving",
 while the second is where it's to go.
@@ -319,7 +332,7 @@ Sure enough,
 ~~~
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 quotes.txt
 ~~~
@@ -340,7 +353,7 @@ the directory name we use is the special directory name `.` that we mentioned ea
 ~~~
 $ mv thesis/quotes.txt .
 ~~~
-{: .bash}
+{: .language-bash}
 
 The effect is to move the file from the directory it was in to the current working directory.
 `ls` now shows us that `thesis` is empty:
@@ -348,7 +361,7 @@ The effect is to move the file from the directory it was in to the current worki
 ~~~
 $ ls thesis
 ~~~
-{: .bash}
+{: .language-bash}
 
 Further,
 `ls` with a filename or directory name as a parameter only lists that file or directory.
@@ -357,7 +370,7 @@ We can use this to see that `quotes.txt` is still in our current directory:
 ~~~
 $ ls quotes.txt
 ~~~
-{: .bash}
+{: .language-bash}
 
 ~~~
 quotes.txt
@@ -376,7 +389,7 @@ with two paths as parameters --- like most Unix commands,
 $ cp quotes.txt thesis/quotations.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 quotes.txt   thesis/quotations.txt
 ~~~
@@ -390,7 +403,7 @@ and then run that same `ls` again (we can get to this command by pressing the up
 $ rm quotes.txt
 $ ls quotes.txt thesis/quotations.txt
 ~~~
-{: .bash}
+{: .language-bash}
 ~~~
 ls: cannot access quotes.txt: No such file or directory
 thesis/quotations.txt
@@ -436,9 +449,16 @@ but it does find the copy in `thesis` that we didn't delete.
 > 2.   `recombine`
 > 3.   `proteins.dat recombine`
 > 4.   `proteins-saved.dat`
-
+> > ## Solution
+> >
+> > The correct answer is `2`.
+> > The commands showed the directory contains a single file named `proteins.dat`,
+> > then created a new directory called `recombine`, moved the original `proteins.dat` file into it,
+> > and finally copied `proteins.dat` into **the directory above the current one** as `proteins-saved.dat`.
+> >
+> > So as it's in the directory above the current one (`..`), it won't show up when you do `ls` in the current directory.
+> {: .solution}
 {: .challenge}
-
 
 > ## Organizing Directories and Files
 >
@@ -447,19 +467,47 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > ~~~
 > $ ls -F
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > analyzed/  fructose.dat    raw/   sucrose.dat
 > ~~~
+> {: .output}
 >
 > The `fructose.dat` and `sucrose.dat` files contain output from her data
-> analysis. What command(s) covered in this lesson does she need to run so that the commands below will
-> produce the output shown?
+> analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?
 >
 > ~~~
 > $ ls -F
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > analyzed/   raw/
+> ~~~
+> {: .output}
+>
+> ~~~
 > $ ls analyzed
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > fructose.dat    sucrose.dat
 > ~~~
+> {: .output}
+>
+> > ## Solution
+> >
+> > ~~~
+> > $ ls -F
+> > $ mv fructose.dat analyzed/.
+> > $ mv sucrose.dat analyzed/.
+> > $ ls analyzed
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
 {: .challenge}
 
 > ## Copy with Multiple Filenames
@@ -470,15 +518,53 @@ but it does find the copy in `thesis` that we didn't delete.
 > $ mkdir backup
 > $ cp thesis/citations.txt thesis/quotations.txt backup
 > ~~~
+> {: .language-bash}
+>
+> > ## Solution
+> >
+> > It copies the files to the directory with the same name.
+> >
+> > ~~~
+> > $ ls backup
+> > ~~~
+> > {: .language-bash}
+> >
+> > ~~~
+> > citations.txt    quotations.txt
+> > ~~~
+> > {: .output}
+> {: .solution}
 >
 > What does `cp` do when given three or more filenames, as in:
 >
 > ~~~
 > $ ls -F
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > intro.txt    methods.txt    survey.txt
+> ~~~
+> {: .output}
+>
+> ~~~
 > $ cp intro.txt methods.txt survey.txt
 > ~~~
+> {: .language-bash}
+>
+> > ## Solution
+> >
+> > You should get an error and the command does nothing. 
+> > When passing 3 or more arguments, the last one needs to be a directory.
+> > 
+> > However, 
+> > ~~~
+> > $ cp intro.txt methods.txt
+> > ~~~
+> > {: .language-bash}
+> > Will not fail even though both of the arguments are existing files - it will copy the contents
+> > of `intro.txt` *over* the contents of `methods.txt`. So be careful!
+> {: .solution}
 {: .challenge}
 
-
-### [Next: Pipes and Filters](https://southampton-rsg.github.io/swc-shell-novice/03-pipefilter/index.html)
+{% include links.md %}

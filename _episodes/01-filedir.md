@@ -1,19 +1,30 @@
 ---
-layout: page
 title: Files and Directories
-minutes: 15
+teaching: 15
+exercises: 5
+questions:
+- "How do I run programs using the shell?"
+- "How do I navigate my computer using the shell?"
+objectives:
+- "Explain the similarities and differences between a file and a directory."
+- "Translate an absolute path into a relative path and vice versa."
+- "Construct absolute and relative paths that identify specific files and directories."
+- "Use options and arguments to change the behaviour of a shell command."
+- "Demonstrate the use of tab completion and explain its advantages."
+keypoints:
+- "The file system is responsible for managing information on the disk."
+- "Information is stored in files, which are stored in directories (folders)."
+- " Directories can also store other directories, which then form a directory tree."
+- "`cd [path]` changes the current working directory."
+- "`ls [path]` prints a listing of a specific file or directory; `ls` on its own lists the current working directory."
+- "`pwd` prints the user’s current working directory."
+- "`/` on its own is the root directory of the whole file system."
+- "Most commands take options (flags) that begin with a `-`."
+- "A relative path specifies a location starting from the current location."
+- "An absolute path specifies a location from the root of the file system."
+- "Directory names in a path are separated with `/` on Unix, but `\\` on Windows."
+- "`..` means ‘the directory above the current one’; `.` on its own means ‘the current directory’."
 ---
-> ## Learning Objectives
->
-> *   Explain the steps in the shell's read-run-print cycle.
-> *   Explain the similarities and differences between a file and a directory.
-> *   Re-run recently executed commands without retyping them.
-> *   Translate an absolute path into a relative path and vice versa.
-> *   Construct absolute and relative paths that identify specific files and directories.
-> *   List the contents of directories.
-> *   Identify the actual command, flags, and filenames in a command-line call.
-> *   Demonstrate the use of tab completion and other key shortcuts and explain their advantages.
-{: .objectives}
 
 The part of the operating system responsible for managing files and directories is called the **file system**.
 It organizes our data into files,
@@ -23,8 +34,7 @@ which hold files or other directories.
 
 The shell has a notion of *where you currently are*, and as we'll see, works by running programs at that location. For this reason, the most fundamental skills to using the shell are navigating and browsing the file system, so let's take a look at some important commands that let us do these things.
 
-To start exploring them,
-let's open a shell window:
+To start exploring them, let's open a shell window:
 
 ~~~
 $
@@ -521,4 +531,4 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 4.  Either \#2 or \#3 above, but not \#1.
 {: .challenge}
 
-### [Next: Creating Things](https://southampton-rsg.github.io/swc-shell-novice/02-create/index.html)
+{% include links.md %}
