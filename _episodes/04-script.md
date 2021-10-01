@@ -1,15 +1,22 @@
 ---
-layout: page
 title: Shell Scripts
-minutes: 15
+teaching: 15
+exercises: 5
+questions:
+- "How can I save and re-use commands?"
+objectives:
+- "Write a shell script that runs a command or series of commands for a fixed set of files."
+- "Run a shell script from the command line."
+- "Write a shell script that operates on a set of files defined by the user on the command line."
+- "Create pipelines that include user-written shell scripts."
+keypoints:
+- "Save commands in files (usually called shell scripts) for re-use."
+- "`bash [filename]` runs the commands saved in a file."
+- "`$@` refers to all of a shell script’s command-line arguments."
+- "`$1`, `$2`, etc., refer to the first command-line argument, the second command-line argument, etc."
+- "Place variables in quotes if the values might have spaces in them."
+- "Letting users decide what files to process is more flexible and more consistent with built-in Unix commands."
 ---
-> ## Learning Objectives
->
-> *   Write a shell script that runs a command or series of commands for a fixed set of files.
-> *   Run a shell script from the command line.
-> *   Write a shell script that operates on a set of files defined by the user on the command line.
-> *   Create pipelines that include user-written shell scripts.
-{: .objectives}
 
 We are finally ready to see what makes the shell such a powerful programming environment.
 We are going to take the commands we repeat frequently and save them in files
@@ -21,11 +28,11 @@ these are actually small programs.
 
 ### Our first shell script
 
-Let's start by going back to `novice/shell/data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
+Let's start by going back to `data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/novice/shell/data
+$ cd ~/swc-shell-novice/data
 $ nano middle.sh
 ~~~
 
@@ -359,6 +366,29 @@ wc -l "$@" | sort -n
 > 2. The first and the last line of each file ending in `*.pdb` in the molecules directory
 > 3. The first and the last line of each file in the molecules directory
 > 4. An error because of the quotes around `*.pdb`
+> 
+> > # Solution
+> > The answer is **2**. The quotes around the wildcard `'*.pdb'` mean it isn't expanded when we call the script - but it will get expanded *inside* the script. There, it gets expanded to match every file in the directory that ends in `*.pdb`, and effectively the script calls:
+> > ~~~
+> > head -1 *.pdb
+> > tail -n -1 *.pdb*
+> > ~~~
+> > {: .bash}
+> > This prints out the first line (`head -1`) of each `.pdb` file, and then the last line of each `.pdb` file.
+> >
+> > If we'd called the script as:
+> > ~~~
+> > bash script.sh *.pdb -1 -1
+> > ~~~
+> > {: .bash}
+> > Then it wouldn't work as the wildcard would've expanded before the script started and we'd have effectively run it as:
+> > ~~~
+> > bash script cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb -1 -1
+> > ~~~
+> > {: .bash}
+> > This would have caused an error, as we expect the second and third arguments to be numbers for `head` and `tail`!
+> >
+> {: .solution}
 {: .challenge}
 
 > ## Script reading comprehension
@@ -372,6 +402,7 @@ wc -l "$@" | sort -n
 > # Script 1
 > echo *.*
 > ~~~
+> {: .bash}
 >
 > ~~~
 > # Script 2
@@ -380,11 +411,31 @@ wc -l "$@" | sort -n
 >     cat $filename
 > done
 > ~~~
+> {: .bash}
 >
 > ~~~
 > # Script 3
 > echo $@.dat
 > ~~~
+> {: .bash}
+>
+> > ## Solution
+> >
+> > 1. This script doesn't use any arguments - so it ignores our `*.dat` on the command line. The `*.*` wildcard matches anything in the current directory with a `.` in the file (or folder!) name, so it expands to a list of all files in the directory, *including* `example.sh`. Then it passes that list to `echo`, which prints them out.
+> > ~~~
+> > example.sh fructose.dat glucose.dat sucrose.dat
+> > ~~~
+> > {: .output}
+> >
+> > 2. This script makes use of our arguments. The wildcard `*.dat` matches any file that ends in `.dat`, so expands to `fructose.dat glucose.dat sucrose.dat` then passes them to the script. The script then takes the first 3 arguments (using `$1 $2 $3`) and uses `cat` to print the contents of the file. However, if there are less than 3 files in the directory with the `.dat` suffix, they'll be ignored. If there are *less* than 3, there'll be an error!
+> >
+> > 3. This script uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it: 
+> > ~~~
+> > fructose.dat glucose.dat sucrose.dat.dat
+> > ~~~
+> > {: .output}
+> > This probably isn't quite what we were hoping for!
+> {: .solution}
 {: .challenge}
 
-### [Next: Loops](https://southampton-rsg.github.io/swc-shell-novice/05-loop/index.html)
+{% include links.md %}
