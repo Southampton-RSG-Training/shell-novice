@@ -1,6 +1,7 @@
 ---
-layout: page
-title: Getting Started
+layout: lesson
+root: .  # Is the only page that doesn't follow the pattern /:path/index.html
+permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
 ---
 The Bash shell has been around longer than many of its users have been alive.
 It has survived so long because it's a power tool
@@ -27,38 +28,7 @@ These lessons will start you on a path towards using these resources effectively
 > and scripts, you probably won't learn much from this lesson.
 {: .prereq}
 
-> ## Getting ready
->
-> You need to download some files to follow this lesson. First, you need to open a terminal:
->
-> - On Windows: run "Git Bash", which you installed as part of the software prerequisites
-> - On Mac OS X: accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder
-> - On Linux: this will depend on the Linux distribution you are running, but you should be able to find a "Terminal" application in your desktop's application menu
->
-> Once you've done this, a window should appear. Type the following into the
-> prompt that appears (pressing enter/return after each line):
->
-> ~~~
-> $ cd
-> $ git clone https://github.com/Southampton-RSG/2020-10-29-socobio-crs
-> ~~~
-> {: .input}
-{: .checklist}
-
-
-
-## Topics
-
-1.  [Introducing the Shell](https://southampton-rsg.github.io/swc-shell-novice/00-intro/index.html)
-2.  [Files and Directories](https://southampton-rsg.github.io/swc-shell-novice/01-filedir/index.html)
-3.  [Creating Things](https://southampton-rsg.github.io/swc-shell-novice/02-create/index.html)
-4.  [Pipes and Filters](https://southampton-rsg.github.io/swc-shell-novice/03-pipefilter/index.html)
-5.  [Shell Scripts](https://southampton-rsg.github.io/swc-shell-novice/04-script/index.html)
-6.  [Loops](https://southampton-rsg.github.io/swc-shell-novice/05-loop/index.html)
-7.  [Finding Things](https://southampton-rsg.github.io/swc-shell-novice/06-find/index.html)
-8.  [Additional Exercises](https://southampton-rsg.github.io/swc-shell-novice/07-additional-exercises/index.html)
-
-The answers to the exercises can be found [here](https://southampton-rsg.github.io/swc-shell-novice/answers/index.html).
+{% include links.md %}
 
 ## Other Resources and Further Learning
 

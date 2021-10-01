@@ -1,16 +1,26 @@
 ---
-layout: page
 title: Pipes and Filters
-minutes: 15
+teaching: 15
+exercises: 5
+questions:
+- "How can I combine existing commands to do new things?"
+objectives:
+- "Capture a command's output in a file using redirection."
+- "Use redirection to have a command use a file's contents instead of keyboard input."
+- "Add commands together in a sequence using pipes, so output of one command becomes input of another."
+- "Explain what usually happens if a program or pipeline isn't given any input to process."
+- "Explain Unix's 'small pieces, loosely joined' philosophy."
+keypoints:
+- "`wc` counts lines, words, and characters in its inputs."
+- "`cat` displays the contents of its inputs."
+- "`sort` sorts its inputs."
+- "`head` displays the first 10 lines of its input."
+- "`tail` displays the last 10 lines of its input."
+- "`command > [file]` redirects a command’s output to a file (overwriting any existing content)."
+- "`command >> [file]` appends a command’s output to a file."
+- "`[first] | [second]` is a pipeline: the output of the first command is used as the input to the second."
+- "The best way to use the shell is to use pipes to combine simple single-purpose programs (filters)."
 ---
-> ## Learning Objectives
->
-> *   Capture a command's output in a file using redirection.
-> *   Use redirection to have a command use a file's contents instead of keyboard input.
-> *   Add commands together in a sequence using pipes, so output of one command becomes input of another.
-> *   Explain what usually happens if a program or pipeline isn't given any input to process.
-> *   Explain Unix's "small pieces, loosely joined" philosophy.
-{: .objectives}
 
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
@@ -22,21 +32,21 @@ the ease with which it lets us combine existing programs in new ways.
 One way we can use programs together is to have the output of one command captured
 in a file, and use that file as the input to another command.
 
-We'll start with a directory called `data`, which is in the `swc-shell-novice/shell`
+We'll start with a directory called `data`, which is in the `swc-shell-novice/data`
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
 
-{: .bash}
 ~~~
 $ cd ..
 $ cd data
 ~~~
+{: .language-bash}
 
 Doing `ls` shows us three files in this directory:
 
-{: .output}
 ~~~
 sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv
 ~~~
+{: .output}
 
 The data in these files is taken from a real climate science research project
 that is looking into woody biomass yields. The files are as follows:
@@ -70,18 +80,19 @@ Let's run the command `wc *.csv`:
 * `wc` is the "word count" command, it counts the number of lines, words, and characters in files.
 * The `*` in `*.csv` matches zero or more characters, so the shell turns `*.csv` into a complete list of `.csv` files:
 
-{: .bash}
+
 ~~~
 $ wc *.csv
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
  1048576 1048577 21005037 sc_climate_data.csv
       11      12     487 sc_climate_data_10.csv
     1001    1002   42301 sc_climate_data_1000.csv
  1049588 1049591 21047825 total
 ~~~
+{: .output}
 
 Sometimes we need to pass multiple filenames to a single command,
 or find or use filenames that match a given pattern,
@@ -116,18 +127,18 @@ themselves. It's the shell, not the other programs, that expands the wildcards.
 Going back to `wc`, if we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
 
-{: .bash}
 ~~~
 $ wc -l *.csv
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
  1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049588 total
 ~~~
+{: .output}
 
 We can also use `-w` to get only the number of words,
 or `-c` to get only the number of characters.
@@ -137,10 +148,10 @@ It's an easy question to answer when there are only three files,
 but what if there were 6000?
 Our first step toward a solution is to run the command:
 
-{: .bash}
 ~~~
 $ wc -l *.csv > lengths.txt
 ~~~
+{: .language-bash}
 
 The greater than symbol, `>`, tells the shell to **redirect** the command's output
 to a file instead of printing it to the screen.
@@ -151,33 +162,33 @@ everything that `wc` would have printed has gone into the file `lengths.txt` ins
 
 `ls lengths.txt` confirms that the file exists:
 
-{: .bash}
 ~~~
 $ ls lengths.txt
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
 lengths.txt
 ~~~
+{: .output}
 
 We can now send the content of `lengths.txt` to the screen using `cat lengths.txt`.
 `cat` is able to print the contents of files one after another.
 There's only one file in this case,
 so `cat` just shows us what it contains:
 
-{: .bash}
 ~~~
 $ cat lengths.txt
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
  1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049588 total
 ~~~
+{: .output}
 
 Now let's use the `sort` command to sort its contents.
 We will also use the -n flag to specify that the sort is
@@ -185,18 +196,18 @@ numerical instead of alphabetical.
 This does *not* change the file;
 instead, it sends the sorted result to the screen:
 
-{: .bash}
 ~~~
 $ sort -n lengths.txt
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1048576 sc_climate_data.csv
  1049588 total
 ~~~
+{: .output}
 
 We can put the sorted list of lines in another temporary file called `sorted-lengths.txt`
 by putting `> sorted-lengths.txt` after the command,
@@ -204,16 +215,16 @@ just as we used `> lengths.txt` to put the output of `wc` into `lengths.txt`.
 Once we've done that,
 we can run another command called `head` to get the first few lines in `sorted-lengths.txt`:
 
-{: .bash}
 ~~~
 $ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
       11 sc_climate_data_10.csv
 ~~~
+{: .output}
 
 Using the parameter `-1` with `head` tells it that
 we only want the first line of the file;
@@ -233,15 +244,15 @@ Fortunately, there's a way to make this much simpler.
 
 We can make it easier to understand by running `sort` and `head` together:
 
-{: .bash}
 ~~~
 $ sort -n lengths.txt | head -1
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
       11 sc_climate_data_10.csv
 ~~~
+{: .output}
 
 The vertical bar between the two commands is called a **pipe**.
 It tells the shell that we want to use
@@ -255,15 +266,15 @@ we don't have to know or care.
 We can even use another pipe to send the output of `wc` directly to `sort`,
 which then sends its output to `head`:
 
-{: .bash}
 ~~~
 $ wc -l *.csv | sort -n | head -1
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
       11 sc_climate_data_10.csv
 ~~~
+{: .output}
 
 This is exactly like a mathematician nesting functions like *log(3x)*
 and saying "the log of three times *x*".
@@ -339,6 +350,13 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Explain why `-n` has this effect.
+> 
+> > ## Solution
+> > 
+> > Normally, `sort` goes character-by-character, sorting in *alphabetical* order. Just looking at the first character of each line, `6` is greater than both `1` and `2` so it goes to the end of the file.
+> >
+> > However, if we pass `sort` the `-n` flag, it sorts in *numeric* order - so if it encounters a character that's a number, it reads the line up until it hits a non-numeric character. In this case, `22` is greater than `6` (and everything else), so it goes to the end of the file.
+> {: .solution}
 {: .challenge}
 
 > ## What does `>>` mean?
@@ -356,6 +374,13 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Hint: Try executing each command twice in a row and then examining the output files.
+> 
+> > ## Solution
+> > 
+> > If there isn't a file already there with the name `testfile01.txt`, both `>` and `>>` will create one.
+> >
+> > However, if there *is* a file, then `>` will *overwrite* the contents of the file, whilst `>>` will *append* to the existing contents.
+> {: .solution}
 {: .challenge}
 
 > ## Piping commands together
@@ -367,6 +392,12 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 2. `wc -l * | sort -n | head 1-3`
 > 3. `wc -l * | head -3 | sort -n`
 > 4. `wc -l * | sort -n | head -3`
+>
+> > ## Solution
+> > The correct answer is **4**. `wc -l *` will list the length of all files in the current directory. Piping the output to `sort -n` takes the list of files, and sorts it in numeric order. Then, because the list will be sorted from lowest to highest, `head -3` will take the top 3 lines of the list, which will be the shortest 3.
+> >
+> > **1** has the correct commands, but incorrectly tries to use `>` to chain them together. `>` is used to send the output of a command to a **file**, not to another command.
+> {: .solution}
 {: .challenge}
 
 > ## Why does `uniq` only remove adjacent duplicates?
@@ -395,6 +426,16 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > Why do you think `uniq` only removes *adjacent* duplicated lines?
 > (Hint: think about very large data sets.) What other command could
 > you combine with it in a pipe to remove all duplicated lines?
+> 
+> > ## Solution
+> >
+> > `uniq` doesn't search through entire files for matches, as in the shell we can be working with files that are 100s of MB or even tens of GB in size, with hundreds, thousands or even more unique values.
+> > The more lines there are, likely the more unique values there are, and each line has to be compared to each unique value. The time taken would scale more or less with the square of the size of the file! 
+> >
+> > Whilst there are ways to do that kind of comparison efficiently, implementing them would require making `uniq` a much larger and more complicated program - so, following the Unix philosophy of small, simple programs that chain together, `uniq` is kept small and the work required is offloaded to another, specialist program.
+> >
+> > In this case, `sort | uniq` would work.
+> {: .solution}
 {: .challenge}
 
 > ## Pipe reading comprehension
@@ -417,6 +458,36 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 > cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 > ~~~
+> 
+> > ## Solution
+> >
+> > 1. `cat animals.txt` outputs the full contents of the file.
+> > 2. `head -5` takes the full contents of the file, and outputs the top 5 lines:
+> > ~~~
+> > 2012-11-05,deer
+> > 2012-11-05,rabbit
+> > 2012-11-05,raccoon
+> > 2012-11-06,rabbit
+> > 2012-11-06,deer
+> > ~~~
+> >
+> > 3. `tail -3` takes the output from `head`, and outputs the last 3 lines of that:
+> > ~~~
+> > 2012-11-05,raccoon
+> > 2012-11-06,rabbit
+> > 2012-11-06,deer
+> > ~~~
+> >
+> > 4. `sort -r` takes the output from `tail` and sorts it in reverse order. This bit is a little trickier - whilst it puts the `06` lines above the `05` ones (because of reverse numerical order), it will put `06, rabbit` above `06, deer` as it's reverse alphabetical order - so the output isn't *just* a reversed version of the output of `tail`!
+> > ~~~
+> > 2012-11-06,rabbit
+> > 2012-11-06,deer
+> > 2012-11-05,raccoon
+> > ~~~
+> >
+> > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
+> > 
+> {: .solution}
 {: .challenge}
 
 For those interested in the technical details of how pipes work:
@@ -463,5 +534,4 @@ For those interested in the technical details of how pipes work:
 > ![1. Redirects and Pipes](../fig/redirects-and-pipes.png)
 {: .callout}
 
-
-### [Next: Shell Scripts](https://southampton-rsg.github.io/swc-shell-novice/04-script/index.html)
+{% include links.md %}

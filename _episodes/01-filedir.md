@@ -512,6 +512,12 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 2.  `2012-12-01 2013-01-08 2013-01-27`
 > 3.  `2012-12-01/ 2013-01-08/ 2013-01-27/`
 > 4.  `original pnas_final pnas_sub`
+>
+> > ## Solution
+> >
+> > **4** is correct. `ls` shows the contents of the path you give it,
+> > and `../backup` means "Go up one level, then into a directory called `backup`".
+> {: .solution}
 {: .challenge}
 
 > ## `ls` reading comprehension
@@ -529,6 +535,13 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 2.  `ls -r -F`
 > 3.  `ls -r -F /Users/backup`
 > 4.  Either \#2 or \#3 above, but not \#1.
+>
+> > ## Solution
+> > **4** is correct. The current directory (as shown by `pwd`) is `/Users/backup`, so `ls`
+> > will give the same result with or without `/Users/backup`.
+> >
+> > Then, in order to get the output in reverse order, and with a `/` after the directories, we need the `-r` and `-F` flags.
+> {: .solution}
 {: .challenge}
 
 {% include links.md %}

@@ -34,14 +34,14 @@ $ pwd
 {: .language-bash}
 
 ~~~
-/Users/nelle/swc-shell-novice/shell/test_directory
+/Users/nelle/swc-shell-novice/test_directory
 ~~~
 {: .output}
 
 If you're not in this directory, use the `cd` command to navigate to it as covered in the last lesson, for example:
 
 ~~~
-$ cd ~/swc-shell-novice/shell/test_directory
+$ cd ~/swc-shell-novice/test_directory
 ~~~
 {: .language-bash}
 
@@ -198,7 +198,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/nelle/swc-shell-novice/shell/test_directory/thesis
+/Users/nelle/swc-shell-novice/test_directory/thesis
 ~~~
 {: .output}
 ~~~
@@ -216,7 +216,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/nelle/swc-shell-novice/shell/test_directory
+/Users/nelle/swc-shell-novice/test_directory
 ~~~
 {: .output}
 
@@ -292,7 +292,7 @@ $ pwd
 ~~~
 {: .language-bash}
 ~~~
-/Users/user/swc-shell-novice/shell/test_directory
+/Users/user/swc-shell-novice/test_directory
 ~~~
 {: .output}
 ~~~
@@ -427,7 +427,14 @@ but it does find the copy in `thesis` that we didn't delete.
 > 2. `mv statstics.txt statistics.txt`
 > 3. `mv statstics.txt .`
 > 4. `cp statstics.txt .`
-
+>
+> > ## Solution
+> >
+> > **2** is the best choice. Passing `mv` or `cp` `.` as a destination moves or copies
+> > without renaming, so the spelling mistake won't be fixed.
+> >
+> > Both **1** and **2** will leave you with a file called `statistics.txt` at the end, but if you use `cp` it will be a copy, and you'll still have your incorrectly-named original.
+> {: .solution}
 {: .challenge}
 
 > ## Moving and Copying
@@ -436,22 +443,36 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > ~~~
 > $ pwd
+> ~~~
+> {: .language-bash}
+> ~~~
 > /Users/jamie/data
+> ~~~
+> {: .output}
+> ~~~
 > $ ls
+> ~~~
+> {: .language-bash}
+> ~~~
 > proteins.dat
+> ~~~
+> {: .output}
+> ~~~
 > $ mkdir recombine
 > $ mv proteins.dat recombine
 > $ cp recombine/proteins.dat ../proteins-saved.dat
 > $ ls
 > ~~~
+> {: .language-bash}
 >
 > 1.   `proteins-saved.dat recombine`
 > 2.   `recombine`
 > 3.   `proteins.dat recombine`
 > 4.   `proteins-saved.dat`
+>
 > > ## Solution
 > >
-> > The correct answer is `2`.
+> > The correct answer is **2**.
 > > The commands showed the directory contains a single file named `proteins.dat`,
 > > then created a new directory called `recombine`, moved the original `proteins.dat` file into it,
 > > and finally copied `proteins.dat` into **the directory above the current one** as `proteins-saved.dat`.
@@ -500,10 +521,13 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > > ## Solution
 > >
+> > `ls` lists the contents of the current directory, whilst `ls analyzed` lists the contents of the `analyzed` directory.
+> > 
+> > So we need to move the files `fructose.dat` and `sucrose.dat` out of the current directory, and into the `analyzed` directory, which we do with `mv`.
 > > ~~~
 > > $ ls -F
-> > $ mv fructose.dat analyzed/.
-> > $ mv sucrose.dat analyzed/.
+> > $ mv fructose.dat analyzed/
+> > $ mv sucrose.dat analyzed/
 > > $ ls analyzed
 > > ~~~
 > > {: .language-bash}
