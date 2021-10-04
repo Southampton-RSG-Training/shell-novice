@@ -1,15 +1,24 @@
 ---
-layout: page
 title: Loops
-minutes: 15
+teaching: 15
+exercises: 5
+questions:
+- "How can I perform the same actions on many different files?"
+objectives:
+- "Write a loop that applies one or more commands separately to each file in a set of files."
+- "Trace the values taken on by a loop variable during execution of the loop."
+- "Explain the difference between a variable's name and its value."
+- "Demonstrate how to see what commands have recently been executed."
+keypoints:
+- "A `for` loop repeats commands once for every thing in a list."
+- "Every `for` loop needs a variable to refer to the thing it is currently operating on."
+- "Use `$name` to expand a variable (i.e., get its value). `${name}` can also be used."
+- "Do not use spaces, quotes, or wildcard characters such as '*' or '?' in filenames, as it complicates variable expansion."
+- "Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping."
+- "Use the up-arrow key to scroll up through previous commands to edit and repeat them."
+- "Use <kbd>Ctrl</kbd>+<kbd>R</kbd> to search through the previously entered commands."
+- "Use `history` to display recent commands, and `![number]` to repeat a command by number."
 ---
-> ## Learning Objectives
->
-> *   Write a loop that applies one or more commands separately to each file in a set of files.
-> *   Trace the values taken on by a loop variable during execution of the loop.
-> *   Explain the difference between a variable's name and its value.
-> *   Demonstrate how to see what commands have recently been executed.
-{: .objectives}
 
 Wildcards and tab completion are two ways to reduce typing as well as typing mistakes.
 Another is to tell the shell to do something over and over again, which could save us considerable time,
@@ -26,7 +35,7 @@ typing here!):
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/novice/shell/test_directory/creatures
+$ cd ~/swc-shell-novice/test_directory/creatures
 $ ls
 ~~~
 {: .output}
@@ -304,6 +313,7 @@ GTTCTGCTAA
 >     head -100 $filename | tail -20
 > done
 > ~~~
+> {: .bash}
 >
 > then the shell will expand `*.dat` to create:
 >
@@ -335,6 +345,7 @@ GTTCTGCTAA
 >     head -100 "$filename" | tail -20
 > done
 > ~~~
+> {: .bash}
 >
 > but it's simpler just to avoid using spaces (or other special characters) in filenames.
 {: .callout}
@@ -405,6 +416,7 @@ files before you operate on them!
 >     echo mv $filename original-$filename
 > done
 > ~~~
+> {: .bash}
 >
 > Instead of running `mv`, this loop runs `echo`, which prints out:
 >
@@ -412,6 +424,7 @@ files before you operate on them!
 > mv basilisk.dat original-basilisk.dat
 > mv unicorn.dat original-unicorn.dat
 > ~~~
+> {: .bash}
 >
 > *without* actually running those commands. We can then use up-arrow to
 > redisplay the loop, back-arrow to get to the word `echo`, delete it, and
@@ -430,6 +443,7 @@ files before you operate on them!
 > ~~~
 > fructose.dat    glucose.dat   sucrose.dat
 > ~~~
+> {: .output}
 >
 > What is the output of:
 >
@@ -439,6 +453,7 @@ files before you operate on them!
 >     ls *.dat
 > done
 > ~~~
+> {: .bash}
 >
 > Now, what is the output of:
 >
@@ -448,8 +463,24 @@ files before you operate on them!
 >	ls $datafile
 > done
 > ~~~
+> {: .bash}
 >
 > Why do these two loops give you different outputs?
+>
+> > ## Solution
+> >
+> > The first loop will give the output:
+> >
+> > ~~~
+> > fructose.dat    glucose.dat   sucrose.dat
+> > fructose.dat    glucose.dat   sucrose.dat
+> > fructose.dat    glucose.dat   sucrose.dat
+> > ~~~
+> > {: .output}
+> >
+> > This is because, whilst it runs once for each file containing `.dat`, it doesn't use the loop variable, it prints out the *entire* output of `ls`. The second version will instead print out each datafile on a seperate line (as `ls [file]` will print the file if it exists).
+> >
+> {: .solution}
 {: .challenge}
 
 
@@ -464,6 +495,7 @@ files before you operate on them!
 >     cat $sugar > xylose.dat
 > done
 > ~~~
+> {: .bash}
 >
 > 1.  Prints `fructose.dat`, `glucose.dat`, and `sucrose.dat`, and the text from `sucrose.dat` will be saved to a file called `xylose.dat`.
 > 2.  Prints `fructose.dat`, `glucose.dat`, and `sucrose.dat`, and the text from all three files would be
@@ -471,6 +503,14 @@ files before you operate on them!
 > 3.  Prints `fructose.dat`, `glucose.dat`, `sucrose.dat`, and
 >     `xylose.dat`, and the text from `sucrose.dat` will be saved to a file called `xylose.dat`.
 > 4.  None of the above.
+>
+> > ## Solution
+> >
+> > 1. Correct.
+> > 2. Incorrect, since we're using the `>` redirect operator, which will overwrite any previous contents of `xylose.dat`.
+> > 3. Incorrect, since the file `xylose.dat` would not have existed when `*.dat` would have been expanded.
+> > 4. Incorrect.
+> {: .solution}
 {: .challenge}
 
 
@@ -481,6 +521,7 @@ files before you operate on them!
 > ~~~
 > fructose.dat    glucose.dat   sucrose.dat   maltose.txt
 > ~~~
+> {: .output}
 >
 > What would be the output of the following loop?
 >
@@ -490,6 +531,7 @@ files before you operate on them!
 >     cat $datafile >> sugar.dat
 > done
 > ~~~
+> {: .bash}
 >
 > 1.  All of the text from `fructose.dat`, `glucose.dat` and `sucrose.dat` would be
 >     concatenated and saved to a file called `sugar.dat`.
@@ -498,6 +540,14 @@ files before you operate on them!
 >     would be concatenated and saved to a file called `sugar.dat`.
 > 4.  All of the text from `fructose.dat`, `glucose.dat` and `sucrose.dat` would be printed
 >     to the screen and saved to a file called `sugar.dat`
+>
+> > ## Solution
+> >
+> > 1. Correct.
+> > 2. Incorrect, since we're looping through each of the other `.dat` files (`fructose.dat` and `glucose.dat`) whose contents would also be included.
+> > 3. Incorrect, since `maltose.txt` has a `.txt` extension and not a `.dat` extension, so won't match on `*.dat` and won't be included in the loop.
+> > 4. Incorrect, since the `>>` operator redirects all output to the `sugar.dat` file, so we won't see any screen output.
+> {: .solution}
 {: .challenge}
 
 
@@ -534,6 +584,11 @@ files before you operate on them!
 >   echo "analyze $file > analyzed-$file"
 > done
 > ~~~
+>
+> > ## Solution
+> >
+> > Version 2 is the one that successfully acts as a dry run. In version 1, since the `>` file redirect is not within quotes, the script will create three files `analyzed-basilisk.dat`, `analyzed-minotaur.dat`, and `analyzed-unicorn.dat` which is not what we want.
+> {: .solution}
 {: .challenge}
 
-### [Next: Finding Things](https://southampton-rsg.github.io/swc-shell-novice/06-find/index.html)
+{% include links.md %}

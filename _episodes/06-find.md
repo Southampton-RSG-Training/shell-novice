@@ -1,15 +1,22 @@
 ---
-layout: page
-title: Finding Things
-minutes: 15
+title: "Finding Things"
+teaching: 15
+exercises: 5
+questions:
+- "How can I find files?"
+- "How can I find things in files?"
+objectives:
+- "Use `grep` to select lines from text files that match simple patterns."
+- "Use `find` to find files and directories whose names match simple patterns."
+- "Use the output of one command as the command-line argument(s) to another command."
+- "Explain what is meant by 'text' and 'binary' files, and why many common tools don't handle the latter well."
+keypoints:
+- "`find` finds files with specific properties that match patterns."
+- "`grep` selects lines in files that match patterns."
+- "`--help` is an option supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs."
+- "`man [command]` displays the manual page for a given command."
+- "`$([command])` inserts a command's output in place."
 ---
-> ## Learning Objectives
->
-> *   Use `grep` to select lines from text files that match simple patterns.
-> *   Use `find` to find files whose names match simple patterns.
-> *   Use the output of one command as the command-line parameters to another command.
-> *   Explain what is meant by "text" and "binary" files, and why many common tools don't handle the latter well.
-{: .objectives}
 
 ### Finding files that contain text
 
@@ -28,7 +35,7 @@ we're going to be working in the `writing` subdirectory:
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/shell/test_directory/writing
+$ cd ~/swc-shell-novice/test_directory/writing
 $ ls
 ~~~
 
@@ -235,7 +242,7 @@ to quickly search for a particular word or data point, `grep` is invaluable.
 > these is **regular expressions**, which
 > is what the "re" in "grep" stands for.) Regular expressions are both complex
 > and powerful; if you want to do complex searches, please look at the lesson
-> on [our website](http://software-carpentry.org/v4/regexp/index.html). As a taster, we can
+> on [our website](https://v4.software-carpentry.org/regexp/index.html). As a taster, we can
 > find lines that have an 'o' in the second position like this:
 >
 >     $ grep -E '^.o' haiku.txt
@@ -521,6 +528,14 @@ about them."
 > 2. `grep -E "of" haiku.txt`
 > 3. `grep -w "of" haiku.txt`
 > 4. `grep -i "of" haiku.txt`
+>
+> > ## Solution
+> > 
+> > 1. Incorrect, since it will find lines that contain `of` including those that are not a complete word, including "Software is like that."
+> > 2. Incorrect, `-E` (which enables extended regular expressions in `grep`), won't change the behaviour since the given pattern is not a regular expression. So the results will be the same as 1.
+> > 3. Correct, since we have supplied `-w` to indicate that we are looking for a complete word, hence only "and the presence of absence:" is found.
+> > 4. Incorrect. `-i` indicates we wish to do a case insensitive search which isn't required. The results are the same as 1.
+> {: .solution}
 {: .challenge}
 
 
@@ -532,6 +547,11 @@ about them."
 >~~~
 > find . -name '*.dat' | wc -l | sort -n
 > ~~~
+>
+> > ## Solution
+> >
+> > Find all files (in this directory and all subdirectories) that have a filename that ends in `.dat`, count the number of files found, and sort the result. Note that the `sort` here is unnecessary, since it is only sorting one number.
+> {: .solution}
 {: .challenge}
 
 > ## Matching `ose.dat` but not `temp` {}
@@ -549,6 +569,14 @@ about them."
 > 3. `grep -v "temp" $(find /data -name '*ose.dat')`
 >
 > 4. None of the above.
+>
+> > ## Solution
+> > 
+> > 1. Incorrect, since the first `grep` will find all filenames that contain `ose` wherever it may occur, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
+> > 2. Incorrect, since it will only find those files than match `ose.dat` exactly, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
+> > 3. Correct answer. It first executes the `find` command to find those files matching the '*ose.dat' pattern, which will match on exactly those that end in `ose.dat`, and then `grep` will search those files for "temp" and only report those that don't contain it, since it's using the `-v` flag to invert the results.
+> > 4. Incorrect.
+> {: .solution}
 {: .challenge}
 
-### [Next: Additional Exercises](https://southampton-rsg.github.io/swc-shell-novice/07-additional-exercises/index.html)
+{% include links.md %}

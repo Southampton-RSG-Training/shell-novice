@@ -28,12 +28,6 @@ These lessons will start you on a path towards using these resources effectively
 > and scripts, you probably won't learn much from this lesson.
 {: .prereq}
 
+The reference page and glossary for this workshop [can be found here](reference.html).
+
 {% include links.md %}
-
-## Other Resources and Further Learning
-
-*   [Bash command reference](https://southampton-rsg.github.io/swc-shell-novice/reference/index.html)
-*   [Writing readable source code - a guide](https://software.ac.uk/resources/guides/writing-readable-source-code)
-*   [Bash tutorial with online exercises](https://learnshell.org/)
-*   [Intermediate guide to Bash](https://www.linode.com/docs/guides/an-intermediate-guide-to-bash-scripting/)
-*   [Bash command cheat sheet](https://hackr.io/blog/linux-cheat-sheet)

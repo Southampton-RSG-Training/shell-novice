@@ -367,13 +367,16 @@ wc -l "$@" | sort -n
 > 3. The first and the last line of each file in the molecules directory
 > 4. An error because of the quotes around `*.pdb`
 > 
-> > # Solution
+> > ## Solution
+> >
 > > The answer is **2**. The quotes around the wildcard `'*.pdb'` mean it isn't expanded when we call the script - but it will get expanded *inside* the script. There, it gets expanded to match every file in the directory that ends in `*.pdb`, and effectively the script calls:
+> >
 > > ~~~
 > > head -1 *.pdb
 > > tail -n -1 *.pdb*
 > > ~~~
 > > {: .bash}
+> >
 > > This prints out the first line (`head -1`) of each `.pdb` file, and then the last line of each `.pdb` file.
 > >
 > > If we'd called the script as:
@@ -381,11 +384,14 @@ wc -l "$@" | sort -n
 > > bash script.sh *.pdb -1 -1
 > > ~~~
 > > {: .bash}
+> > 
 > > Then it wouldn't work as the wildcard would've expanded before the script started and we'd have effectively run it as:
+> >
 > > ~~~
 > > bash script cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb -1 -1
 > > ~~~
 > > {: .bash}
+> >
 > > This would have caused an error, as we expect the second and third arguments to be numbers for `head` and `tail`!
 > >
 > {: .solution}
@@ -421,19 +427,22 @@ wc -l "$@" | sort -n
 >
 > > ## Solution
 > >
-> > 1. This script doesn't use any arguments - so it ignores our `*.dat` on the command line. The `*.*` wildcard matches anything in the current directory with a `.` in the file (or folder!) name, so it expands to a list of all files in the directory, *including* `example.sh`. Then it passes that list to `echo`, which prints them out.
+> > **Script 1** doesn't use any arguments - so it ignores our `*.dat` on the command line. The `*.*` wildcard matches anything in the current directory with a `.` in the file (or folder!) name, so it expands to a list of all files in the directory, *including* `example.sh`. Then it passes that list to `echo`, which prints them out.
+> >
 > > ~~~
 > > example.sh fructose.dat glucose.dat sucrose.dat
 > > ~~~
 > > {: .output}
 > >
-> > 2. This script makes use of our arguments. The wildcard `*.dat` matches any file that ends in `.dat`, so expands to `fructose.dat glucose.dat sucrose.dat` then passes them to the script. The script then takes the first 3 arguments (using `$1 $2 $3`) and uses `cat` to print the contents of the file. However, if there are less than 3 files in the directory with the `.dat` suffix, they'll be ignored. If there are *less* than 3, there'll be an error!
+> > **Script 2** makes use of our arguments. The wildcard `*.dat` matches any file that ends in `.dat`, so expands to `fructose.dat glucose.dat sucrose.dat` then passes them to the script. The script then takes the first 3 arguments (using `$1 $2 $3`) and uses `cat` to print the contents of the file. However, if there are less than 3 files in the directory with the `.dat` suffix, they'll be ignored. If there are *less* than 3, there'll be an error!
 > >
-> > 3. This script uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it: 
+> > **Script 3** uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it: 
+> > 
 > > ~~~
 > > fructose.dat glucose.dat sucrose.dat.dat
 > > ~~~
 > > {: .output}
+> >
 > > This probably isn't quite what we were hoping for!
 > {: .solution}
 {: .challenge}

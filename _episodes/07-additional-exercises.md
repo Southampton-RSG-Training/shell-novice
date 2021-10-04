@@ -1,16 +1,21 @@
 ---
-layout: page
-title: Additional Exercises
-minutes: 45
+title: "Additional Exercises"
+teaching: 0
+exercises: 20
+questions:
+- "How can I build a data-processing pipeline?"
+objectives:
+- "Construct a pipeline that takes input files and generates output."
+- "How to separate input and output data files."
+- "Use `date` to determine today's date in a particular format."
+- "Use `cut` to extract particular fields from a comma-separate value (CSV) data file."
+- "Extend an existing pipeline with an additional data processing stage."
+keypoints:
+- "`date` prints the current date in a specified format."
+- "Scripts can save the output of a command to a variable using `$(command)`"
+- "`basename` removes directories from a path to a file, leaving only the name"
+- "`cut` lets you select specific columns from files, with `-d','` letting you select the column separator, and `-f` letting you select the columns you want."
 ---
-> ## Learning Objectives
->
-> *   Construct a pipeline that takes input files and generates output.
-> *   How to separate input and output data files.
-> *   Use `date` to determine today's date in a particular format.
-> *   Use `cut` to extract particular fields from a comma-separate value (CSV) data file.
-> *   Extend an existing pipeline with an additional data processing stage.
-{: .objectives}
 
 ## Working with dates
 
@@ -38,6 +43,22 @@ $ today_date=$(date +“%d-%m-%y”)
 >
 > - With the input data files we’re going to use held in the data directory, create a new directory which will be used to hold your output files. When writing scripts or programs that generate output from input, it is a good idea to separate where you keep your input and output files. This allows you to more easily distinguish between the two, makes it easier to understand, and retains your original input which is invaluable if your script has a fault and corrupts your input data. It also means that if you add an additional processing step that will work on the output data and generate new output, you can logically extend this by adding a new script and a new directory to hold *that* new output, and so on.
 > - You can use `basename` followed by a path to extract only the filename from a path, e.g. `basename test_directory/notes.txt` produces `notes.txt`.
+>
+> > ## Solution
+> > If we assume the output directory is named `copied`:
+> > 
+> > {: .bash}
+> > ~~~
+> > today_date=$(date +"%d-%m-%y")
+> > 
+> > for file in data/*.csv
+> > do
+> >     base_file=$(basename $file)
+> >     cp $file copied/$today_date-$base_file
+> > done
+> > ~~~
+> > 
+> {: .solution}
 {: .challenge}
 
 
@@ -59,4 +80,21 @@ The `-d` argument specifies, within quotes, the delimiter that separates the col
 > Let’s extend our pipeline to extract a specific column of data from each of our newly copied files.
 >
 > Create a new script that takes each new file we created in the earlier exercise and creates a new file (again, in another separate output directory), which contains only the data held in the `Max_temp_jul_F` column.
+>
+> > ## Solution
+> > The `Max_temp_jul_F` column is the fourth column in each data file
+> > If we assume the input directory is named `copied` and the output directory is named `filtered`:
+> >
+> >{: .bash}
+> >~~~
+> >for file in copied/*.csv
+> >do
+> >    base_file=$(basename $file)
+> >    cat $file | cut -d"," -f 4 > filtered/$base_file
+> >done
+> >~~~
+> >
+> {: .solution}
 {: .challenge}
+
+{% include links.md %}

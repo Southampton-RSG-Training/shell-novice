@@ -108,6 +108,7 @@ RMD_DST = $(patsubst _episodes_rmd/%.Rmd,_episodes/%.md,$(RMD_SRC))
 MARKDOWN_SRC = \
   index.md \
   CODE_OF_CONDUCT.md \
+  setup.md \
   $(sort $(wildcard _episodes/*.md)) \
   reference.md \
   $(sort $(wildcard _extras/*.md)) \
