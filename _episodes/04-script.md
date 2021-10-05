@@ -38,12 +38,14 @@ $ nano middle.sh
 
 So why the .sh extension to the filename? Adding `.sh` is the convention to show that this is a Bash shell script.
 
-Enter the following line into our new file, then save it and exit `nano` (using `Control-O` to save it and then `Control-X` to exit `nano`):
+Enter the following line into our new file: 
 
 {: .bash}
 ~~~
 head -15 sc_climate_data_1000.csv | tail -5
 ~~~
+
+Then save it and exit `nano` (using `Control-O` to save it and then `Control-X` to exit `nano`).
 
 This pipe selects lines 11-15 of the file `sc_climate_data_1000.csv`. It selects the first 15
 lines of that file using `head`, then passes that to `tail` to show us only the last 5 lines - hence lines 11-15.
@@ -255,7 +257,7 @@ When we run it with some wildcarded file arguments:
 
 {: .bash}
 ~~~
-$ bash sorted.sh *.csv ../test_directory/creatures/*.dat
+$ bash sorted.sh *.csv ../shell/test_directory/creatures/*.dat
 ~~~
 
 We have the following output:
@@ -263,12 +265,12 @@ We have the following output:
 {: .output}
 ~~~
       11 sc_climate_data_10.csv
-     155 ../test_directory/creatures/minotaur.dat
-     163 ../test_directory/creatures/basilisk.dat
-     163 ../test_directory/creatures/unicorn.dat
+     155 ../shell/test_directory/creatures/minotaur.dat
+     163 ../shell/test_directory/creatures/basilisk.dat
+     163 ../shell/test_directory/creatures/unicorn.dat
     1001 sc_climate_data_1000.csv
- 1048580 sc_climate_data.csv
- 1050073 total
+ 1048576 sc_climate_data.csv
+ 1050069 total
 ~~~
 
 > ## Why Isn't It Doing Anything?
