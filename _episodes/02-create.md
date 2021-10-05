@@ -339,7 +339,7 @@ quotes.txt
 {: .output}
 
 Just for the sake of inconsistency,
-`mv` also works on directories --- there is no separate `mvdir` command. Another example of the Bash shell's pariochial nature!
+`mv` also works on directories --- there is no separate `mvdir` command.
 
 Let's move `quotes.txt` into the current working directory.
 We use `mv` once again,
