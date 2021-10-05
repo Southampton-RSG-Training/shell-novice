@@ -14,7 +14,7 @@ Once you've done this, a window should appear. Type the following into the promp
 
 ~~~
 $ cd
-$ git clone https://github.com/Southampton-RSG/swc-shell-novice
+$ git clone git@github.com:Southampton-RSG/swc-shell-novice.git
 ~~~
 {: .language-bash}
 
