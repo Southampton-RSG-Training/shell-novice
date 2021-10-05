@@ -243,13 +243,10 @@ $ ls
 {: .language-bash}
 
 ~~~
-404.html           Makefile           deck.js            requirements.txt
-CONDUCT.md         README.md          index.html         schedule.html
-CONTRIBUTING.md    js                 setup
-CUSTOMIZATION.md   _config.yml        novice             template
-DESIGN.md          _includes          prerequisites.html tools
-FAQ.md             _layouts           prerequisites.md   welcome
-LICENSE.md         css                reference.html
+AUTHORS			Gemfile			_config.yml		_includes		bin			files			setup.md
+CITATION		LICENSE.md		_episodes		_layouts		code			index.md		shell
+CODE_OF_CONDUCT.md	Makefile		_episodes_rmd		aio.md			data			reference.md		slides
+CONTRIBUTING.md		README.md		_extras			assets			fig			requirements.txt
 ~~~
 {: .output}
 
@@ -263,20 +260,17 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-404.html            Makefile            deck.js/            requirements.txt
-CONDUCT.md          README.md           index.html          schedule.html
-CONTRIBUTING.md     js/                 setup/
-CUSTOMIZATION.md    _config.yml         novice/             template/
-DESIGN.md           _includes/          prerequisites.html  tools/
-FAQ.md              _layouts/           prerequisites.md    welcome/
-LICENSE.md          css/                reference.html
+AUTHORS			Gemfile			_config.yml		_includes/		bin/			files/			setup.md
+CITATION		LICENSE.md		_episodes/		_layouts/		code/			index.md		shell/
+CODE_OF_CONDUCT.md	Makefile		_episodes_rmd/		aio.md			data/			reference.md		slides/
+CONTRIBUTING.md		README.md		_extras/		assets/			fig/			requirements.txt
 ~~~
 {: .output}
 
 Here,
 we can see that this directory contains a number of **sub-directories**.
 The names that don't have trailing slashes,
-like `reference.html`, `prerequisites.md`, and `requirements.txt`,
+like `reference.html`, `setup.md`, and `requirements.txt`,
 are plain old files.
 And note that there is a space between `ls` and `-F`:
 without it,
@@ -304,10 +298,10 @@ which doesn't exist.
 > when someone double-clicks it.
 {: .callout}
 
-For this exercise, we need to change our working directory to `swc-shell-novice`, and then `shell` (within the `swc-shell-novice` directory). We can do this by:
+For this exercise, we need to change our working directory to `swc-shell-novice`, and then `shell` (within the `swc-shell-novice` directory). As we have already used cd to move into `swc-shell-novice` we can get to `shell` by using `cd` again:
 
 ~~~
-$ cd swc-shell-novice/shell
+$ cd shell
 ~~~
 {: .language-bash}
 
@@ -319,8 +313,7 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-data/     shell-novice-data.zip  test_directory/
-fig/      tools/
+shell-novice-data.zip	tools/ test_directory/
 ~~~
 {: .output}
 
@@ -451,9 +444,8 @@ $ ls -F -a
 ~~~
 {: .language-bash}
 ~~~
-./                  data/               notes.txt           writing/
-../                 molecules/          pizza.cfg
-creatures/          north-pacific-gyre/ solar.pdf
+./			creatures/		molecules/		notes.txt		solar.pdf
+../			data/			north-pacific-gyre/	pizza.cfg		writing/
 ~~~
 {: .output}
 
@@ -485,13 +477,10 @@ $ ls ~/swc-shell-novice
 ~~~
 {: .language-bash}
 ~~~
-404.html           Makefile           deck.js            requirements.txt
-CONDUCT.md         README.md          index.html         schedule.html
-CONTRIBUTING.md    js                 setup
-CUSTOMIZATION.md   _config.yml        novice             template
-DESIGN.md          _includes          prerequisites.html tools
-FAQ.md             _layouts           prerequisites.md   welcome
-LICENSE.md         css                reference.html
+AUTHORS			Gemfile			_config.yml		_includes		bin			files			setup.md
+CITATION		LICENSE.md		_episodes		_layouts		code			index.md		shell
+CODE_OF_CONDUCT.md	Makefile		_episodes_rmd		aio.md			data			reference.md		slides
+CONTRIBUTING.md		README.md		_extras			assets			fig			requirements.txt
 ~~~
 {: .output}
 
