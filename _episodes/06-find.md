@@ -20,9 +20,9 @@ keypoints:
 
 ### Finding files that contain text
 
-You can guess someone's age by how they talk about search:
-young people use "Google" as a verb,
-while crusty old Bash programmers use "grep".
+You can guess someone's computer literacy by how they talk about search:
+most people use "Google" as a verb,
+while Bash programmers use "grep".
 The word is a contraction of "global/regular expression/print",
 a common sequence of operations in early Unix text editors.
 It is also the name of a very useful command-line program.
