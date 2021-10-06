@@ -38,6 +38,7 @@ typing here!):
 $ cd ~/swc-shell-novice/test_directory/creatures
 $ ls
 ~~~
+
 {: .output}
 ~~~
 basilisk.dat minotaur.dat unicorn.dat
@@ -171,7 +172,7 @@ so this loop prints out the first three lines of each data file in turn.
 > and whilst extra spaces don't affect how the
 > script runs, it is considered best practice to use indentation to highlight the loop body.
 > In general programming, indentation is very important. Without indentation in code blocks
-> such as these,, code becomes much harder to read.
+> such as these, code becomes much harder to read.
 
 
 ### Dos and don'ts of variable naming
