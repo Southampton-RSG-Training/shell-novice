@@ -35,8 +35,8 @@ $ today_date=$(date +“%d-%m-%y”)
 
 > ## Copying files with new filenames
 >
-> Write a script in the `swc-shell-novice/shell` directory that goes through each `.csv` file in the `data` directory (that resides in
-> the `swc-shell-novice/shell` directory) and
+> Write a script in the `swc-shell-novice/` directory that goes through each `.csv` file in the `data` directory (that resides in
+> the `swc-shell-novice/` directory) and
 > creates a copy of that file with today’s date at the start of the filename, e.g. `16-11-20-sc_climate_data.csv`.
 >
 > Hints:
