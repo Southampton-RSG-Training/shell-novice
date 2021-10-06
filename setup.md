@@ -14,6 +14,14 @@ Once you've done this, a window should appear. Type the following into the promp
 
 ~~~
 $ cd
+$ git clone https://github.com/Southampton-RSG/swc-shell-novice.git
+~~~
+{: .language-bash}
+
+Alternatively, if you have SSH authentication with GitHub enabled (if you dont know what this means dont worry, it is covered in the Git SWC course if you want to know more!) you can use the following:
+
+~~~
+$ cd
 $ git clone git@github.com:Southampton-RSG/swc-shell-novice.git
 ~~~
 {: .language-bash}
