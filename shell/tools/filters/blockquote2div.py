@@ -16,7 +16,7 @@ A blockquote will be converted if
 
 For example, this is a valid blockquote:
 
-    > ## Callout time! {.callout}
+    > ## Callout time! {: .callout}
     > Let's do something
 
 and it will be converted into this markdown:

@@ -40,12 +40,12 @@ def is_numeric(text):
 
 #### Text cleanup functions, pre-validation
 def strip_attrs(s):
-    """Strip attributes of the form {.name} from a markdown title string"""
+    """Strip attributes of the form {: .name} from a markdown title string"""
     return re.sub(r"\s\{\..*?\}", "", s)
 
 
 def get_css_class(s):
-    """Return any and all CSS classes (when a line is suffixed by {.classname})
+    """Return any and all CSS classes (when a line is suffixed by {: .classname})
     Returns empty list when """
     return re.findall("\{\.(.*?)\}", s)
 

@@ -185,7 +185,7 @@ Paragraph of introductory material.
 
     def test_fail_when_prereq_section_has_incorrect_heading_level(self):
         validator = self._create_validator("""
-> # Prerequisites {.prereq}
+> # Prerequisites {: .prereq}
 >
 > A short paragraph describing what learners need to know
 > before tackling this lesson.
@@ -285,7 +285,7 @@ SQLite uses the integers 0 and 1 for the former, and represents the latter as di
     ### Tests involving callout/blockquote sections
     def test_one_prereq_callout_passes(self):
         """index.md should have one, and only one, prerequisites box"""
-        validator = self._create_validator("""> ## Prerequisites {.prereq}
+        validator = self._create_validator("""> ## Prerequisites {: .prereq}
 >
 > What learners need to know before tackling this lesson.
 """)
@@ -293,13 +293,13 @@ SQLite uses the integers 0 and 1 for the former, and represents the latter as di
 
     def test_two_prereq_callouts_fail(self):
         """More than one prereq callout box is not allowed"""
-        validator = self._create_validator("""> ## Prerequisites {.prereq}
+        validator = self._create_validator("""> ## Prerequisites {: .prereq}
 >
 > What learners need to know before tackling this lesson.
 
 A spacer paragraph
 
-> ## Prerequisites {.prereq}
+> ## Prerequisites {: .prereq}
 >
 > A second prerequisites box should cause an error
 """)
@@ -315,7 +315,7 @@ A spacer paragraph
 
     def test_callout_with_wrong_title_fails(self):
         """A callout box will fail if it has the wrong title"""
-        validator = self._create_validator("""> ## Wrong title {.prereq}
+        validator = self._create_validator("""> ## Wrong title {: .prereq}
 >
 > What learners need to know before tackling this lesson.
 """)
@@ -323,7 +323,7 @@ A spacer paragraph
 
     def test_unknown_callout_style_fails(self):
         """A callout whose style is unrecognized by template is invalid"""
-        validator = self._create_validator("""> ## Any title {.callout}
+        validator = self._create_validator("""> ## Any title {: .callout}
 >
 > What learners need to know before tackling this lesson.
 """)
@@ -334,7 +334,7 @@ A spacer paragraph
         """
         Blockquotes only count as callouts if they have a heading
         """
-        validator = self._create_validator("""> Prerequisites {.prereq}
+        validator = self._create_validator("""> Prerequisites {: .prereq}
 >
 > What learners need to know before tackling this lesson.
 """)
@@ -343,7 +343,7 @@ A spacer paragraph
 
     def test_callout_heading_must_be_l2(self):
         """Callouts will fail validation if the heading is not level 2"""
-        validator = self._create_validator("""> ### Prerequisites {.prereq}
+        validator = self._create_validator("""> ### Prerequisites {: .prereq}
 >
 > What learners need to know before tackling this lesson.
 """)
@@ -398,7 +398,7 @@ Some text""")
 
     def test_pass_when_optional_callouts_absent(self):
         """Optional block titles should be optional"""
-        validator = self._create_validator("""> ## Learning Objectives {.objectives}
+        validator = self._create_validator("""> ## Learning Objectives {: .objectives}
 >
 > * All topic pages must have this callout""")
         self.assertTrue(validator._validate_callouts())
@@ -407,11 +407,11 @@ Some text""")
     def test_callout_style_passes_regardless_of_title(self):
         """Verify that certain kinds of callout box can be recognized solely
         by style, regardless of the heading title"""
-        validator = self._create_validator("""> ## Learning Objectives {.objectives}
+        validator = self._create_validator("""> ## Learning Objectives {: .objectives}
 >
 > * All topic pages must have this callout
 
-> ## Some random title {.callout}
+> ## Some random title {: .callout}
 >
 > Some informative text""")
 
@@ -419,17 +419,17 @@ Some text""")
 
     def test_callout_style_allows_duplicates(self):
         """Multiple blockquoted sections with style 'callout' are allowed"""
-        validator = self._create_validator("""> ## Learning Objectives {.objectives}
+        validator = self._create_validator("""> ## Learning Objectives {: .objectives}
 >
 > * All topic pages must have this callout
 
-> ##  Callout box one {.callout}
+> ##  Callout box one {: .callout}
 >
 > Some informative text
 
 Spacer paragraph
 
-> ## Callout box two {.callout}
+> ## Callout box two {: .callout}
 >
 > Further exposition""")
         self.assertTrue(validator._validate_callouts())
@@ -500,7 +500,7 @@ Key Word 2
 
            (No "unknown" blockquote sections are allowed)
            """
-        validator = self._create_validator("""> ## Learning Objectives {.objectives}
+        validator = self._create_validator("""> ## Learning Objectives {: .objectives}
 >
 > * Learning objective 1
 > * Learning objective 2""")
