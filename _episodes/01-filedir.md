@@ -1,6 +1,6 @@
 ---
 title: Files and Directories
-teaching: 15
+teaching: 10
 exercises: 5
 questions:
 - "How do I run programs using the shell?"
