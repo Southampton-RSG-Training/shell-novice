@@ -35,7 +35,7 @@ typing here!):
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/test_directory/creatures
+$ cd ~/swc-shell-novice/shell/test_directory/creatures
 $ ls
 ~~~
 

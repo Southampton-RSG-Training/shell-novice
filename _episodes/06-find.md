@@ -35,7 +35,7 @@ we're going to be working in the `writing` subdirectory:
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/test_directory/writing
+$ cd ~/swc-shell-novice/shell/test_directory/writing
 $ ls
 ~~~
 
@@ -530,7 +530,7 @@ about them."
 > 4. `grep -i "of" haiku.txt`
 >
 > > ## Solution
-> > 
+> >
 > > 1. Incorrect, since it will find lines that contain `of` including those that are not a complete word, including "Software is like that."
 > > 2. Incorrect, `-E` (which enables extended regular expressions in `grep`), won't change the behaviour since the given pattern is not a regular expression. So the results will be the same as 1.
 > > 3. Correct, since we have supplied `-w` to indicate that we are looking for a complete word, hence only "and the presence of absence:" is found.
@@ -571,7 +571,7 @@ about them."
 > 4. None of the above.
 >
 > > ## Solution
-> > 
+> >
 > > 1. Incorrect, since the first `grep` will find all filenames that contain `ose` wherever it may occur, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
 > > 2. Incorrect, since it will only find those files than match `ose.dat` exactly, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
 > > 3. Correct answer. It first executes the `find` command to find those files matching the '*ose.dat' pattern, which will match on exactly those that end in `ose.dat`, and then `grep` will search those files for "temp" and only report those that don't contain it, since it's using the `-v` flag to invert the results.
