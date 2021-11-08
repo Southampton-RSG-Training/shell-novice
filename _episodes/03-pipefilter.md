@@ -36,7 +36,7 @@ We'll start with a directory called `data`, which is in the `swc-shell-novice/da
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
 
 ~~~
-$ cd ..
+$ cd ../..
 $ cd data
 ~~~
 {: .language-bash}
@@ -350,9 +350,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Explain why `-n` has this effect.
-> 
+>
 > > ## Solution
-> > 
+> >
 > > Normally, `sort` goes character-by-character, sorting in *alphabetical* order. Just looking at the first character of each line, `6` is greater than both `1` and `2` so it goes to the end of the file.
 > >
 > > However, if we pass `sort` the `-n` flag, it sorts in *numeric* order - so if it encounters a character that's a number, it reads the line up until it hits a non-numeric character. In this case, `22` is greater than `6` (and everything else), so it goes to the end of the file.
@@ -374,9 +374,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 >
 > Hint: Try executing each command twice in a row and then examining the output files.
-> 
+>
 > > ## Solution
-> > 
+> >
 > > If there isn't a file already there with the name `testfile01.txt`, both `>` and `>>` will create one.
 > >
 > > However, if there *is* a file, then `>` will *overwrite* the contents of the file, whilst `>>` will *append* to the existing contents.
@@ -426,11 +426,11 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > Why do you think `uniq` only removes *adjacent* duplicated lines?
 > (Hint: think about very large data sets.) What other command could
 > you combine with it in a pipe to remove all duplicated lines?
-> 
+>
 > > ## Solution
 > >
 > > `uniq` doesn't search through entire files for matches, as in the shell we can be working with files that are 100s of MB or even tens of GB in size, with hundreds, thousands or even more unique values.
-> > The more lines there are, likely the more unique values there are, and each line has to be compared to each unique value. The time taken would scale more or less with the square of the size of the file! 
+> > The more lines there are, likely the more unique values there are, and each line has to be compared to each unique value. The time taken would scale more or less with the square of the size of the file!
 > >
 > > Whilst there are ways to do that kind of comparison efficiently, implementing them would require making `uniq` a much larger and more complicated program - so, following the Unix philosophy of small, simple programs that chain together, `uniq` is kept small and the work required is offloaded to another, specialist program.
 > >
@@ -458,7 +458,7 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > ~~~
 > cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 > ~~~
-> 
+>
 > > ## Solution
 > >
 > > 1. `cat animals.txt` outputs the full contents of the file.
@@ -486,7 +486,7 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > ~~~
 > >
 > > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
-> > 
+> >
 > {: .solution}
 {: .challenge}
 
