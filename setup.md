@@ -1,8 +1,4 @@
----
-layout: page
-title: Setup
-root: .
----
+
 
 You need to download some files to follow this lesson. First, you need to open a terminal:
 
@@ -14,7 +10,7 @@ Once you've done this, a window should appear. Type the following into the promp
 
 ~~~
 $ cd
-$ git clone https://github.com/Southampton-RSG/swc-shell-novice.git
+$ git clone https://github.com/Southampton-RSG/shell-novice.git
 ~~~
 {: .language-bash}
 
