@@ -28,6 +28,6 @@ These lessons will start you on a path towards using these resources effectively
 > and scripts, you probably won't learn much from this lesson.
 {: .prereq}
 
-The reference page and glossary for this workshop [can be found here](reference.html).
+The reference page and glossary for this workshop [can be found here](reference.md).
 
 {% include links.md %}
