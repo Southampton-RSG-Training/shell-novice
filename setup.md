@@ -1,4 +1,4 @@
-
+## Shell Setup ##
 
 You need to download some files to follow this lesson. First, you need to open a terminal:
 
