@@ -1,15 +1,18 @@
 ---
 title: Introducing the Shell
+---
+
+---
 teaching: 5
 exercises: 0
 questions:
-- "What is a command shell and why would I use one?"
+  - "What is a command shell and why would I use one?"
 objectives:
-- "Explain what the shell is and how it relates to graphical interfaces."
-- "Explain when and why command-line interfaces should be used instead of graphical interfaces."
+  - "Explain what the shell is and how it relates to graphical interfaces."
+  - "Explain when and why command-line interfaces should be used instead of graphical interfaces."
 keypoints:
-- "The shell lets you define repeatable workflows."
-- "The shell is available on systems where graphical interfaces are not."
+  - "The shell lets you define repeatable workflows."
+  - "The shell is available on systems where graphical interfaces are not."
 ---
 
 The Bash shell a text-based program that interactively allows you to run other programs.
