@@ -1,8 +1,4 @@
----
-layout: page
-title: Setup
-root: .
----
+## Shell Setup ##
 
 You need to download some files to follow this lesson. First, you need to open a terminal:
 
@@ -14,11 +10,11 @@ Once you've done this, a window should appear. Type the following into the promp
 
 ~~~
 $ cd
-$ git clone https://github.com/Southampton-RSG/swc-shell-novice.git
+$ git clone https://github.com/Southampton-RSG/shell-novice.git
 ~~~
 {: .language-bash}
 
-Alternatively, if you have SSH authentication with GitHub enabled (if you dont know what this means dont worry, it is covered in the Git SWC course if you want to know more!) you can use the following:
+Alternatively, if you have SSH authentication with GitHub enabled (if you don't know what this means don't worry, it is covered in the Git SWC course if you want to know more!) you can use the following:
 
 ~~~
 $ cd
