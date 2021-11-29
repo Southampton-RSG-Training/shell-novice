@@ -12,7 +12,7 @@ objectives:
 - "Delete specified files and/or directories."
 keypoints:
 - "Command line text editors let you edit files in the terminal."
-- "You can open up files with either command-line or graphical text editors." 
+- "You can open up files with either command-line or graphical text editors."
 - "`nano [path]` creates a new text file at the location `[path]`, or edits an existing one."
 - "`cat [path]` prints the contents of a file."
 - "`rmdir [path]` deletes an (empty) directory."
@@ -127,7 +127,7 @@ We add a filename after the `nano` command to tell it that we want to edit (or i
 
 Now, let's type in a few lines of text, for example:
 
-![Nano in action](../fig/nano-screenshot.png)
+![Nano in action](fig/nano-screenshot.png)
 
 Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press
 `Enter` to confirm the filename.
@@ -522,7 +522,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > > ## Solution
 > >
 > > `ls` lists the contents of the current directory, whilst `ls analyzed` lists the contents of the `analyzed` directory.
-> > 
+> >
 > > So we need to move the files `fructose.dat` and `sucrose.dat` out of the current directory, and into the `analyzed` directory, which we do with `mv`.
 > > ~~~
 > > $ ls -F
@@ -578,10 +578,10 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > > ## Solution
 > >
-> > You should get an error and the command does nothing. 
+> > You should get an error and the command does nothing.
 > > When passing 3 or more arguments, the last one needs to be a directory.
-> > 
-> > However, 
+> >
+> > However,
 > > ~~~
 > > $ cp intro.txt methods.txt
 > > ~~~
