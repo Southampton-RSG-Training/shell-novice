@@ -1,7 +1,5 @@
 ---
 title: Files and Directories
----
----
 teaching: 10
 exercises: 5
 questions:

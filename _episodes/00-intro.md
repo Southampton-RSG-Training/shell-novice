@@ -1,8 +1,5 @@
 ---
 title: Introducing the Shell
----
-
----
 teaching: 5
 exercises: 0
 questions:
