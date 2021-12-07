@@ -1,5 +1,6 @@
 ---
 title: "Additional Exercises"
+slug: shell-novice-additional-exercises
 teaching: 0
 exercises: 20
 questions:

@@ -1,5 +1,6 @@
 ---
 title: Shell Scripts
+slug: shell-novice-shell-scripts
 teaching: 15
 exercises: 5
 questions:

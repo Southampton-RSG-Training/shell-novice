@@ -1,5 +1,6 @@
 ---
 title: Introducing the Shell
+slug: shell-novice-introducing-the-shell
 teaching: 5
 exercises: 0
 questions:
