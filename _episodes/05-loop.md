@@ -1,5 +1,6 @@
 ---
 title: Loops
+slug: shell-novice-loops
 teaching: 15
 exercises: 5
 questions:

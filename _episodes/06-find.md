@@ -1,5 +1,6 @@
 ---
 title: "Finding Things"
+slug: shell-novice-finding-things
 teaching: 15
 exercises: 5
 questions:

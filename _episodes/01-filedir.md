@@ -1,5 +1,6 @@
 ---
 title: Files and Directories
+slug: shell-novice-files-and-directories
 teaching: 10
 exercises: 5
 questions:

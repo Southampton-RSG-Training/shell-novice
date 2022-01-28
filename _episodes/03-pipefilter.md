@@ -1,5 +1,6 @@
 ---
 title: Pipes and Filters
+slug: shell-novice-pipes-and-filters
 teaching: 15
 exercises: 5
 questions:

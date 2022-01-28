@@ -1,5 +1,6 @@
 ---
 title: Creating Things
+slug: shell-novice-creating-things
 teaching: 15
 exercises: 5
 questions:
