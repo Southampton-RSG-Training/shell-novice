@@ -8,8 +8,9 @@ from pathlib import Path
 
 
 #change this to get setup docs
-log.info(f"Getting lesson with parameters:\n org-name: {org_name} \n gh-name: {lesson_name} \n branch: {gh_branch} \n type: {lesson_type.value}")
-os.system(f"git submodule add --force -b {gh_branch} https://github.com/Southampton-RSG-Training/{lesson_name}.git submodules/{lesson_name}")
+
+log.info(f"Getting setup info")
+os.system(f"git submodule add --force -b main https://github.com/Southampton-RSG-Training/setup-documents.git submodules/setup-documents")
 os.system("git submodule update --remote --merge")
 
 
@@ -19,49 +20,18 @@ os.system("git submodule update --remote --merge")
 # for each lesson
 with open('_config.yml') as config:
     website_config = load(config, Loader=Loader)
-log.info(f"Getting submodules specified in {website_config['lessons']}")
-Path("submodules").mkdir(parents=True, exist_ok=True)
+    #select element of the dictionary called setup_docs
+    set_up_docs = website_config['setup_docs']  
+
+#for each element in the list
+#paste into a string 'submodules/setup-documents/markdown'+setup docs element
+with open("setup.md", "w") as file_out:
+    for i in range(len(set_up_docs)):
+        doc = 'submodules/setup-documents/markdown/'+ set_up_docs[i]
+        with open(doc, "r") as file_in:
+            file_out.write("\n")
+            file_out.write(file_in.read())
 
 
-# open setup.md
-# loop to make the setup.md file
-        # append each of the .md setup chunks to setup.md
 
-#this should be moved to a chunk
-setup_md_string = """
-## Setup
 
-### Text Editor
-
-A text editor is the piece of software you use to view and write code. If you
-have a preferred text editor, please use it. Suggestions for text editors are,
-Notepad++ (Windows), TextEdit (macOS), Gedit (GNU/Linux), GNU Nano, Vim.
-Alternatively, there are IDE's (integrated developer environments) that have
-more features specifically for coding such as VS Code; there are also IDEs
-specific to languages will be listed in the appropriate section(s) below.
-"""
-
-for lesson in date_sorted_lessons:
-
-    filename = f"_includes/rsg/{lesson['gh-name']}-lesson/setup.md"
-    content, head = get_file_and_head(filename)
-    content = content.splitlines()
-
-    # Next, change the depth of the headings
-    for i, line in enumerate(content):
-        if line.startswith("#"):
-            line = line.rstrip("#")
-            nhashes = line.count("#") + 2
-            if nhashes > 5:
-                nhashes = 5
-            line = "#" * nhashes + line.lstrip("#")
-            content[i] = line
-
-    setup_md_string += "\n### {}\n\n{}\n".format(lesson["title"], "\n".join(content))
-
-    # write out the new setup.md file to the root directory
-
-with open("setup.md", "w") as fp:
-    fp.write(setup_md_string)
-
-done
