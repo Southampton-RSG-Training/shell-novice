@@ -3,7 +3,6 @@ try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
-from pathlib import Path
 
 
 
@@ -21,7 +20,7 @@ os.system("git submodule update --remote --merge")
 with open('_config.yml') as config:
     website_config = load(config, Loader=Loader)
     #select element of the dictionary called setup_docs
-    set_up_docs = website_config['setup_docs']  
+    set_up_docs = website_config['setup_docs']
 
 #for each element in the list
 #paste into a string 'submodules/setup-documents/markdown'+setup docs element
