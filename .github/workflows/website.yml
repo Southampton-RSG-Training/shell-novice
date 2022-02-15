@@ -1,0 +1,30 @@
+name: Website
+on:
+  push:
+    branches:
+      - "gh-pages"
+  pull_request: null
+jobs:
+  build-setup:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout the lesson
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Get Setup Submodule
+        run: |
+          python bin/get_setup.py
+
+      - name: Deploy the website to gh-pages
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: "."
+          token: ${{ secrets.GITHUB_TOKEN }}
