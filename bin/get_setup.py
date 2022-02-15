@@ -1,10 +1,11 @@
+import logging
 from yaml import load
 try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
 
-
+log = logging.getLogger(__name__)
 
 #change this to get setup docs
 
