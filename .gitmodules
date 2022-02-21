@@ -1,0 +1,4 @@
+[submodule "submodules/setup-documents"]
+	path = submodules/setup-documents
+	url = https://github.com/Southampton-RSG-Training/setup-documents.git
+	branch = main
