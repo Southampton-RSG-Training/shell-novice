@@ -2,7 +2,7 @@ name: Website
 on:
   push:
     branches:
-      - "gh-pages"
+      - "main"
   pull_request: null
 jobs:
   build-setup:
@@ -26,6 +26,8 @@ jobs:
       - name: Run get setup
         run: |
           python bin/get_setup.py
+          git add setup.md
+          git commit -m 'adding generated setup'
 
       - name: Deploy the website to gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
