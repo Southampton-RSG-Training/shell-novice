@@ -14,5 +14,4 @@ _site
 .docker-vendor/
 Gemfile.lock
 venv/
-.gitmodules
-submodules/
+
