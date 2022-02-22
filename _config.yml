@@ -63,6 +63,7 @@ start_time: 600
 setup_docs:
   - text_editor.md
   - open_a_terminal.md
+  - download_shell_data.md
 
 # Specify that things in the episodes collection should be output.
 collections:
