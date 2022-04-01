@@ -7,7 +7,7 @@
 # dc: Data Carpentry
 # lc: Library Carpentry
 # cp: Carpentries (to use for instructor traning for instance)
-carpentry: "swc"
+carpentry: "rsg"
 
 # Overall title for pages.
 title: "The Bash Shell"
@@ -65,7 +65,7 @@ setup_docs:
   - open_a_terminal.md
   - download_shell_data.md
 
-# Specify that things in the episodes collection should be output.
+# Specify that things in the episodes' collection should be output.
 collections:
   episodes:
     output: true
