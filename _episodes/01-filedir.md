@@ -507,7 +507,9 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > >
 > > **4** is correct. `ls` shows the contents of the path you give it,
 > > and `../backup` means "Go up one level, then into a directory called `backup`".
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## `ls` reading comprehension
@@ -519,7 +521,9 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > ~~~
 > pnas-sub/ pnas-final/ original/
 > ~~~
-> {: .output}
+> 
+{: .output}
+
 >
 > 1.  `ls pwd`
 > 2.  `ls -r -F`
@@ -531,7 +535,9 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > > will give the same result with or without `/Users/backup`.
 > >
 > > Then, in order to get the output in reverse order, and with a `/` after the directories, we need the `-r` and `-F` flags.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 {% include links.md %}

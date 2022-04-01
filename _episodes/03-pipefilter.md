@@ -357,7 +357,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > Normally, `sort` goes character-by-character, sorting in *alphabetical* order. Just looking at the first character of each line, `6` is greater than both `1` and `2` so it goes to the end of the file.
 > >
 > > However, if we pass `sort` the `-n` flag, it sorts in *numeric* order - so if it encounters a character that's a number, it reads the line up until it hits a non-numeric character. In this case, `22` is greater than `6` (and everything else), so it goes to the end of the file.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## What does `>>` mean?
@@ -381,7 +383,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > If there isn't a file already there with the name `testfile01.txt`, both `>` and `>>` will create one.
 > >
 > > However, if there *is* a file, then `>` will *overwrite* the contents of the file, whilst `>>` will *append* to the existing contents.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## Piping commands together
@@ -398,7 +402,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > The correct answer is **4**. `wc -l *` will list the length of all files in the current directory. Piping the output to `sort -n` takes the list of files, and sorts it in numeric order. Then, because the list will be sorted from lowest to highest, `head -3` will take the top 3 lines of the list, which will be the shortest 3.
 > >
 > > **1** has the correct commands, but incorrectly tries to use `>` to chain them together. `>` is used to send the output of a command to a **file**, not to another command.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## Why does `uniq` only remove adjacent duplicates?
@@ -436,7 +442,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > Whilst there are ways to do that kind of comparison efficiently, implementing them would require making `uniq` a much larger and more complicated program - so, following the Unix philosophy of small, simple programs that chain together, `uniq` is kept small and the work required is offloaded to another, specialist program.
 > >
 > > In this case, `sort | uniq` would work.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## Pipe reading comprehension
@@ -488,7 +496,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > >
 > > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
 > >
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 For those interested in the technical details of how pipes work:

@@ -536,7 +536,9 @@ about them."
 > > 2. Incorrect, `-E` (which enables extended regular expressions in `grep`), won't change the behaviour since the given pattern is not a regular expression. So the results will be the same as 1.
 > > 3. Correct, since we have supplied `-w` to indicate that we are looking for a complete word, hence only "and the presence of absence:" is found.
 > > 4. Incorrect. `-i` indicates we wish to do a case insensitive search which isn't required. The results are the same as 1.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 
@@ -544,7 +546,9 @@ about them."
 >
 > Write a short explanatory comment for the following shell script:
 >
-> {: .bash}
+> 
+{: .bash}
+
 >~~~
 > find . -name '*.dat' | wc -l | sort -n
 > ~~~
@@ -552,7 +556,9 @@ about them."
 > > ## Solution
 > >
 > > Find all files (in this directory and all subdirectories) that have a filename that ends in `.dat`, count the number of files found, and sort the result. Note that the `sort` here is unnecessary, since it is only sorting one number.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 > ## Matching `ose.dat` but not `temp` {}
@@ -577,7 +583,9 @@ about them."
 > > 2. Incorrect, since it will only find those files than match `ose.dat` exactly, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
 > > 3. Correct answer. It first executes the `find` command to find those files matching the '*ose.dat' pattern, which will match on exactly those that end in `ose.dat`, and then `grep` will search those files for "temp" and only report those that don't contain it, since it's using the `-v` flag to invert the results.
 > > 4. Incorrect.
-> {: .solution}
+> 
+{: .solution}
+
 {: .challenge}
 
 {% include links.md %}
