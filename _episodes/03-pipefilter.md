@@ -33,7 +33,7 @@ the ease with which it lets us combine existing programs in new ways.
 One way we can use programs together is to have the output of one command captured
 in a file, and use that file as the input to another command.
 
-We'll start with a directory called `data`, which is in the `swc-shell-novice/data`
+We'll start with a directory called `data`, which is in the `shell-novice/data`
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
 
 ~~~

@@ -36,7 +36,7 @@ we're going to be working in the `writing` subdirectory:
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/shell/test_directory/writing
+$ cd ~/shell-novice/shell/test_directory/writing
 $ ls
 ~~~
 

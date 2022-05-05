@@ -36,8 +36,8 @@ $ today_date=$(date +“%d-%m-%y”)
 
 > ## Copying files with new filenames
 >
-> Write a script in the `swc-shell-novice/` directory that goes through each `.csv` file in the `data` directory (that resides in
-> the `swc-shell-novice/` directory) and
+> Write a script in the `shell-novice/` directory that goes through each `.csv` file in the `data` directory (that resides in
+> the `shell-novice/` directory) and
 > creates a copy of that file with today’s date at the start of the filename, e.g. `16-11-20-sc_climate_data.csv`.
 >
 > Hints:
@@ -47,20 +47,20 @@ $ today_date=$(date +“%d-%m-%y”)
 >
 > > ## Solution
 > > If we assume the output directory is named `copied`:
-> > 
+> >
 > > 
 > {: .bash}
 > 
 > > ~~~
 > > today_date=$(date +"%d-%m-%y")
-> > 
+> >
 > > for file in data/*.csv
 > > do
 > >     base_file=$(basename $file)
 > >     cp $file copied/$today_date-$base_file
 > > done
 > > ~~~
-> > 
+> >
 > 
 {: .solution}
 
