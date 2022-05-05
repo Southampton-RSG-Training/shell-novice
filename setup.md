@@ -7,6 +7,13 @@ Notepad++ (Windows), TextEdit (macOS), Gedit (GNU/Linux), GNU Nano, Vim.
 Alternatively, there are IDE's (integrated developer environments) that have
 more features specifically for coding such as VS Code; there are also IDEs
 specific to languages will be listed in the appropriate section(s) below.
+## Open a Terminal ##
+
+For this lesson, first you need to open a terminal:
+
+- **On Windows:** run "Git Bash", to install git bash go here [https://gitforwindows.org/](https://gitforwindows.org/) click download and select 'Git-X.XX.X-64-bit.exe' from the assets list.
+- **On Mac OS X:** accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder.
+- **On Linux:** this will depend on the Linux distribution you are running, but you should be able to find a "Terminal" application in your desktop's application menu.
 ## Git Setup ##
 
 ### Windows
@@ -26,20 +33,13 @@ To use Git you must install the Apple Command Line Tools.  You can obtain these 
 - Open the downloaded dmg archive from the Downloads folder
 - Double-click the Command Line Tools.pkg icon to install
 
-## Open a Terminal ##
-
-For this lesson, first you need to open a terminal:
-
-- **On Windows:** run "Git Bash", to install git bash go here [https://gitforwindows.org/](https://gitforwindows.org/) click download and select 'Git-X.XX.X-64-bit.exe' from the assets list.
-- **On Mac OS X:** accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder.
-- **On Linux:** this will depend on the Linux distribution you are running, but you should be able to find a "Terminal" application in your desktop's application menu.
 ## Download Data for Shell Lesson ##
 
 Type the following into the prompt that appears (pressing enter/return after each line):
 
 ~~~
 $ cd
-$ git clone https://github.com/Southampton-RSG/shell-novice.git
+$ git clone https://github.com/Southampton-RSG-Training/shell-novice.git
 ~~~
 {: .language-bash}
 
@@ -47,7 +47,7 @@ Alternatively, if you have SSH authentication with GitHub enabled (if you don't 
 
 ~~~
 $ cd
-$ git clone git@github.com:Southampton-RSG/swc-shell-novice.git
+$ git clone git@github.com:Southampton-RSG-Training/swc-shell-novice.git
 ~~~
 {: .language-bash}
 
