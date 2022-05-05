@@ -33,13 +33,13 @@ Let's start by going back to `data` and putting some commands into a new file ca
 
 {: .bash}
 ~~~
-$ cd ~/swc-shell-novice/data
+$ cd ~/shell-novice/data
 $ nano middle.sh
 ~~~
 
 So why the .sh extension to the filename? Adding `.sh` is the convention to show that this is a Bash shell script.
 
-Enter the following line into our new file: 
+Enter the following line into our new file:
 
 {: .bash}
 ~~~
@@ -369,7 +369,7 @@ wc -l "$@" | sort -n
 > 2. The first and the last line of each file ending in `*.pdb` in the molecules directory
 > 3. The first and the last line of each file in the molecules directory
 > 4. An error because of the quotes around `*.pdb`
-> 
+>
 > > ## Solution
 > >
 > > The answer is **2**. The quotes around the wildcard `'*.pdb'` mean it isn't expanded when we call the script - but it will get expanded *inside* the script. There, it gets expanded to match every file in the directory that ends in `*.pdb`, and effectively the script calls:
@@ -387,7 +387,7 @@ wc -l "$@" | sort -n
 > > bash script.sh *.pdb -1 -1
 > > ~~~
 > > {: .bash}
-> > 
+> >
 > > Then it wouldn't work as the wildcard would've expanded before the script started and we'd have effectively run it as:
 > >
 > > ~~~
@@ -439,8 +439,8 @@ wc -l "$@" | sort -n
 > >
 > > **Script 2** makes use of our arguments. The wildcard `*.dat` matches any file that ends in `.dat`, so expands to `fructose.dat glucose.dat sucrose.dat` then passes them to the script. The script then takes the first 3 arguments (using `$1 $2 $3`) and uses `cat` to print the contents of the file. However, if there are less than 3 files in the directory with the `.dat` suffix, they'll be ignored. If there are *less* than 3, there'll be an error!
 > >
-> > **Script 3** uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it: 
-> > 
+> > **Script 3** uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it:
+> >
 > > ~~~
 > > fructose.dat glucose.dat sucrose.dat.dat
 > > ~~~
