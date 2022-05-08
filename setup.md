@@ -47,7 +47,7 @@ Alternatively, if you have SSH authentication with GitHub enabled (if you don't 
 
 ~~~
 $ cd
-$ git clone git@github.com:Southampton-RSG-Training/swc-shell-novice.git
+$ git clone git@github.com:Southampton-RSG-Training/shell-novice.git
 ~~~
 {: .language-bash}
 
