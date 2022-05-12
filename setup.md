@@ -1,4 +1,4 @@
-# Setup for Shell Lesson
+# Setup for Lesson
 ## Text Editor ##
 
 A text editor is the piece of software you use to view and write code. If you
