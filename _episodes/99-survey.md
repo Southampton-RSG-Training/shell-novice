@@ -1,6 +1,6 @@
 ---
 title: "Survey"
-slug: The Bash Shell-survey
+slug: lesson-survey
 layout: page
 ---
 

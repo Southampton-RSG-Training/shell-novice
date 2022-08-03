@@ -16,6 +16,7 @@ form_title: "The+Bash+Shell"
 email: "rsginfo@soton.ac.uk"
 logo_site: "https://rsgsoton.net/"
 
+# For static delivery this section can all be ignored ==================================================================
 # Specify the location of the workshop
 venue: "TBC"           # name of location use "online" if online
 address: "TBC"         # address of location or url of platform
@@ -33,6 +34,7 @@ enddate: "TBC"          # e.g. YYYY-MM-DD
 
 # Start time in minutes (0 to be clock-independent, 3:30 pm or 15:30 both okay).
 start-time: 0
+# ======================================================================================================================
 
 ###
 # It is unlikely you need to modify the values below this line. Unless you are developing content.
@@ -50,6 +52,7 @@ life_cycle: "stable"
 # See https://help.github.com/articles/repository-metadata-on-github-pages/.
 # Please don't change it: <USERNAME>/<PROJECT> is correct.
 repository: <USERNAME>/<PROJECT>
+repo_name: <PROJECT>
 
 # Sites.
 amy_site: "https://amy.carpentries.org/"
