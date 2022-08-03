@@ -22,6 +22,7 @@ if [ 0 -lt $(ls _episodes_rmd/*.Rmd 2>/dev/null | wc -w) ]; then
   rm -r _episodes_rmd/fig/
   # These files are created in r-novice day 3
   rm combo_plot_abun_weight.png name_of_file.png
+  git commit -- _episodes/99-survey.md
 fi
 mv _episodes/*-survey.md _episodes/99-survey.md
 
@@ -65,6 +66,7 @@ if [ "$MYOS" = "OSX" ]; then
   brew install --cask jewelrybox
 fi
 
+
 # Make a branch to build on to avoid messing up main
 git branch -d localbuild || echo 'branch local build does not exist to delete'
 git checkout -b localbuild
@@ -105,4 +107,5 @@ bundle exec jekyll serve --baseurl=""
 # All GH actions replicated=============================================================================================
 #Note: the site is up here and will remain up until an interrupt (ctrl-c) is sent then the rest of this script triggers
 #      and cleans out the build.
+
 clean_branch

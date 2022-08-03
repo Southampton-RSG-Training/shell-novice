@@ -1,9 +1,10 @@
 #------------------------------------------------------------
 # Values for this lesson.
 #------------------------------------------------------------
-
 # What kind of thing is this ("lesson")? #Don't change
 kind: "lesson"
+# Is this a permanent page 'static' or a taught lesson 'dated'
+delivery: "static"
 
 type: "episode" # The other valid option is "episode_r"
 
