@@ -447,29 +447,34 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > What is the output of the closing `ls` command in the sequence shown below?
 >
-> ~~~
-> $ pwd
-> ~~~
-> {: .language-bash}
-> ~~~
-> /Users/jamie/data
-> ~~~
-> {: .output}
-> ~~~
-> $ ls
-> ~~~
-> {: .language-bash}
-> ~~~
-> proteins.dat
-> ~~~
-> {: .output}
-> ~~~
-> $ mkdir recombine
-> $ mv proteins.dat recombine
-> $ cp recombine/proteins.dat ../proteins-saved.dat
-> $ ls
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ pwd
+> > ~~~
+> > {: .language-bash}
+> 
+> > ~~~
+> > /Users/jamie/data
+> > ~~~
+> > {: .output}
+> 
+> > ~~~
+> > $ ls
+> > ~~~
+> > {: .language-bash}
+> 
+> > ~~~
+> > proteins.dat
+> > ~~~
+> > {: .output}
+> 
+> > ~~~
+> > $ mkdir recombine
+> > $ mv proteins.dat recombine
+> > $ cp recombine/proteins.dat ../proteins-saved.dat
+> > $ ls
+> > ~~~
+> > {: .language-bash}
+> 
 >
 > 1.   `proteins-saved.dat recombine`
 > 2.   `recombine`
@@ -484,6 +489,7 @@ but it does find the copy in `thesis` that we didn't delete.
 > > and finally copied `proteins.dat` into **the directory above the current one** as `proteins-saved.dat`.
 > >
 > > So as it's in the directory above the current one (`..`), it won't show up when you do `ls` in the current directory.
+> >
 > > {: .solution}
 >
 > {: .challenge}
@@ -532,12 +538,12 @@ but it does find the copy in `thesis` that we didn't delete.
 > >
 > > So we need to move the files `fructose.dat` and `sucrose.dat` out of the current directory, and into the `analyzed` directory, which we do with `mv`.
 > > ~~~
-> > $ ls -F
-> > $ mv fructose.dat analyzed/
-> > $ mv sucrose.dat analyzed/
-> > $ ls analyzed
-> > ~~~
-> > {: .language-bash}
+> > > $ ls -F
+> > > $ mv fructose.dat analyzed/
+> > > $ mv sucrose.dat analyzed/
+> > > $ ls analyzed
+> > > ~~~
+> > > {: .language-bash}
 > >
 > > {: .solution}
 >
@@ -566,7 +572,8 @@ but it does find the copy in `thesis` that we didn't delete.
 > > citations.txt    quotations.txt
 > > ~~~
 > > {: .output}
-> {: .solution}
+> >
+> > {: .solution}
 >
 > What does `cp` do when given three or more filenames, as in:
 >
