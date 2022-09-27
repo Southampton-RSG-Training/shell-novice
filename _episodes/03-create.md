@@ -499,45 +499,46 @@ but it does find the copy in `thesis` that we didn't delete.
 > Jamie is working on a project and she sees that her files aren't very well
 > organized:
 >
-> ~~~
-> $ ls -F
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ ls -F
+> > ~~~
+> > {: .language-bash}
 >
-> ~~~
-> analyzed/  fructose.dat    raw/   sucrose.dat
-> ~~~
-> {: .output}
+> > ~~~
+> > analyzed/  fructose.dat    raw/   sucrose.dat
+> > ~~~
+> > {: .output}
 >
 > The `fructose.dat` and `sucrose.dat` files contain output from her data
 > analysis. What command(s) covered in this lesson does she need to run so that the commands below will produce the output shown?
 >
-> ~~~
-> $ ls -F
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ ls -F
+> > ~~~
+> > {: .language-bash}
 >
-> ~~~
-> analyzed/   raw/
-> ~~~
-> {: .output}
+> > ~~~
+> > analyzed/   raw/
+> > ~~~
+> > {: .output}
 >
-> ~~~
-> $ ls analyzed
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ ls analyzed
+> > ~~~
+> > {: .language-bash}
 >
-> ~~~
-> fructose.dat    sucrose.dat
-> ~~~
-> {: .output}
+> > ~~~
+> > fructose.dat    sucrose.dat
+> > ~~~
+> > {: .output}
 >
 > > ## Solution
 > >
 > > `ls` lists the contents of the current directory, whilst `ls analyzed` lists the contents of the `analyzed` directory.
 > >
 > > So we need to move the files `fructose.dat` and `sucrose.dat` out of the current directory, and into the `analyzed` directory, which we do with `mv`.
-> > ~~~
+> > 
+> > > ~~~
 > > > $ ls -F
 > > > $ mv fructose.dat analyzed/
 > > > $ mv sucrose.dat analyzed/
@@ -553,44 +554,44 @@ but it does find the copy in `thesis` that we didn't delete.
 >
 > What does `cp` do when given several filenames and a directory name, as in:
 >
-> ~~~
-> $ mkdir backup
-> $ cp thesis/citations.txt thesis/quotations.txt backup
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ mkdir backup
+> > $ cp thesis/citations.txt thesis/quotations.txt backup
+> > ~~~
+> > {: .language-bash}
 >
 > > ## Solution
 > >
 > > It copies the files to the directory with the same name.
 > >
-> > ~~~
-> > $ ls backup
-> > ~~~
-> > {: .language-bash}
+> > > ~~~
+> > > $ ls backup
+> > > ~~~
+> > > {: .language-bash}
 > >
-> > ~~~
-> > citations.txt    quotations.txt
-> > ~~~
-> > {: .output}
+> > > ~~~
+> > > citations.txt    quotations.txt
+> > > ~~~
+> > > {: .output}
 > >
 > > {: .solution}
 >
 > What does `cp` do when given three or more filenames, as in:
 >
-> ~~~
-> $ ls -F
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ ls -F
+> > ~~~
+> > {: .language-bash}
 >
-> ~~~
-> intro.txt    methods.txt    survey.txt
-> ~~~
-> {: .output}
+> > ~~~
+> > intro.txt    methods.txt    survey.txt
+> > ~~~
+> > {: .output}
 >
-> ~~~
-> $ cp intro.txt methods.txt survey.txt
-> ~~~
-> {: .language-bash}
+> > ~~~
+> > $ cp intro.txt methods.txt survey.txt
+> > ~~~
+> > {: .language-bash}
 >
 > > ## Solution
 > >
@@ -598,10 +599,11 @@ but it does find the copy in `thesis` that we didn't delete.
 > > When passing 3 or more arguments, the last one needs to be a directory.
 > >
 > > However,
-> > ~~~
-> > $ cp intro.txt methods.txt
-> > ~~~
-> > {: .language-bash}
+> > > ~~~
+> > > $ cp intro.txt methods.txt
+> > > ~~~
+> > > {: .language-bash}
+> >
 > > Will not fail even though both of the arguments are existing files - it will copy the contents
 > > of `intro.txt` *over* the contents of `methods.txt`. So be careful!
 > >
