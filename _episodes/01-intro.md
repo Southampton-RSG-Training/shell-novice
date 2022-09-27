@@ -27,7 +27,9 @@ And so on.
 > Imagine the shell a little like working with a voice assistant like Siri or Alexa.
 > You ask your computer questions, and your computer responds with an answer.
 >
+> 
 {: .callout}
+
 
 The shell is called *the shell* because it encloses the machine's **operating system** - which could be Windows, Mac OS X, or Linux - giving you a wrapper-like interface to interact with it. Another, more general way, of referring to the shell is the **command line**, since it provides an interface into which you type commands line-by-line.
 

@@ -113,7 +113,10 @@ Now we'll create a new file using a text editor in this new directory.
 >
 > Your choice of editor will depend on the size of project you're working on,
 > and how comfortable you are with the terminal.
+>
+> 
 {: .callout}
+
 
 Let's first change our working directory to `thesis` using `cd`,
 and then we'll use the `Nano` editor to create a text file called `draft.txt`, and then save it in that directory.
@@ -189,7 +192,10 @@ $ ls
 > recovering deleted files do exist, but there's no guarantee they'll
 > work in any particular situation, since the computer may recycle the
 > file's disk space right away.
+>
+> 
 {: .callout}
+
 
 But what if we want to delete a directory, perhaps one that already contains a file? Let's re-create that file
 and then move up one directory using `cd ..`:
@@ -281,7 +287,10 @@ $ rmdir thesis
 > the directory contains sub-directories, `rm -r` does the same thing to
 > them, and so on. It's very handy, but can do a lot of damage if used
 > without care.
+>
+> 
 {: .callout}
+
 
 
 ### Renaming and moving files and directories
@@ -435,10 +444,14 @@ but it does find the copy in `thesis` that we didn't delete.
 > > without renaming, so the spelling mistake won't be fixed.
 > >
 > > Both **1** and **2** will leave you with a file called `statistics.txt` at the end, but if you use `cp` it will be a copy, and you'll still have your incorrectly-named original.
+> >
+> > 
+> {: .solution}
 > 
-{: .solution}
-
+>
+> 
 {: .challenge}
+
 
 > ## Moving and Copying
 >
@@ -485,10 +498,13 @@ but it does find the copy in `thesis` that we didn't delete.
 > > and finally copied `proteins.dat` into **the directory above the current one** as `proteins-saved.dat`.
 > >
 > > So as it's in the directory above the current one (`..`), it won't show up when you do `ls` in the current directory.
+> > 
+> {: .solution}
 > 
-{: .solution}
-
+>
+> 
 {: .challenge}
+
 
 > ## Organizing Directories and Files
 >
@@ -546,10 +562,14 @@ but it does find the copy in `thesis` that we didn't delete.
 > > $ ls analyzed
 > > ~~~
 > > {: .language-bash}
+> >
+> > 
+> {: .solution}
 > 
-{: .solution}
-
+>
+> 
 {: .challenge}
+
 
 > ## Copy with Multiple Filenames
 >
@@ -611,9 +631,13 @@ but it does find the copy in `thesis` that we didn't delete.
 > > {: .language-bash}
 > > Will not fail even though both of the arguments are existing files - it will copy the contents
 > > of `intro.txt` *over* the contents of `methods.txt`. So be careful!
+> >
+> > 
+> {: .solution}
 > 
-{: .solution}
-
+>
+> 
 {: .challenge}
+
 
 {% include links.md %}
