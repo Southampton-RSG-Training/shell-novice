@@ -529,7 +529,7 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > >
 > > pnas-sub/ pnas-final/ original/
 > >
-> >{: .output}
+> > {: .output}
 >
 > 1.  `ls pwd`
 > 2.  `ls -r -F`
