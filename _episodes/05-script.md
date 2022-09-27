@@ -85,7 +85,8 @@ our script's output is exactly what we would get if we ran that pipeline directl
 > nothing but the letters, digits, and punctuation on a standard computer
 > keyboard. When editing programs, therefore, you must either use a plain
 > text editor, or be careful to save files as plain text.
-{: .callout}
+>
+> {: .callout}
 
 ### Enabling our script to run on any file
 
@@ -150,11 +151,12 @@ Note the output is the same, since our full data set contains the same first 100
 > `climate data.csv`,
 > the command in the script would effectively be:
 >
->     head -15 climate data.csv | tail -5
+> >  head -15 climate data.csv | tail -5
 >
 > This would call `head` on two separate files, `climate` and `data.csv`,
 > which is probably not what we intended.
-{: .callout}
+>
+> {: .callout}
 
 ### Adding more arguments to our script
 
@@ -293,7 +295,8 @@ We have the following output:
 >
 > If you find yourself in this situation pressing `Control-C` will stop the
 > command from taking input and return you to the command line prompt.
-{: .callout}
+>
+> {: .callout}
 
 Again, we should explain what we are trying to do here using a comment, for example:
 
@@ -338,7 +341,8 @@ wc -l "$@" | sort -n
 > what they discover about their data and their workflow with one call to `history`
 > and a bit of editing to clean up the output
 > and save it as a shell script.
-{: .callout}
+>
+> {: .callout}
 
 ## Exercises
 
@@ -397,8 +401,10 @@ wc -l "$@" | sort -n
 > >
 > > This would have caused an error, as we expect the second and third arguments to be numbers for `head` and `tail`!
 > >
-> {: .solution}
-{: .challenge}
+> >
+> > {: .solution}
+>
+> {: .challenge}
 
 > ## Script reading comprehension
 >
@@ -447,7 +453,9 @@ wc -l "$@" | sort -n
 > > {: .output}
 > >
 > > This probably isn't quite what we were hoping for!
-> {: .solution}
-{: .challenge}
+> >
+> > {: .solution}
+>
+> {: .challenge}
 
 {% include links.md %}

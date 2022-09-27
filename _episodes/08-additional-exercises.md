@@ -59,8 +59,10 @@ $ today_date=$(date +“%d-%m-%y”)
 > > done
 > > ~~~
 > >
-> {: .solution}
-{: .challenge}
+> > 
+> > {: .solution}
+>
+> {: .challenge}
 
 
 ## Extracting columns from CSV
@@ -95,7 +97,9 @@ The `-d` argument specifies, within quotes, the delimiter that separates the col
 > >done
 > >~~~
 > >
-> {: .solution}
-{: .challenge}
+> >
+> > {: .solution}
+>
+> {: .challenge}
 
 {% include links.md %}
