@@ -12,6 +12,7 @@ import datetime
 import yaml
 import math
 import pandas
+import git
 import glob
 import textwrap
 from bs4 import BeautifulSoup as bs
@@ -145,15 +146,22 @@ def create_detailed_lesson_schedules(lesson_name, lesson_type, start_time, lesso
             with open(f"{filepath}", 'r') as fp:
                 data = fp.readlines()
             try:
-                ix = data.index("slug: lesson-survey\n")
+                try:
+                    ix = data.index("slug: lesson-survey\n")
+                except ValueError as e1:
+                    try:
+                        ix = data.index(f"slug: {lesson_name}-survey\n")
+                    except ValueError as e2:
+                        raise ValueError(f"No slug found in 99-survey.md, errors thrown:\n {e1} \n{e2}")
+
                 if lesson_name == '':
-                    data[ix] = f"slug: {lesson_title}-survey\n"
+                    raise ValueError('lesson name is empty string')
                 else:
                     data[ix] = f"slug: {lesson_name}-survey\n"
                 with open(f"{filepath}", 'w') as fp:
                     fp.writelines(data)
             except ValueError as e:
-                print(f"No survey markdown found, caught: {e}\n continuing")
+                raise ValueError(f"No survey markdown found, caught: {e}\n continuing")
         elif "00-" in file and rename_files:
             if file != "00-schedule.md":
                 filepath.rename(f"{containing_directory}/{new_file_name}")
@@ -187,7 +195,7 @@ def create_detailed_lesson_schedules(lesson_name, lesson_type, start_time, lesso
         html += "</div>"
         p = Path("_includes/rsg/")
         p.mkdir(parents=True, exist_ok=True)
-        with open("_includes/rsg/schedule.html", "x") as fp:
+        with open("_includes/rsg/schedule.html", "w") as fp:
             fp.write(bs(html, "html.parser").prettify())
 
 
@@ -284,6 +292,11 @@ def main():
         lesson_dates = lesson.get("date", None)             # can be a list
         lesson_starts = lesson.get("start-time", None)      # can be a list
         lesson_order = lesson.get("order", None)
+
+        if lesson_name is None:
+            repo = git.Repo(".", search_parent_directories=True)
+            remote = repo.remote("origin").url
+            lesson_name = remote.split('/')[-1][:-4]
 
         if website_kind == 'workshop':
             if website_delivery == 'dated':
@@ -403,7 +416,7 @@ def main():
         elif website_kind == 'lesson':
             start_time = get_time_object(lesson_starts)
             start_time_minutes = start_time.hour * 60 + start_time.minute
-            create_detailed_lesson_schedules('', lesson_type, start_time_minutes, lesson_title, website_kind)
+            create_detailed_lesson_schedules(lesson_name, lesson_type, start_time_minutes, lesson_title, website_kind)
     if website_kind != 'lesson':
         create_index_schedules(lesson_schedules)
 
