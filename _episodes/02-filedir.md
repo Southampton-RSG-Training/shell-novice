@@ -535,16 +535,17 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 {: .challenge}
 
 
+
 > ## `ls` reading comprehension
 >
 > If `pwd` displays `/Users/backup`,
 > and `-r` tells `ls` to display things in reverse order,
 > what command will display:
 >
-> ~~~
-> pnas-sub/ pnas-final/ original/
-> ~~~
-> 
+> >
+> > pnas-sub/ pnas-final/ original/
+> >
+> >
 {: .output}
 
 >
