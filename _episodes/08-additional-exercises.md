@@ -51,7 +51,7 @@ $ today_date=$(date +“%d-%m-%y”)
 > >
 > > > ~~~
 > > > today_date=$(date +"%d-%m-%y")
-> >
+> > >
 > > > for file in data/*.csv
 > > > do
 > > >     base_file=$(basename $file)
