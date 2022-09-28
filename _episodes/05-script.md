@@ -361,10 +361,10 @@ wc -l "$@" | sort -n
 > In the `test_directory/molecules` directory, you have a shell script called `script.sh` containing the
 > following commands:
 >
-> ~~~
-> head $2 $1
-> tail -n $3 $1
-> ~~~
+> > ~~~
+> > head $2 $1
+> > tail -n $3 $1
+> > ~~~
 >
 > Note that here, we use the explicit `-n` flag to pass the number of lines to `tail` that we want to extract,
 > since we're passing in multiple `.pdb` files. Otherwise, `tail` can give us an error about incorrect options on
@@ -372,9 +372,9 @@ wc -l "$@" | sort -n
 >
 > While you are in the molecules directory, you type the following command:
 >
-> ~~~
-> bash script.sh '*.pdb' -1 -1
-> ~~~
+> > ~~~
+> > bash script.sh '*.pdb' -1 -1
+> > ~~~
 >
 > Which of the following outputs would you expect to see?
 >
@@ -388,32 +388,32 @@ wc -l "$@" | sort -n
 > >
 > > The answer is **2**. The quotes around the wildcard `'*.pdb'` mean it isn't expanded when we call the script - but it will get expanded *inside* the script. There, it gets expanded to match every file in the directory that ends in `*.pdb`, and effectively the script calls:
 > >
-> > ~~~
-> > head -1 *.pdb
-> > tail -n -1 *.pdb*
-> > ~~~
+> > > ~~~
+> > > head -1 *.pdb
+> > > tail -n -1 *.pdb*
+> > > ~~~
+> > > 
+> > {: .bash}
 > > 
-> {: .bash}
-> 
 > >
 > > This prints out the first line (`head -1`) of each `.pdb` file, and then the last line of each `.pdb` file.
 > >
 > > If we'd called the script as:
-> > ~~~
-> > bash script.sh *.pdb -1 -1
-> > ~~~
+> > > ~~~
+> > > bash script.sh *.pdb -1 -1
+> > > ~~~
+> > > 
+> > {: .bash}
 > > 
-> {: .bash}
-> 
 > >
 > > Then it wouldn't work as the wildcard would've expanded before the script started and we'd have effectively run it as:
 > >
-> > ~~~
-> > bash script cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb -1 -1
-> > ~~~
+> > > ~~~
+> > > bash script cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb -1 -1
+> > > ~~~
+> > > 
+> > {: .bash}
 > > 
-> {: .bash}
-> 
 > >
 > > This would have caused an error, as we expect the second and third arguments to be numbers for `head` and `tail`!
 > >
@@ -433,54 +433,54 @@ wc -l "$@" | sort -n
 > `example.sh` would do when run as `bash example.sh *.dat` if it
 > contained the following lines:
 >
-> ~~~
-> # Script 1
-> echo *.*
-> ~~~
+> > ~~~
+> > # Script 1
+> > echo *.*
+> > ~~~
+> > 
+> {: .bash}
 > 
-{: .bash}
-
 >
-> ~~~
-> # Script 2
-> for filename in $1 $2 $3
-> do
->     cat $filename
-> done
-> ~~~
+> > ~~~
+> > # Script 2
+> > for filename in $1 $2 $3
+> > do
+> >     cat $filename
+> > done
+> > ~~~
+> > 
+> {: .bash}
 > 
-{: .bash}
-
 >
-> ~~~
-> # Script 3
-> echo $@.dat
-> ~~~
+> > ~~~
+> > # Script 3
+> > echo $@.dat
+> > ~~~
+> > 
+> {: .bash}
 > 
-{: .bash}
-
 >
 > > ## Solution
 > >
 > > **Script 1** doesn't use any arguments - so it ignores our `*.dat` on the command line. The `*.*` wildcard matches anything in the current directory with a `.` in the file (or folder!) name, so it expands to a list of all files in the directory, *including* `example.sh`. Then it passes that list to `echo`, which prints them out.
 > >
-> > ~~~
-> > example.sh fructose.dat glucose.dat sucrose.dat
-> > ~~~
+> > > ~~~
+> > > example.sh fructose.dat glucose.dat sucrose.dat
+> > > ~~~
+> > > 
+> > {: .output}
 > > 
-> {: .output}
-> 
 > >
 > > **Script 2** makes use of our arguments. The wildcard `*.dat` matches any file that ends in `.dat`, so expands to `fructose.dat glucose.dat sucrose.dat` then passes them to the script. The script then takes the first 3 arguments (using `$1 $2 $3`) and uses `cat` to print the contents of the file. However, if there are less than 3 files in the directory with the `.dat` suffix, they'll be ignored. If there are *less* than 3, there'll be an error!
 > >
 > > **Script 3** uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it:
 > >
-> > ~~~
-> > fructose.dat glucose.dat sucrose.dat.dat
-> > ~~~
+> > > ~~~
+> > > fructose.dat glucose.dat sucrose.dat.dat
+> > > ~~~
+> > > 
+> > {: .output}
 > > 
-> {: .output}
-> 
 > >
 > > This probably isn't quite what we were hoping for!
 > >

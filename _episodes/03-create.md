@@ -514,8 +514,7 @@ but it does find the copy in `thesis` that we didn't delete.
 
 > ## Organizing Directories and Files
 >
-> Jamie is working on a project and she sees that her files aren't very well
-> organized:
+> Jamie is working on a project and she sees that her files aren't very well organized:
 >
 > > ~~~
 > > $ ls -F
