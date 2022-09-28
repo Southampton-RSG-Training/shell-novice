@@ -446,30 +446,30 @@ files before you operate on them!
 >
 > Suppose that `ls` initially displays:
 >
-> ~~~
-> fructose.dat    glucose.dat   sucrose.dat
-> ~~~
-> {: .output}
+> > ~~~
+> > fructose.dat    glucose.dat   sucrose.dat
+> > ~~~
+> > {: .output}
 >
 > What is the output of:
 >
-> ~~~
-> for datafile in *.dat
-> do
->     ls *.dat
-> done
-> ~~~
-> {: .bash}
+> > ~~~
+> > for datafile in *.dat
+> > do
+> >     ls *.dat
+> > done
+> > ~~~
+> > {: .bash}
 >
 > Now, what is the output of:
 >
-> ~~~
-> for datafile in *.dat
-> do
->	ls $datafile
-> done
-> ~~~
-> {: .bash}
+> > ~~~
+> > for datafile in *.dat
+> > do
+>	> ls $datafile
+> > done
+> > ~~~
+> > {: .bash}
 >
 > Why do these two loops give you different outputs?
 >
@@ -477,12 +477,12 @@ files before you operate on them!
 > >
 > > The first loop will give the output:
 > >
-> > ~~~
-> > fructose.dat    glucose.dat   sucrose.dat
-> > fructose.dat    glucose.dat   sucrose.dat
-> > fructose.dat    glucose.dat   sucrose.dat
-> > ~~~
-> > {: .output}
+> > > ~~~
+> > > fructose.dat    glucose.dat   sucrose.dat
+> > > fructose.dat    glucose.dat   sucrose.dat
+> > > fructose.dat    glucose.dat   sucrose.dat
+> > > ~~~
+> > > {: .output}
 > >
 > > This is because, whilst it runs once for each file containing `.dat`, it doesn't use the loop variable, it prints out the *entire* output of `ls`. The second version will instead print out each datafile on a seperate line (as `ls [file]` will print the file if it exists).
 > >
@@ -495,14 +495,14 @@ files before you operate on them!
 >
 > In the same directory, what is the effect of this loop?
 >
-> ~~~
-> for sugar in *.dat
-> do
->     echo $sugar
->     cat $sugar > xylose.dat
-> done
-> ~~~
-> {: .bash}
+> > ~~~
+> > for sugar in *.dat
+> > do
+> >     echo $sugar
+> >     cat $sugar > xylose.dat
+> > done
+> > ~~~
+> > {: .bash}
 >
 > 1.  Prints `fructose.dat`, `glucose.dat`, and `sucrose.dat`, and the text from `sucrose.dat` will be saved to a file called `xylose.dat`.
 > 2.  Prints `fructose.dat`, `glucose.dat`, and `sucrose.dat`, and the text from all three files would be
@@ -527,20 +527,20 @@ files before you operate on them!
 >
 > In another directory, where `ls` returns:
 >
-> ~~~
-> fructose.dat    glucose.dat   sucrose.dat   maltose.txt
-> ~~~
-> {: .output}
+> > ~~~
+> > fructose.dat    glucose.dat   sucrose.dat   maltose.txt
+> > ~~~
+> > {: .output}
 >
 > What would be the output of the following loop?
 >
-> ~~~
-> for datafile in *.dat
-> do
->     cat $datafile >> sugar.dat
-> done
-> ~~~
-> {: .bash}
+> > ~~~
+> > for datafile in *.dat
+> > do
+> >     cat $datafile >> sugar.dat
+> > done
+> > ~~~
+> > {: .bash}
 >
 > 1.  All of the text from `fructose.dat`, `glucose.dat` and `sucrose.dat` would be
 >     concatenated and saved to a file called `sugar.dat`.
@@ -567,35 +567,37 @@ files before you operate on them!
 > Suppose we want to preview the commands the following loop will execute
 > without actually running those commands:
 >
-> {: .bash}
-> ~~~
-> for file in *.dat
-> do
->   analyze $file > analyzed-$file
-> done
-> ~~~
->
+> 
+> > ~~~
+> > for file in *.dat
+> > do
+> >   analyze $file > analyzed-$file
+> > done
+> > ~~~
+> > {: .bash}
+> 
 > What is the difference between the the two loops below, and which one would we
 > want to run?
 >
-> {: .bash}
-> ~~~
-> # Version 1
-> for file in *.dat
-> do
->   echo analyze $file > analyzed-$file
-> done
-> ~~~
 >
-> {: .bash}
-> ~~~
-> # Version 2
-> for file in *.dat
-> do
->   echo "analyze $file > analyzed-$file"
-> done
-> ~~~
+> > ~~~
+> > # Version 1
+> > for file in *.dat
+> > do
+> >   echo analyze $file > analyzed-$file
+> > done
+> > ~~~
+> > {: .bash}
 >
+> > ~~~
+> > # Version 2
+> > for file in *.dat
+> > do
+> >   echo "analyze $file > analyzed-$file"
+> > done
+> > ~~~
+> > {: .bash}
+> 
 > > ## Solution
 > >
 > > Version 2 is the one that successfully acts as a dry run. In version 1, since the `>` file redirect is not within quotes, the script will create three files `analyzed-basilisk.dat`, `analyzed-minotaur.dat`, and `analyzed-unicorn.dat` which is not what we want.

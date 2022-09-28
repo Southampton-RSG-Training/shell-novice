@@ -324,33 +324,33 @@ If you're interested in how pipes work in more technical detail, see the descrip
 >
 > If we run `sort` on this file:
 >
-> ~~~
-> 10
-> 2
-> 19
-> 22
-> 6
-> ~~~
+> > ~~~
+> > 10
+> > 2
+> > 19
+> > 22
+> > 6
+> > ~~~
 >
 > the output is:
 >
-> ~~~
-> 10
-> 19
-> 2
-> 22
-> 6
-> ~~~
+> > ~~~
+> > 10
+> > 19
+> > 2
+> > 22
+> > 6
+> > ~~~
 >
 > If we run `sort -n` on the same input, we get this instead:
 >
-> ~~~
-> 2
-> 6
-> 10
-> 19
-> 22
-> ~~~
+> > ~~~
+> > 2
+> > 6
+> > 10
+> > 19
+> > 22
+> > ~~~
 >
 > Explain why `-n` has this effect.
 >
@@ -368,15 +368,15 @@ If you're interested in how pipes work in more technical detail, see the descrip
 >
 > What is the difference between:
 >
-> ~~~
-> echo hello > testfile01.txt
-> ~~~
+> > ~~~
+> > echo hello > testfile01.txt
+> > ~~~
 >
 > and:
 >
-> ~~~
-> echo hello >> testfile02.txt
-> ~~~
+> > ~~~
+> > echo hello >> testfile02.txt
+> > ~~~
 >
 > Hint: Try executing each command twice in a row and then examining the output files.
 >
@@ -414,23 +414,23 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > The command `uniq` removes adjacent duplicated lines from its input.
 > For example, if a file `salmon.txt` contains:
 >
-> ~~~
-> coho
-> coho
-> steelhead
-> coho
-> steelhead
-> steelhead
-> ~~~
+> > ~~~
+> > coho
+> > coho
+> > steelhead
+> > coho
+> > steelhead
+> > steelhead
+> > ~~~
 >
 > then `uniq salmon.txt` produces:
 >
-> ~~~
-> coho
-> steelhead
-> coho
-> steelhead
-> ~~~
+> > ~~~
+> > coho
+> > steelhead
+> > coho
+> > steelhead
+> > ~~~
 >
 > Why do you think `uniq` only removes *adjacent* duplicated lines?
 > (Hint: think about very large data sets.) What other command could
@@ -453,48 +453,48 @@ If you're interested in how pipes work in more technical detail, see the descrip
 >
 > A file called `animals.txt` contains the following data:
 >
-> ~~~
-> 2012-11-05,deer
-> 2012-11-05,rabbit
-> 2012-11-05,raccoon
-> 2012-11-06,rabbit
-> 2012-11-06,deer
-> 2012-11-06,fox
-> 2012-11-07,rabbit
-> 2012-11-07,bear
-> ~~~
->
-> What text passes through each of the pipes and the final redirect in the pipeline below?
->
-> ~~~
-> cat animals.txt | head -5 | tail -3 | sort -r > final.txt
-> ~~~
->
-> > ## Solution
-> >
-> > 1. `cat animals.txt` outputs the full contents of the file.
-> > 2. `head -5` takes the full contents of the file, and outputs the top 5 lines:
 > > ~~~
 > > 2012-11-05,deer
 > > 2012-11-05,rabbit
 > > 2012-11-05,raccoon
 > > 2012-11-06,rabbit
 > > 2012-11-06,deer
+> > 2012-11-06,fox
+> > 2012-11-07,rabbit
+> > 2012-11-07,bear
 > > ~~~
+>
+> What text passes through each of the pipes and the final redirect in the pipeline below?
+>
+> > ~~~
+> > cat animals.txt | head -5 | tail -3 | sort -r > final.txt
+> > ~~~
+>
+> > ## Solution
+> >
+> > 1. `cat animals.txt` outputs the full contents of the file.
+> > 2. `head -5` takes the full contents of the file, and outputs the top 5 lines:
+> > > ~~~
+> > > 2012-11-05,deer
+> > > 2012-11-05,rabbit
+> > > 2012-11-05,raccoon
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > ~~~
 > >
 > > 3. `tail -3` takes the output from `head`, and outputs the last 3 lines of that:
-> > ~~~
-> > 2012-11-05,raccoon
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > ~~~
+> > > ~~~
+> > > 2012-11-05,raccoon
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > ~~~
 > >
 > > 4. `sort -r` takes the output from `tail` and sorts it in reverse order. This bit is a little trickier - whilst it puts the `06` lines above the `05` ones (because of reverse numerical order), it will put `06, rabbit` above `06, deer` as it's reverse alphabetical order - so the output isn't *just* a reversed version of the output of `tail`!
-> > ~~~
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > 2012-11-05,raccoon
-> > ~~~
+> > > ~~~
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > 2012-11-05,raccoon
+> > > ~~~
 > >
 > > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
 > >
