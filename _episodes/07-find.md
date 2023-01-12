@@ -72,10 +72,7 @@ Software is like that.
 > We haven't linked to the original haikus because they don't appear to be on *Salon*'s site any longer.
 > As [Jeff Rothenberg said](http://www.clir.org/pubs/archives/ensuring.pdf),
 > "Digital information lasts forever --- or five years, whichever comes first."
->
-> 
 {: .callout}
-
 
 Let's find lines that contain the word "not":
 
@@ -249,10 +246,10 @@ to quickly search for a particular word or data point, `grep` is invaluable.
 > on [our website](https://v4.software-carpentry.org/regexp/index.html). As a taster, we can
 > find lines that have an 'o' in the second position like this:
 >
->     $ grep -E '^.o' haiku.txt
->     You bring fresh toner.
->     Today it is not working
->     Software is like that.
+>   $ grep -E '^.o' haiku.txt
+>   You bring fresh toner.
+>   Today it is not working
+>   Software is like that.
 >
 > We use the `-E` flag and put the pattern in quotes to prevent the shell
 > from trying to interpret it. (If the pattern contained a '\*', for
@@ -260,10 +257,7 @@ to quickly search for a particular word or data point, `grep` is invaluable.
 > '\^' in the pattern anchors the match to the start of the line. The '.'
 > matches a single character (just like '?' in the shell), while the 'o'
 > matches an actual 'o'.
->
-> 
 {: .callout}
-
 
 ### Finding files themselves
 
@@ -412,10 +406,7 @@ $ find . -name '*.txt'
 > but under normal circumstances,
 > `ls` lists everything it can,
 > while `find` searches for things with certain properties and shows them.
->
-> 
 {: .callout}
-
 
 ### Another way to combine command-line tools
 
@@ -496,10 +487,7 @@ $ grep "FE" $(find .. -name '*.pdb')
 > When the time comes to do this, don't be too hard on the shell: many
 > modern programming languages, Python included, have borrowed a lot of
 > ideas from it, and imitation is also the sincerest form of praise.
->
-> 
 {: .callout}
-
 
 The Bash shell is older than most of the people who use it. It has
 survived so long because it is one of the most productive programming
@@ -516,26 +504,26 @@ about them."
 
 > ## Using grep
 >
-> > ~~~
-> > The Tao that is seen
-> > Is not the true Tao, until
-> > You bring fresh toner.
-> >
-> > With searching comes loss
-> > and the presence of absence:
-> > "My Thesis" not found.
-> > 
-> > Yesterday it worked
-> > Today it is not working
-> > Software is like that.
-> > ~~~
+> ~~~
+> The Tao that is seen
+> Is not the true Tao, until
+> You bring fresh toner.
+>
+> With searching comes loss
+> and the presence of absence:
+> "My Thesis" not found.
+> 
+> Yesterday it worked
+> Today it is not working
+> Software is like that.
+> ~~~
 >
 > From the above text, contained in the file `haiku.txt`, which command would result in the
 > following output:
 >
-> > ~~~
-> > and the presence of absence:
-> > ~~~
+> ~~~
+> and the presence of absence:
+> ~~~
 >
 > 1. `grep "of" haiku.txt`
 > 2. `grep -E "of" haiku.txt`
@@ -548,14 +536,11 @@ about them."
 > > 2. Incorrect, `-E` (which enables extended regular expressions in `grep`), won't change the behaviour since the given pattern is not a regular expression. So the results will be the same as 1.
 > > 3. Correct, since we have supplied `-w` to indicate that we are looking for a complete word, hence only "and the presence of absence:" is found.
 > > 4. Incorrect. `-i` indicates we wish to do a case insensitive search which isn't required. The results are the same as 1.
-> >
-> > 
-> {: .solution}
 > 
->
-> 
-{: .challenge}
+{: .solution}
 
+>
+{: .challenge}
 
 
 > ## `find` pipeline reading comprehension
@@ -563,24 +548,22 @@ about them."
 > Write a short explanatory comment for the following shell script:
 >
 >
-> > ~~~
-> > find . -name '*.dat' | wc -l | sort -n
-> > ~~~
-> > 
-> {: .bash}
+> ~~~
+> find . -name '*.dat' | wc -l | sort -n
+> ~~~
 > 
+{: .bash}
+
 > 
 > > ## Solution
 > >
 > > Find all files (in this directory and all subdirectories) that have a filename that ends in `.dat`, count the number of files found, and sort the result. Note that the `sort` here is unnecessary, since it is only sorting one number.
 > >
-> > 
-> {: .solution}
 > 
->
-> 
-{: .challenge}
+{: .solution}
 
+>
+{: .challenge}
 
 > ## Matching `ose.dat` but not `temp` {}
 >
@@ -604,13 +587,10 @@ about them."
 > > 2. Incorrect, since it will only find those files than match `ose.dat` exactly, and also because the use of `grep` as a following pipe command will only match on filenames output from `find` and not their contents.
 > > 3. Correct answer. It first executes the `find` command to find those files matching the '*ose.dat' pattern, which will match on exactly those that end in `ose.dat`, and then `grep` will search those files for "temp" and only report those that don't contain it, since it's using the `-v` flag to invert the results.
 > > 4. Incorrect.
-> > 
-> > 
-> {: .solution}
 > 
->
-> 
-{: .challenge}
+{: .solution}
 
+>
+{: .challenge}
 
 {% include links.md %}

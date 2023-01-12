@@ -49,26 +49,23 @@ $ today_date=$(date +“%d-%m-%y”)
 > > If we assume the output directory is named `copied`:
 > >
 > >
-> > > ~~~
-> > > today_date=$(date +"%d-%m-%y")
-> > >
-> > > for file in data/*.csv
-> > > do
-> > >     base_file=$(basename $file)
-> > >     cp $file copied/$today_date-$base_file
-> > > done
-> > > ~~~
-> > > 
-> > {: .bash}
+> > ~~~
+> > today_date=$(date +"%d-%m-%y")
+> >
+> > for file in data/*.csv
+> > do
+> >   base_file=$(basename $file)
+> >   cp $file copied/$today_date-$base_file
+> > done
+> > ~~~
 > > 
-> > 
-> > 
-> {: .solution}
+> {: .bash}
 > 
->
 > 
-{: .challenge}
+{: .solution}
 
+>
+{: .challenge}
 
 
 ## Extracting columns from CSV
@@ -95,23 +92,20 @@ The `-d` argument specifies, within quotes, the delimiter that separates the col
 > > If we assume the input directory is named `copied` and the output directory is named `filtered`:
 > >
 > >
-> > > ~~~
-> > > for file in copied/*.csv
-> > > do
-> > >    base_file=$(basename $file)
-> > >    cat $file | cut -d"," -f 4 > filtered/$base_file
-> > > done
-> > > ~~~
-> > > 
-> > {: .bash}
+> > ~~~
+> > for file in copied/*.csv
+> > do
+> >   base_file=$(basename $file)
+> >   cat $file | cut -d"," -f 4 > filtered/$base_file
+> > done
+> > ~~~
 > > 
-> >
-> > 
-> {: .solution}
+> {: .bash}
 > 
->
 > 
-{: .challenge}
+{: .solution}
 
+>
+{: .challenge}
 
 {% include links.md %}
