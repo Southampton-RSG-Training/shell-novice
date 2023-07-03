@@ -2,7 +2,7 @@
 title: "Finding Things"
 slug: shell-novice-finding-things
 teaching: 15
-exercises: 5
+exercises: 10
 questions:
 - "How can I find files?"
 - "How can I find things in files?"
