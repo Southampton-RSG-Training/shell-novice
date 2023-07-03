@@ -2,7 +2,7 @@
 title: Shell Scripts
 slug: shell-novice-shell-scripts
 teaching: 15
-exercises: 5
+exercises: 10
 questions:
 - "How can I save and re-use commands?"
 objectives:
