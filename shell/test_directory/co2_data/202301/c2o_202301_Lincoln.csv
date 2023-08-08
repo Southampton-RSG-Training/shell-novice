@@ -1,0 +1,61 @@
+city,country,date,sector,value (KtCO2 per day),timestamp
+Lincoln,United Kingdom,20230101,Aviation,0.0039681829065907,1598918400
+North East Lincolnshire,United Kingdom,20230101,Aviation,0.0100519442276385,1598918400
+Lincoln,United Kingdom,20230102,Aviation,0.0040725261158573,1599004800
+North East Lincolnshire,United Kingdom,20230102,Aviation,0.0103850612785939,1599004800
+Lincoln,United Kingdom,20230103,Aviation,0.0043365240642692,1599091200
+North East Lincolnshire,United Kingdom,20230103,Aviation,0.0110920230100783,1599091200
+Lincoln,United Kingdom,20230104,Aviation,0.0046201364672604,1599177600
+North East Lincolnshire,United Kingdom,20230104,Aviation,0.0116978977385232,1599177600
+Lincoln,United Kingdom,20230105,Aviation,0.0046050980992278,1599264000
+North East Lincolnshire,United Kingdom,20230105,Aviation,0.0118621531672569,1599264000
+Lincoln,United Kingdom,20230106,Aviation,0.004522648820356,1599350400
+North East Lincolnshire,United Kingdom,20230106,Aviation,0.0115672253491027,1599350400
+Lincoln,United Kingdom,20230107,Aviation,0.0041365004456291,1599436800
+North East Lincolnshire,United Kingdom,20230107,Aviation,0.010482912389765,1599436800
+Lincoln,United Kingdom,20230108,Aviation,0.0038831161824114,1599523200
+North East Lincolnshire,United Kingdom,20230108,Aviation,0.0098835471100458,1599523200
+Lincoln,United Kingdom,20230109,Aviation,0.0041354466619427,1599609600
+North East Lincolnshire,United Kingdom,20230109,Aviation,0.0105381569772967,1599609600
+Lincoln,United Kingdom,20230110,Aviation,0.0044516415155626,1599696000
+North East Lincolnshire,United Kingdom,20230110,Aviation,0.011220414134146,1599696000
+Lincoln,United Kingdom,20230111,Aviation,0.0046263684786523,1599782400
+North East Lincolnshire,United Kingdom,20230111,Aviation,0.0116563025414923,1599782400
+Lincoln,United Kingdom,20230112,Aviation,0.0045736566261262,1599868800
+North East Lincolnshire,United Kingdom,20230112,Aviation,0.011776955089511,1599868800
+Lincoln,United Kingdom,20230113,Aviation,0.0045283622132619,1599955200
+North East Lincolnshire,United Kingdom,20230113,Aviation,0.0115903087014081,1599955200
+Lincoln,United Kingdom,20230114,Aviation,0.0041704882689285,1600041600
+North East Lincolnshire,United Kingdom,20230114,Aviation,0.0104424681703241,1600041600
+Lincoln,United Kingdom,20230115,Aviation,0.003954377899643,1600128000
+North East Lincolnshire,United Kingdom,20230115,Aviation,0.0099992840128747,1600128000
+Lincoln,United Kingdom,20230116,Aviation,0.0041766587344298,1600214400
+North East Lincolnshire,United Kingdom,20230116,Aviation,0.0105898066245423,1600214400
+Lincoln,United Kingdom,20230117,Aviation,0.0044414120317636,1600300800
+North East Lincolnshire,United Kingdom,20230117,Aviation,0.0111641960266731,1600300800
+Lincoln,United Kingdom,20230118,Aviation,0.0046830953955949,1600387200
+North East Lincolnshire,United Kingdom,20230118,Aviation,0.0117700978714624,1600387200
+Lincoln,United Kingdom,20230119,Aviation,0.0045686125300061,1600473600
+North East Lincolnshire,United Kingdom,20230119,Aviation,0.0117795240493413,1600473600
+Lincoln,United Kingdom,20230120,Aviation,0.0045761201011874,1600560000
+North East Lincolnshire,United Kingdom,20230120,Aviation,0.0116554035498408,1600560000
+Lincoln,United Kingdom,20230121,Aviation,0.0041630917543372,1600646400
+North East Lincolnshire,United Kingdom,20230121,Aviation,0.0104493915865628,1600646400
+Lincoln,United Kingdom,20230122,Aviation,0.0038572253782677,1600732800
+North East Lincolnshire,United Kingdom,20230122,Aviation,0.0097249098789913,1600732800
+Lincoln,United Kingdom,20230123,Aviation,0.0040981821217171,1600819200
+North East Lincolnshire,United Kingdom,20230123,Aviation,0.0104024812412655,1600819200
+Lincoln,United Kingdom,20230124,Aviation,0.0043649261798796,1600905600
+North East Lincolnshire,United Kingdom,20230124,Aviation,0.0110357652797205,1600905600
+Lincoln,United Kingdom,20230125,Aviation,0.0046373622302465,1600992000
+North East Lincolnshire,United Kingdom,20230125,Aviation,0.0117237972266178,1600992000
+Lincoln,United Kingdom,20230126,Aviation,0.0045834014531876,1601078400
+North East Lincolnshire,United Kingdom,20230126,Aviation,0.0118577513135843,1601078400
+Lincoln,United Kingdom,20230127,Aviation,0.0046019751674922,1601164800
+North East Lincolnshire,United Kingdom,20230127,Aviation,0.0117803760526362,1601164800
+Lincoln,United Kingdom,20230128,Aviation,0.0041727223201617,1601251200
+North East Lincolnshire,United Kingdom,20230128,Aviation,0.0105596029837004,1601251200
+Lincoln,United Kingdom,20230129,Aviation,0.0033898525525185,1601337600
+North East Lincolnshire,United Kingdom,20230129,Aviation,0.0085534306203374,1601337600
+Lincoln,United Kingdom,20230130,Aviation,0.0041749112956932,1601424000
+North East Lincolnshire,United Kingdom,20230130,Aviation,0.0106559831998879,1601424000

@@ -58,12 +58,8 @@ $ today_date=$(date +“%d-%m-%y”)
 > >   cp $file copied/$today_date-$base_file
 > > done
 > > ~~~
-> > 
-> {: .bash}
-> 
-> 
-{: .solution}
-
+> > {: .bash}
+> {: .solution}
 >
 {: .challenge}
 
@@ -99,12 +95,8 @@ The `-d` argument specifies, within quotes, the delimiter that separates the col
 > >   cat $file | cut -d"," -f 4 > filtered/$base_file
 > > done
 > > ~~~
-> > 
-> {: .bash}
-> 
-> 
-{: .solution}
-
+> > {: .bash}
+> {: .solution}
 >
 {: .challenge}
 
