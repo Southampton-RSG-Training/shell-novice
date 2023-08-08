@@ -494,7 +494,24 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
 > {: .solution}
 >
+
 {: .challenge}
+> ## `find` pipeline reading comprehension
+>
+> Write a short explanatory comment for the following shell script:
+>
+>
+> ~~~
+> find . -name '*.dat' | wc -l | sort -n
+> ~~~
+> {: .bash}
+> 
+> > ## Solution
+> >
+> > Find all files (in this directory and all subdirectories) that have a filename that ends in `.dat`, count the number of files found, and sort the result. Note that the `sort` here is unnecessary, since it is only sorting one number.
+> >
+> {: .solution}
+>
 
 For those interested in the technical details of how pipes work:
 
