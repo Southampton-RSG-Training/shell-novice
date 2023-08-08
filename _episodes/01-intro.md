@@ -51,4 +51,38 @@ You can already use the Bash shell on computers like Macs and those that run Lin
 
 Now on the flip side, it does have a steeper learning curve generally than using graphical programs. Applications and programs also need to work on the command line to be able to take advantage of it. But knowing just a little can be very useful, and in your careers you will very likely come across quite a few programs that have command line interfaces so it's helpful to have some experience with it.
 
+## GUI vs The Shell: An example
+
+You have been given a set of CO<sub>2</sub> emissions data for the UK to analyse, which you can find in the `shell-novice/shell/test_directory/co2_data` folder in the `shell-novice` lesson repository (Don't worry if the `shell-novice/shell/test_directory/co2_data` notation is unfamiliar to you, we will discuss it in the next lesson).
+
+The data is in several folders with the `YYYYMM` date format. Open the file explorer you use on your machine and have a look in the folder. The first thing we notice is that the data has been incorrectly labelled. The files contain carbon dioxide emissions data, not dicarbon monoxide. 
+
+
+> ## Renaming multiple files: GUI
+>
+> Lets get rid of the confusion by renaming the files from e.g. `c2o_202301_Aberdeen.csv` to `co2_202301_Aberdeen.csv` etc. in your file explorer.
+> > ## Solution
+> > The solution is you probably got very bored very quickly, so feel free to stop doing this by hand. An important point is that the pure tedium of doing this sort of task by hand can lead to mistakes being made, for example data cleaning a large number of files in the GUI.
+> > 
+>{: .solution}
+{: .challenge}
+> ## Renaming multiple files: The Shell
+>
+> Lets do the same thing, but with the shell.
+> Open your termminal and navigate to the folder with the CO<sub>2</sub> data in it with the following command: 
+> {: .bash}
+> ~~~
+> $ cd /path/to/shell-novice/shell/test_directory/co2_data/
+> ~~~
+>
+> Don't worry if you don't understand that command - it will be explained in the next episode, but put simply `cd` changes the directory the shell is in and the `/path/to/shell-novice/shell/test_directory/co2_data/` tells it where to move. Ask one of the demonstrators for assistance if you need it.
+>
+> Now type in the following command into the terminal and hit `enter`/`return`
+> {: .bash}
+> ~~~
+> $ ls 2023*/* | while read file; do new_file=$(echo $file | sed 's/c2o/co2/'); mv $file $new_file; done
+> ~~~
+> Now in your file explorer have a look and check that the files have been renamed. 
+{: .callout}
+
 {% include links.md %}
