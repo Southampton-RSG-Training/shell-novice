@@ -82,7 +82,48 @@ The data is in several folders with the `YYYYMM` date format. Open the file expl
 > ~~~
 > $ ls 2023*/* | while read file; do new_file=$(echo $file | sed 's/c2o/co2/'); mv $file $new_file; done
 > ~~~
-> Now in your file explorer have a look and check that the files have been renamed. 
+> Now in your file explorer have a look and check that the files have been renamed.
+{: .callout}
+
+We can see that the data we have been given are in [csv](https://en.wikipedia.org/wiki/Comma-separated_values) format, where the file first has a line containing the fields within the file, followed by the data:
+
+~~~
+city,country,date,sector,value (KtCO2 per day),timestamp
+Aberdeen,United Kingdom,20230101,Aviation,0.0163087323082929,1598918400
+Aberdeen,United Kingdom,20230102,Aviation,0.0156496395341308,1599004800
+Aberdeen,United Kingdom,20230103,Aviation,0.0161302937760121,1599091200
+Aberdeen,United Kingdom,20230104,Aviation,0.0190756715147778,1599177600
+Aberdeen,United Kingdom,20230105,Aviation,0.0158141966045798,1599264000
+Aberdeen,United Kingdom,20230106,Aviation,0.0168363705426938,1599350400
+Aberdeen,United Kingdom,20230107,Aviation,0.0169278048335267,1599436800
+Aberdeen,United Kingdom,20230108,Aviation,0.0152145298213179,1599523200
+Aberdeen,United Kingdom,20230109,Aviation,0.0160077049850203,1599609600
+Aberdeen,United Kingdom,20230110,Aviation,0.0191842924535888,1599696000
+~~~
+{: .output}
+
+Each file is for a city for a particular month, seperated into different files for each city and different folders for each month. 
+
+Now imagine the computer program you were going to use to analyse this data required a single file with all this data. Using the GUI you would have to open each file, cut every line, except the first one from the file, and paste it into a new file. Doing even this simple data manipulation is time consuming and can lead to errors being introduced.
+
+
+> ## Combining and cleaning files: The Shell
+>
+> Lets do the same thing, but with the shell.
+> Go back to your termminal (and if needed navigate to the folder with the CO<sub>2</sub> data in it with the previous command): 
+> {: .bash}
+> ~~~
+> $ cd /path/to/shell-novice/shell/test_directory/co2_data/
+> ~~~
+>
+>
+> Now type in the following command into the terminal and hit `enter`/`return`
+> {: .bash}
+> ~~~
+> $ cat 2023*/* | grep -v city > co2_emmisions.csv
+> ~~~
+> Now in your file explorer have a look and see that a new file has been created with all of the data.
+> (Don't worry about the contents of this command - it will become clear as we progress through the lesson).
 {: .callout}
 
 {% include links.md %}
