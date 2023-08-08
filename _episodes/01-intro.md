@@ -2,7 +2,7 @@
 title: Introducing the Shell
 slug: shell-novice-introducing-the-shell
 teaching: 5
-exercises: 0
+exercises: 5
 questions:
   - "What is a command shell and why would I use one?"
 objectives:
@@ -104,7 +104,7 @@ Aberdeen,United Kingdom,20230110,Aviation,0.0191842924535888,1599696000
 
 Each file is for a city for a particular month, seperated into different files for each city and different folders for each month. 
 
-Now imagine the computer program you were going to use to analyse this data required a single file with all this data. Using the GUI you would have to open each file, cut every line, except the first one from the file, and paste it into a new file. Doing even this simple data manipulation is time consuming and can lead to errors being introduced.
+Now imagine the computer program you were going to use to analyse this data required a single file with all this data but not the first line with the field descriptions. Using the GUI you would have to open each file, cut every line, except the first one from the file, and paste it into a new file. Doing even this simple data manipulation is time consuming and can lead to errors being introduced.
 
 
 > ## Combining and cleaning files: The Shell
