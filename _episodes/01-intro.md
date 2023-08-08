@@ -83,6 +83,11 @@ The data is in several folders with the `YYYYMM` date format. Open the file expl
 > $ ls 2023*/* | while read file; do new_file=$(echo $file | sed 's/c2o/co2/'); mv $file $new_file; done
 > ~~~
 > Now in your file explorer have a look and check that the files have been renamed.
+>
+> There is quite a lot going on in this one line: `ls 2023*/*` lists all of the files in the directories, the `|` is known as a pipe, which forwards the output to the `while`, which sets up a loop through the files. The `new_file=$(echo $file | sed 's/c2o/co2/');` command gets the correct name of the file, and stores it in a variable called `new_file`. Finally the `mv` command copies the file to this new file. 
+> 
+> With this one line we have done a task which would have taken a considerable amount of time by hand using the GUI (and not to mention been extremely boring).
+
 {: .callout}
 
 We can see that the data we have been given are in [csv](https://en.wikipedia.org/wiki/Comma-separated_values) format, where the file first has a line containing the fields within the file, followed by the data:
