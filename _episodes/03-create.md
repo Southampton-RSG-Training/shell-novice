@@ -2,10 +2,11 @@
 title: Creating Things
 slug: shell-novice-creating-things
 teaching: 15
-exercises: 5
+exercises: 15
+math: true
 questions:
-- "How do I run programs using the shell?"
-- "How do I navigate my computer using the shell?"
+- "How can I create, copy, and delete files and directories?"
+- "How can I display the contents of the files?"
 objectives:
 - "Create new directories, also known as folders."
 - "Create files within directories using an editor or by copying and renaming existing files."
@@ -55,8 +56,8 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-creatures/          molecules/          notes.txt           solar.pdf
-data/               north-pacific-gyre/ pizza.cfg           writing/
+co2_data/   data/       north-pacific-gyre/  pizza.cfg  writing/
+creatures/  molecules/  notes.txt            solar.pdf
 ~~~
 {: .output}
 Let's create a new directory called `thesis` using the command `mkdir thesis`
@@ -65,7 +66,7 @@ Let's create a new directory called `thesis` using the command `mkdir thesis`
 ~~~
 $ mkdir thesis
 ~~~
-{: .bash}
+{: .language-bash}
 As you might (or might not) guess from its name,
 `mkdir` means "make directory".
 Since `thesis` is a relative path
@@ -77,10 +78,8 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-creatures/  north-pacific-gyre/  thesis/
-data/       notes.txt            writing/
-Desktop/    pizza.cfg
-molecules/  solar.pdf
+co2_data/   data/       north-pacific-gyre/  pizza.cfg  thesis/
+creatures/  molecules/  notes.txt            solar.pdf  writing/
 ~~~
 {: .output}
 
@@ -94,6 +93,25 @@ $ ls -F thesis
 ### Creating a new text file
 
 Now we'll create a new file using a text editor in this new directory.
+
+Let's first change our working directory to `thesis` using `cd`,
+and then we'll use the `Nano` editor to create a text file called `draft.txt`, and then save it in that directory.
+
+~~~
+$ cd thesis
+$ nano draft.txt
+~~~
+{: .language-bash}
+
+We add a filename after the `nano` command to tell it that we want to edit (or in this case create) a file. 
+
+Now, let's type in a few lines of text, for example:
+
+![Nano in action](fig/nano-screenshot.png)
+
+Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press `Enter` to confirm the filename.
+
+Once our file is saved, we can use `Control-X` to quit the editor and return to the shell.
 
 > ## Which Editor?
 >
@@ -115,28 +133,7 @@ Now we'll create a new file using a text editor in this new directory.
 > and how comfortable you are with the terminal.
 {: .callout}
 
-Let's first change our working directory to `thesis` using `cd`,
-and then we'll use the `Nano` editor to create a text file called `draft.txt`, and then save it in that directory.
-
-~~~
-$ cd thesis
-$ nano draft.txt
-~~~
-{: .language-bash}
-
-We add a filename after the `nano` command to tell it that we want to edit (or in this case create) a file.
-
-Now, let's type in a few lines of text, for example:
-
-![Nano in action](fig/nano-screenshot.png)
-
-Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press
-`Enter` to confirm the filename.
-
-Once our file is saved,
-we can use `Control-X` to quit the editor and return to the shell.
-`nano` doesn't leave any output on the screen after it exits,
-but `ls` now shows that we have created a file called `draft.txt`:
+`nano` doesn't leave any output on the screen after it exits, but `ls` now shows that we have created a file called `draft.txt`:
 
 Now we've saved the file, we can use `ls` to see that there is a new file in the directory called `draft.txt`:
 
@@ -161,6 +158,12 @@ it's "share and thrive".
 ~~~
 {: .output}
 
+> ## Quick Note
+> You can also use **`nano`** without specifying a filename initially. In this case, you will be prompted to 
+> enter the path and filename when you save your work inside the buffer. This allows you to start typing and 
+> editing without deciding on a filename right away.
+{: .discussion}
+
 ### Deleting files and directories
 
 Now, let's assume we didn't actually need to create this file. We can delete it by running `rm draft.txt`:
@@ -171,9 +174,7 @@ $ rm draft.txt
 {: .language-bash}
 
 This command removes files (`rm` is short for "remove").
-If we run `ls` again,
-its output is empty once more,
-which tells us that our file is gone:
+If we run `ls` again, its output is empty once more, which tells us that our file is gone:
 
 ~~~
 $ ls
@@ -189,7 +190,7 @@ $ ls
 > recovering deleted files do exist, but there's no guarantee they'll
 > work in any particular situation, since the computer may recycle the
 > file's disk space right away.
-{: .callout}
+{: .caution}
 
 But what if we want to delete a directory, perhaps one that already contains a file? Let's re-create that file
 and then move up one directory using `cd ..`:

@@ -1,8 +1,9 @@
 ---
-title: Pipes and Filters
+title: Wildcards, Pipes and Filters
 slug: shell-novice-pipes-and-filters
-teaching: 15
-exercises: 10
+teaching: 20
+exercises: 15
+math: true
 questions:
 - "How can I combine existing commands to do new things?"
 objectives:
@@ -13,6 +14,8 @@ objectives:
 - "Explain Unix's 'small pieces, loosely joined' philosophy."
 keypoints:
 - "`wc` counts lines, words, and characters in its inputs."
+- "`*` matches zero or more characters in a filename, so `*.txt` matches all files ending in `.txt`."
+- "`?` matches any single character in a filename, so `?.txt` matches `a.txt` but not `any.txt`."
 - "`cat` displays the contents of its inputs."
 - "`sort` sorts its inputs."
 - "`head` displays the first 10 lines of its input."
@@ -25,13 +28,9 @@ keypoints:
 
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
-the ease with which it lets us combine existing programs in new ways.
+the ease with which it lets us combine existing programs in new ways. One way we can use programs together is to have the output of one command captured in a file, and use that file as the input to another command. There are different approaches to achieve this, and we're going to explain two of them while tackling a common challenge: **finding the file with the fewest lines in a directory**. 
 
-
-## Joining commands together using files
-
-One way we can use programs together is to have the output of one command captured
-in a file, and use that file as the input to another command.
+## Combining Commands: File Operations with Wildcards 
 
 We'll start with a directory called `data`, which is in the `shell-novice/data`
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
@@ -39,13 +38,14 @@ directory, one directory up from `test_directory`. i.e. from `test_directory`:
 ~~~
 $ cd ../..
 $ cd data
+$ ls
 ~~~
 {: .language-bash}
 
 Doing `ls` shows us three files in this directory:
 
 ~~~
-sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv
+sc_climate_data_1000.csv  sc_climate_data_10.csv  sc_climate_data.csv
 ~~~
 {: .output}
 
@@ -69,9 +69,9 @@ it.
 > Otherwise, we'll be here all day!
 > Once we're confident our commands, code, scripts, etc. work the way we want, we
 > can then test them on the entire data set.
-{: .callout}
+{: .discussion}
 
-The `.csv` extension indicates that these files are in Comma Separated Value
+The `.csv` extension indicates that these files are in **C**omma **S**eparated **V**alue
 format,
 a simple text format that specifies data in columns separated by commas
 with lines in the file equating to rows.
@@ -95,24 +95,21 @@ $ wc *.csv
 ~~~
 {: .output}
 
-Sometimes we need to pass multiple filenames to a single command,
-or find or use filenames that match a given pattern,
-and this is where **wildcards** can be really useful.
+For the challenge at hand—finding the file with the fewest lines—we often need to pass multiple filenames to a single command or work with filenames that match a given pattern. This is where **wildcards** come into play. There are various ways to use wildcards, and for now, we'll focus on two standard wildcards: `*` (asterisk) and `?` (question mark) that are commonly used with the shell for pattern matching. 
 
-`*` is a wildcard that matches zero or more
+- **`*`** is a standard wildcard that matches zero or more
 characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
 On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the `sc_climate_data_` at the front only matches those two files.
 
-`?` is also a wildcard, but it only matches a single character. This
-means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example.
-We can use any number of wildcards at a time: for example, `p*.p?*`
+- **`?`** is also a standard wildcard, but it only matches a single character. This
+means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example. We can use any number of wildcards at a time: for example, `p*.p?*`
 matches anything that starts with a `p` and ends with `.p`, and is followed by at
 least one more character (since the `?` has to match one character, and
 the final `*` can match any number of characters). Thus, `p*.p?*` would
 match `preferred.practice`, and even `p.pi` (since the first `*` can
 match no characters at all), but not `quality.practice` (doesn't start
 with `p`) or `preferred.p` (there isn't at least one character after the
-`.p`).
+`.p`). 
 
 When the shell sees a wildcard, it expands the wildcard to create a
 list of matching filenames *before* running the command that was
@@ -123,7 +120,9 @@ as it is. For example typing `ls *.pdf` in the data directory
 an error message that there is no file called `*.pdf`.
 However, generally commands like `wc` and `ls` see the lists of
 file names matching these expressions, but not the wildcards
-themselves. It's the shell, not the other programs, that expands the wildcards.
+themselves. It's the shell, not the other programs, that expands the wildcards. 
+
+It's important to note that there are more standard wildcards and advanced pattern-matching techniques known as **regular expressions** that we will introduce in the following episodes.
 
 Going back to `wc`, if we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
@@ -144,8 +143,8 @@ $ wc -l *.csv
 We can also use `-w` to get only the number of words,
 or `-c` to get only the number of characters.
 
-Which of these files is shortest?
-It's an easy question to answer when there are only three files,
+Our task is to find the fewest line file in this directory and of course 
+it's an easy question to answer when there are only three files,
 but what if there were 6000?
 Our first step toward a solution is to run the command:
 
@@ -194,7 +193,7 @@ $ cat lengths.txt
 Now let's use the `sort` command to sort its contents.
 We will also use the -n flag to specify that the sort is
 numerical instead of alphabetical.
-This does *not* change the file;
+This does ***not*** change the file;
 instead, it sends the sorted result to the screen:
 
 ~~~
@@ -213,11 +212,16 @@ $ sort -n lengths.txt
 We can put the sorted list of lines in another temporary file called `sorted-lengths.txt`
 by putting `> sorted-lengths.txt` after the command,
 just as we used `> lengths.txt` to put the output of `wc` into `lengths.txt`.
+
+~~~
+$ sort -n lengths.txt > sorted-lengths.txt
+~~~
+{: .language-bash}
+
 Once we've done that,
 we can run another command called `head` to get the first few lines in `sorted-lengths.txt`:
 
 ~~~
-$ sort -n lengths.txt > sorted-lengths.txt
 $ head -1 sorted-lengths.txt
 ~~~
 {: .language-bash}
@@ -234,12 +238,50 @@ and so on.
 Since `sorted-lengths.txt` contains the lengths of our files ordered from least to greatest,
 the output of `head` must be the file with the fewest lines.
 
+> ## Heads or Tails?
+>
+> Just as `head` shows the top lines of a file, `tail` reveals the bottom lines.  To see `tail` in action, run the following 
+> command:
+>
+> ~~~
+> $ tail sc_climate_data_1000.csv
+> ~~~
+> {: .language-bash}
+>
+> By default, both `head` and `tail` commands display the first 10 lines of a file. This gives us a quick preview of the file's content without overwhelming us with too much information. However, as with many things in the shell, there's room for customisation.
+>
+> If you want to tailor the number of lines displayed, you can use the `-n` flag. This flag is followed by the count of lines you want to see. For instance:
+>
+> ~~~
+> $ tail -n 5 sc_climate_data_1000.csv
+> ~~~
+> {: .language-bash}
+>
+> This command would show the last 5 lines of the file instead of the default 10.
+>
+> ~~~
+> 420196.8188,337890.0521,50.94,69.13,0.69
+> 473196.8188,337890.0521,51.21,68.61,0.61
+> 469196.8188,336890.0521,51.21,69.64,0.61
+> 600196.8188,336890.0521,52.18,67.69,0.73
+> 653196.8188,336890.0521,53.46,64.35,0.66
+> ~~~
+> {: .output}
+>
+> Notably, you can achieve the same results by omitting the space after `-n` and directly specifying the number, like we've 
+> seen previously with `head`:
+>
+> ~~~
+> $ tail -5 sc_climate_data_1000.csv
+> ~~~
+> {: .language-bash}
+{: .discussion}
+
 If you think this is confusing,
 you're in good company:
 even once you understand what `wc`, `sort`, and `head` do,
 all those intermediate files make it hard to follow what's going on.
 Fortunately, there's a way to make this much simpler.
-
 
 ## Using pipes to join commands together
 
@@ -320,7 +362,11 @@ If you're interested in how pipes work in more technical detail, see the descrip
 
 > ## What does `sort -n` do?
 >
-> If we run `sort` on this file:
+> A file called `myfile.txt` contains the following lines. 
+> ~~~
+> $ cat myfile.txt
+> ~~~
+> {: .language-bash}
 >
 > ~~~
 > 10
@@ -329,8 +375,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 22
 > 6
 > ~~~
+> {: .output}
 >
-> the output is:
+> If we run `sort` on this file the output is:
 >
 > ~~~
 > 10
@@ -339,8 +386,9 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 22
 > 6
 > ~~~
+> {: .output}
 >
-> If we run `sort -n` on the same input, we get this instead:
+> However if we run `sort -n` on the same file, we get this instead:
 >
 > ~~~
 > 2
@@ -349,7 +397,7 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 19
 > 22
 > ~~~
->
+> {: .output}
 > Explain why `-n` has this effect.
 >
 > > ## Solution
@@ -366,15 +414,15 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > What is the difference between:
 >
 > ~~~
-> echo hello > testfile01.txt
+> $ echo hello > testfile01.txt
 > ~~~
->
+>{: .language-bash}
 > and:
 >
 > ~~~
-> echo hello >> testfile02.txt
+> $ echo hello >> testfile02.txt
 > ~~~
->
+>{: .language-bash}
 > Hint: Try executing each command twice in a row and then examining the output files.
 >
 > > ## Solution
@@ -408,6 +456,10 @@ If you're interested in how pipes work in more technical detail, see the descrip
 >
 > The command `uniq` removes adjacent duplicated lines from its input.
 > For example, if a file `salmon.txt` contains:
+> ~~~
+> $ cat salmon.txt
+> ~~~
+> {: .language-bash}
 >
 > ~~~
 > coho
@@ -417,6 +469,7 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > steelhead
 > steelhead
 > ~~~
+> {: .output}
 >
 > then `uniq salmon.txt` produces:
 >
@@ -449,6 +502,11 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > A file called `animals.txt` contains the following data:
 >
 > ~~~
+> $ cat animals.txt
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > 2012-11-05,deer
 > 2012-11-05,rabbit
 > 2012-11-05,raccoon
@@ -458,53 +516,60 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > 2012-11-07,rabbit
 > 2012-11-07,bear
 > ~~~
+> {: .output}
 >
 > What text passes through each of the pipes and the final redirect in the pipeline below?
 >
 > ~~~
-> cat animals.txt | head -5 | tail -3 | sort -r > final.txt
+> $ cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 > ~~~
+> {: .language-bash}
 >
 > > ## Solution
 > >
 > > 1. `cat animals.txt` outputs the full contents of the file.
 > > 2. `head -5` takes the full contents of the file, and outputs the top 5 lines:
-> > ~~~
-> > 2012-11-05,deer
-> > 2012-11-05,rabbit
-> > 2012-11-05,raccoon
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > ~~~
-> >
+> > >
+> > > ~~~
+> > > 2012-11-05,deer
+> > > 2012-11-05,rabbit
+> > > 2012-11-05,raccoon
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > ~~~
+> > > {: .output}
 > > 3. `tail -3` takes the output from `head`, and outputs the last 3 lines of that:
-> > ~~~
-> > 2012-11-05,raccoon
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > ~~~
-> >
-> > 4. `sort -r` takes the output from `tail` and sorts it in reverse order. This bit is a little trickier - whilst it puts the `06` lines above the `05` ones (because of reverse numerical order), it will put `06, rabbit` above `06, deer` as it's reverse alphabetical order - so the output isn't *just* a reversed version of the output of `tail`!
-> > ~~~
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > 2012-11-05,raccoon
-> > ~~~
-> >
+> > >
+> > > ~~~
+> > > 2012-11-05,raccoon
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > ~~~
+> > > {: .output}
+> > 4. `sort -r` takes the output from `tail` and sorts it in reverse order. This bit is a little trickier - whilst it puts the 
+> > `06` lines above the `05` ones (because of reverse numerical order), it will put `06, rabbit` above `06, deer` as it's 
+> > reverse alphabetical order - so the output isn't *just* a reversed version of the output of `tail`!
+> > > 
+> > > ~~~
+> > > 2012-11-06,rabbit
+> > > 2012-11-06,deer
+> > > 2012-11-05,raccoon
+> > > ~~~
+> > > {: .output}
 > > 5. Finally, `> final.txt` sends the output to a file called `final.txt`.
 > {: .solution}
 >
-
 {: .challenge}
+
 > ## `find` pipeline reading comprehension
 >
 > Write a short explanatory comment for the following shell script:
 >
 >
 > ~~~
-> find . -name '*.dat' | wc -l | sort -n
+> $ find . -name '*.dat' | wc -l | sort -n
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > 
 > > ## Solution
 > >
@@ -512,7 +577,7 @@ If you're interested in how pipes work in more technical detail, see the descrip
 > >
 > {: .solution}
 >
-
+{: .challenge}
 For those interested in the technical details of how pipes work:
 
 > ## What's happening 'under the hood' - pipes in more detail

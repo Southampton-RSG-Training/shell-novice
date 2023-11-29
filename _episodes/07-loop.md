@@ -1,24 +1,22 @@
 ---
 title: Loops
 slug: shell-novice-loops
-teaching: 15
-exercises: 10
+teaching: 20
+exercises: 15
+math: true
 questions:
 - "How can I perform the same actions on many different files?"
 objectives:
 - "Write a loop that applies one or more commands separately to each file in a set of files."
 - "Trace the values taken on by a loop variable during execution of the loop."
 - "Explain the difference between a variable's name and its value."
-- "Demonstrate how to see what commands have recently been executed."
+
 keypoints:
 - "A `for` loop repeats commands once for every thing in a list."
 - "Every `for` loop needs a variable to refer to the thing it is currently operating on."
 - "Use `$name` to expand a variable (i.e., get its value). `${name}` can also be used."
 - "Do not use spaces, quotes, or wildcard characters such as '*' or '?' in filenames, as it complicates variable expansion."
 - "Give files consistent names that are easy to match with wildcard patterns to make it easy to select them for looping."
-- "Use the up-arrow key to scroll up through previous commands to edit and repeat them."
-- "Use <kbd>Ctrl</kbd>+<kbd>R</kbd> to search through the previously entered commands."
-- "Use `history` to display recent commands, and `![number]` to repeat a command by number."
 ---
 
 Wildcards and tab completion are two ways to reduce typing as well as typing mistakes.
@@ -34,11 +32,11 @@ but the principles can be applied to many many more files at once.
 Let's first go to the `creatures` directory (using tab completion to enter the full directory will save considerable
 typing here!):
 
-{: .bash}
 ~~~
 $ cd ~/shell-novice/shell/test_directory/creatures
 $ ls
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -49,17 +47,17 @@ We would like to modify these files, but also save a version of the original fil
 as `original-basilisk.dat`, `original-minotaur.dat`, `original-unicorn.dat`.
 We can't use the following (don't type this, it's just for illustrative purposes):
 
-{: .bash}
 ~~~
 $ mv *.dat original-*.dat
 ~~~
+{: .language-bash}
 
 Because as we learnt previously, with wildcards that would expand to:
 
-{: .bash}
 ~~~
 $ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat
 ~~~
+{: .language-bash}
 
 This wouldn't back up our files, instead we would get an error. If on a Mac or Linux it would look like:
 
@@ -90,14 +88,13 @@ Here's a simple example that displays the first three lines of each file in turn
 
 Let's create a new shell script using `nano` called `top.sh` that uses a loop.
 
-{: .bash}
 ~~~
 $ nano top.sh
 ~~~
+{: .language-bash}
 
 In that file enter the following:
 
-{: .bash}
 ~~~
 for filename in basilisk.dat minotaur.dat unicorn.dat
 do
@@ -107,10 +104,10 @@ done
 
 After saving it by using `Control-O` and `Control-X`, run the script:
 
-{: .bash}
 ~~~
 $ bash top.sh
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -183,7 +180,6 @@ in order to make its purpose clearer to human readers.
 The shell itself doesn't care what the variable is called;
 if we wrote this loop as:
 
-{: .bash}
 ~~~
 for x in basilisk.dat minotaur.dat unicorn.dat
 do
@@ -193,7 +189,6 @@ done
 
 or:
 
-{: .bash}
 ~~~
 for temperature in basilisk.dat minotaur.dat unicorn.dat
 do
@@ -214,7 +209,6 @@ run a loop over them all?
 Here's a slightly more complicated loop to try next.
 Change our `top.sh` script to the following:
 
-{: .bash}
 ~~~
 for filename in *.dat
 do
@@ -232,10 +226,11 @@ then executes two commands for each of those files.
 The first, `echo`, just prints its command-line parameters to standard output.
 For example:
 
-{: .bash}
+
 ~~~
 $ echo hello there
 ~~~
+{: .language-bash}
 
 prints:
 
@@ -264,10 +259,10 @@ Finally,
 the `head` and `tail` combination selects lines 81-100 from whatever file is being processed.
 Run this revised script now:
 
-{: .bash}
 ~~~
 $ bash top.sh
 ~~~
+{: .language-bash}
 
 And you should see (the `...` indicates more gene sequences that appear in the output, but are omitted for clarity):
 
@@ -306,6 +301,7 @@ GTTCTGCTAA
 > red dragon.dat
 > unicorn.dat
 > ~~~
+> {: .output}
 >
 > If we try to process them using:
 >
@@ -315,13 +311,13 @@ GTTCTGCTAA
 >     head -100 $filename | tail -20
 > done
 > ~~~
-> {: .bash}
 >
 > then the shell will expand `*.dat` to create:
 >
 > ~~~
 > basilisk.dat red dragon.dat unicorn.dat
 > ~~~
+> {: .output}
 >
 > With older versions of Bash,
 > or most other shells,
@@ -333,6 +329,7 @@ GTTCTGCTAA
 > dragon.dat
 > unicorn.dat
 > ~~~
+> {: .output}
 >
 > That's a problem: `head` can't read files called `red` and `dragon.dat`
 > because they don't exist,
@@ -347,7 +344,7 @@ GTTCTGCTAA
 >     head -100 "$filename" | tail -20
 > done
 > ~~~
-> {: .bash}
+> 
 >
 > but it's simpler just to avoid using spaces (or other special characters) in filenames.
 {: .callout}
@@ -359,7 +356,6 @@ Going back to our original file renaming problem, using what we've learnt
 we can solve it using the following loop.
 In a new script called `rename.sh` enter the following:
 
-{: .bash}
 ~~~
 for filename in *.dat
 do
@@ -372,24 +368,24 @@ The first time,
 when `$filename` expands to `basilisk.dat`,
 the shell executes:
 
-{: .bash}
 ~~~
 mv basilisk.dat original-basilisk.dat
 ~~~
+{: .language-bash}
 
 The second time, the command is:
 
-{: .bash}
 ~~~
 mv minotaur.dat original-minotaur.dat
 ~~~
+{: .language-bash}
 
 The third time, the command is:
 
-{: .bash}
 ~~~
 mv unicorn.dat original-unicorn.dat
 ~~~
+{: .language-bash}
 
 Note that once you've run this command once, running it again has an interesting effect that we
 likely don't intend - the `.dat` files we end up with are:
@@ -418,7 +414,6 @@ files before you operate on them!
 >     echo mv $filename original-$filename
 > done
 > ~~~
-> {: .bash}
 >
 > Instead of running `mv`, this loop runs `echo`, which prints out:
 >
@@ -426,7 +421,7 @@ files before you operate on them!
 > mv basilisk.dat original-basilisk.dat
 > mv unicorn.dat original-unicorn.dat
 > ~~~
-> {: .bash}
+> {: .output}
 >
 > *without* actually running those commands. We can then use up-arrow to
 > redisplay the loop, back-arrow to get to the word `echo`, delete it, and

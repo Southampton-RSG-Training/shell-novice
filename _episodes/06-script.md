@@ -1,20 +1,24 @@
 ---
 title: Shell Scripts
 slug: shell-novice-shell-scripts
-teaching: 15
-exercises: 10
+teaching: 20
+exercises: 15
+math: true
 questions:
 - "How can I save and re-use commands?"
 objectives:
 - "Write a shell script that runs a command or series of commands for a fixed set of files."
 - "Run a shell script from the command line."
 - "Write a shell script that operates on a set of files defined by the user on the command line."
+- "Demonstrate how to see what commands have recently been executed."
 - "Create pipelines that include user-written shell scripts."
 keypoints:
 - "Save commands in files (usually called shell scripts) for re-use."
 - "`bash [filename]` runs the commands saved in a file."
 - "`$@` refers to all of a shell script’s command-line arguments."
 - "`$1`, `$2`, etc., refer to the first command-line argument, the second command-line argument, etc."
+- "Use <kbd>Ctrl</kbd>+<kbd>R</kbd> to search through the previously entered commands."
+- "Use `history` to display recent commands, and `![number]` to repeat a command by number."
 - "Place variables in quotes if the values might have spaces in them."
 - "Letting users decide what files to process is more flexible and more consistent with built-in Unix commands."
 ---
@@ -31,20 +35,16 @@ these are actually small programs.
 
 Let's start by going back to `data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
 
-{: .bash}
 ~~~
 $ cd ~/shell-novice/data
 $ nano middle.sh
 ~~~
+{: .language-bash}
 
 So why the .sh extension to the filename? Adding `.sh` is the convention to show that this is a Bash shell script.
+Now, enter the line `head -15 sc_climate_data_1000.csv | tail -5` into our new file:
 
-Enter the following line into our new file:
-
-{: .bash}
-~~~
-head -15 sc_climate_data_1000.csv | tail -5
-~~~
+<img src="fig/nano-middle-script.png" height="350" style='zoom:70%;' alt='Nano Display of the script'/>
 
 Then save it and exit `nano` (using `Control-O` to save it and then `Control-X` to exit `nano`).
 
@@ -57,10 +57,10 @@ Once we have saved the file,
 we can ask the shell to execute the commands it contains.
 Our shell is called `bash`, so we run the following command:
 
-{: .bash}
 ~~~
 $ bash middle.sh
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -95,24 +95,21 @@ but that would probably take longer than just retyping the command.
 Instead,
 let's edit `middle.sh` and replace `sc_climate_data_1000.csv` with a special variable called `$1`:
 
-{: .bash}
 ~~~
 $ nano middle.sh
 ~~~
+{: .language-bash}
 
-{: .output}
-~~~
-head -15 "$1" | tail -5
-~~~
+<img src="fig/nano-middle-script2.png" height="350" style='zoom:70%;' alt='Nano Display of the script2'/>
 
 Inside a shell script,
 `$1` means the first filename (or other argument) passed to the script on the command line.
 We can now run our script like this:
 
-{: .bash}
 ~~~
 $ bash middle.sh sc_climate_data_1000.csv
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -125,10 +122,10 @@ $ bash middle.sh sc_climate_data_1000.csv
 
 or on a different file like this (our full data set!):
 
-{: .bash}
 ~~~
 $ bash middle.sh sc_climate_data.csv
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -152,6 +149,7 @@ Note the output is the same, since our full data set contains the same first 100
 > ~~~
 > head -15 climate data.csv | tail -5
 > ~~~
+> {: .language-bash}
 > This would call `head` on two separate files, `climate` and `data.csv`,
 > which is probably not what we intended.
 {: .callout}
@@ -162,22 +160,17 @@ However, if we want to adjust the range of lines to extract, we still need to ed
 Less than ideal!
 Let's fix that by using the special variables `$2` and `$3`. These represent the second and third arguments passed on the command line:
 
-{: .bash}
 ~~~
 $ nano middle.sh
 ~~~
+{: .language-bash}
 
-{: .output}
-~~~
-head "$2" "$1" | tail "$3"
-~~~
+Put the command line `head "$2" "$1" | tail "$3"` in the script. Now we can pass the `head` and `tail` line range arguments to our script:
 
-So now we can pass the `head` and `tail` line range arguments to our script:
-
-{: .bash}
 ~~~
 $ bash middle.sh sc_climate_data_1000.csv -20 -5
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -192,17 +185,19 @@ This does work,
 but it may take the next person who reads `middle.sh` a moment to figure out what it does.
 We can improve our script by adding some **comments** at the top:
 
-{: .bash}
+<img src="fig/nano-middle-script-comment.png" height="350" style='zoom:70%;' alt='Adding comments in the script'/>
+
 ~~~
 $ cat middle.sh
 ~~~
+{: .language-bash}
 
-{: .output}
 ~~~
 # Select lines from the middle of a file.
 # Usage: middle.sh filename -end_line -num_lines
 head "$2" "$1" | tail "$3"
 ~~~
+{: .output}
 
 In Bash, a comment starts with a `#` character and runs to the end of the line.
 The computer ignores comments,
@@ -220,13 +215,13 @@ an explanation that sends the reader in the wrong direction is worse than none a
 What if we want to process many files in a single pipeline?
 For example, if we want to sort our `.csv` files by length, we would type:
 
-{: .bash}
 ~~~
 $ wc -l *.csv | sort -n
 ~~~
+{: .language-bash}
 
 This is because `wc -l` lists the number of lines in the files
-(recall that wc stands for 'word count', adding the `-l` flag means 'count lines' instead)
+(recall that `wc` stands for **'word count'**, adding the `-l` flag means **'count lines'** instead)
 and `sort -n` sorts things numerically.
 We could put this in a file,
 but then it would only ever sort a list of `.csv` files in the current directory.
@@ -236,30 +231,27 @@ We can't use `$1`, `$2`, and so on
 because we don't know how many files there are.
 Instead, we use the special variable `$@`,
 which means,
-"All of the command-line parameters to the shell script."
+**"All of the command-line parameters to the shell script."**
 We also should put `$@` inside double-quotes
 to handle the case of parameters containing spaces
 (`"$@"` is equivalent to `"$1"` `"$2"` ...)
 
-Here's an example. Edit a new file called `sort.sh`:
+Here's an example. Edit a new file called `sorted.sh`:
 
-{: .bash}
 ~~~
 $ nano sorted.sh
 ~~~
+{: .language-bash}
 
 And in that file enter:
+`wc -l "$@" | sort -n`
 
-{: .output}
-~~~
-wc -l "$@" | sort -n
-~~~
 When we run it with some wildcarded file arguments:
 
-{: .bash}
 ~~~
 $ bash sorted.sh *.csv ../shell/test_directory/creatures/*.dat
 ~~~
+{: .language-bash}
 
 We have the following output:
 
@@ -281,11 +273,15 @@ We have the following output:
 > ~~~
 > $ bash sorted.sh
 > ~~~
+> {: .language-bash}
+>
 > but don't say `*.dat` (or anything else)? In this case, `$@` expands to
 > nothing at all, so the pipeline inside the script is effectively:
 > ~~~
 > wc -l | sort -n
 > ~~~
+> {: .language-bash}
+>
 > Since it doesn't have any filenames, `wc` assumes it is supposed to
 > process standard input, so it just sits there and waits for us to give
 > it some data interactively. From the outside, though, all we see is it
@@ -293,15 +289,12 @@ We have the following output:
 >
 > If you find yourself in this situation pressing `Control-C` will stop the
 > command from taking input and return you to the command line prompt.
+>
+> Again, we should explain what we are trying to do here using a comment, for example:
+>
+> <img src="fig/nano-middle-script-comment2.png" height="350" style='zoom:70%;' alt='Adding comments in the 
+> script2'/>
 {: .callout}
-
-Again, we should explain what we are trying to do here using a comment, for example:
-
-{: .bash}
-~~~
-# List given files sorted by number of lines
-wc -l "$@" | sort -n
-~~~
 
 > ## What did I type to get that to work?
 >
@@ -314,23 +307,45 @@ wc -l "$@" | sort -n
 > (and potentially getting them wrong)
 > we can do this:
 >
-> {: .bash}
 > ~~~
 > $ history | tail -4 > redo-figure-3.sh
 > ~~~
+> {: .language-bash}
 >
 > The file `redo-figure-3.sh` now contains:
 >
 > ~~~
-> 297 bash goostats -r NENE01729B.txt stats-NENE01729B.txt
+> $ cat redo-figure-3.sh
+> ~~~
+> {: .language-bash}
+>
+> ~~~
+> 297 bash goostats NENE01729B.txt stats-NENE01729B.txt
 > 298 bash goodiff stats-NENE01729B.txt /data/validated/01729.txt > 01729-differences.txt
 > 299 cut -d ',' -f 2-3 01729-differences.txt > 01729-time-series.txt
 > 300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
 > ~~~
->
+> {: .output}
 > After a moment's work in an editor to remove the historical reference number for each command (e.g. 297, 298),
-> we have a completely accurate record of how we created that figure.
+> we have a completely accurate record of how we created that figure. Note that to use the commands in the 
+> history simply type its related reference number after `!` in the terminal (e.g, type `!297` to re-run `goostats` on 
+> `NENE01729B.txt`)
 >
+> > ## Other History Commands
+> >
+> > There are a number of other shortcut commands for getting at the history.
+> >
+> > - `Ctrl-R` enters a history search mode "reverse-i-search" and finds the 
+> > most recent command in your history that matches the text you enter next.
+> > Press `Ctrl-R` one or more additional times to search for earlier matches.
+> > - `!!` retrieves the immediately preceding command 
+> > (you may or may not find this more convenient than using the up-arrow)
+> > - `!$` retrieves the last word of the last command.
+> > That's useful more often than you might expect: after
+> > `bash goostats NENE01729B.txt stats-NENE01729B.txt`, you can type
+> > `less !$` to look at the file `stats-NENE01729B.txt`, which is
+> > quicker than doing up-arrow and editing the command-line.
+> {: .solution}
 > In practice, most people develop shell scripts by running commands at the shell prompt a few times
 > to make sure they're doing the right thing,
 > then saving them in a file for re-use.
@@ -344,14 +359,18 @@ wc -l "$@" | sort -n
 
 > ## Variables in shell scripts
 >
-> In the `test_directory/molecules` directory, you have a shell script called `script.sh` containing the
+> In the `~/shell-novice/shell/test_directory/molecules` directory, you have a shell script called `script.sh` containing the
 > following commands:
 >
+> ~~~
+> $ cat script.sh
+> ~~~
+> {: .language-bash}
 > ~~~
 > head $2 $1
 > tail -n $3 $1
 > ~~~
->
+> {: .output}
 > Note that here, we use the explicit `-n` flag to pass the number of lines to `tail` that we want to extract,
 > since we're passing in multiple `.pdb` files. Otherwise, `tail` can give us an error about incorrect options on
 > certain machines if we don't.
@@ -361,6 +380,7 @@ wc -l "$@" | sort -n
 > ~~~
 > bash script.sh '*.pdb' -1 -1
 > ~~~
+> {: .language-bash}
 >
 > Which of the following outputs would you expect to see?
 >
@@ -378,7 +398,7 @@ wc -l "$@" | sort -n
 > > head -1 *.pdb
 > > tail -n -1 *.pdb*
 > > ~~~
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > This prints out the first line (`head -1`) of each `.pdb` file, and then the last line of each `.pdb` file.
 > >
@@ -386,14 +406,14 @@ wc -l "$@" | sort -n
 > > ~~~
 > > bash script.sh *.pdb -1 -1
 > > ~~~
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > Then it wouldn't work as the wildcard would've expanded before the script started and we'd have effectively run it as:
 > >
 > > ~~~
 > > bash script cubane.pdb ethane.pdb methane.pdb octane.pdb pentane.pdb propane.pdb -1 -1
 > > ~~~
-> > {: .bash}
+> > {: .language-bash}
 > >
 > > This would have caused an error, as we expect the second and third arguments to be numbers for `head` and `tail`!
 > {: .solution}
@@ -442,9 +462,9 @@ wc -l "$@" | sort -n
 > > **Script 3** uses all our arguments - the `$@` variable gets expanded into the full list of arguments, `fructose.dat glucose.dat sucrose.dat`. `echo` then prints out that list... with `.dat` added to the end of it:
 > >
 > > ~~~
-> > > fructose.dat glucose.dat sucrose.dat.dat
+> > fructose.dat glucose.dat sucrose.dat.dat
 > > ~~~
-> > > {: .output}
+> > {: .output}
 > >
 > > This probably isn't quite what we were hoping for!
 > {: .solution}

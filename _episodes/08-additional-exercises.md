@@ -22,17 +22,17 @@ keypoints:
 
 Using the `date` command we’re able to retrieve today’s date and time in any format we want. For example:
 
-{: .bash}
 ~~~
 $ date +“%d-%m-%y”
 ~~~
+{: .language-bash}
 
 The argument after the command indicates the format we’d like - `%d` will be replaced with the day of the month, `%m` the month, and `%y` the year. So this will output today’s date in the form day, month and year, separated by hyphens, e.g. `16-11-20`. We can capture this date output in a Bash variable using `$()`, for example in the shell:
 
-{: .bash}
 ~~~
 $ today_date=$(date +“%d-%m-%y”)
 ~~~
+{: .language-bash}
 
 > ## Copying files with new filenames
 >
@@ -58,7 +58,7 @@ $ today_date=$(date +“%d-%m-%y”)
 > >   cp $file copied/$today_date-$base_file
 > > done
 > > ~~~
-> > {: .bash}
+> > 
 > {: .solution}
 >
 {: .challenge}
@@ -68,10 +68,10 @@ $ today_date=$(date +“%d-%m-%y”)
 
 A really handy command to know when working with comma-separated value (CSV) data is the `cut` command. You can use the `cut` command to extract a specific column from CSV data, e.g.:
 
-{: .bash}
 ~~~
 $ echo “1,2,3,4” | cut -d”,” -f 3
 ~~~
+{: .language-bash}
 
 Will output `3`.
 
