@@ -1,6 +1,6 @@
 ---
 title: "Survey"
-slug: lesson-survey
+slug: shell-novice-survey
 layout: page
 ---
 

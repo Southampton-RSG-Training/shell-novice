@@ -1,8 +1,9 @@
 ---
 title: "Finding Things"
 slug: shell-novice-finding-things
-teaching: 15
-exercises: 10
+teaching: 20
+exercises: 15
+math: true
 questions:
 - "How can I find files?"
 - "How can I find things in files?"
@@ -14,8 +15,6 @@ objectives:
 keypoints:
 - "`find` finds files with specific properties that match patterns."
 - "`grep` selects lines in files that match patterns."
-- "`--help` is an option supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs."
-- "`man [command]` displays the manual page for a given command."
 - "`$([command])` inserts a command's output in place."
 ---
 
@@ -34,23 +33,23 @@ we will use a file that contains three haikus taken from a
 1998 competition in *Salon* magazine. For this set of examples
 we're going to be working in the `writing` subdirectory:
 
-{: .bash}
 ~~~
 $ cd ~/shell-novice/shell/test_directory/writing
 $ ls
 ~~~
+{: .language-bash}
 
+~~~
+data  haiku.txt  old  thesis  tools
+~~~
 {: .output}
-~~~
-data      haiku.txt old       thesis    tools
-~~~
 
 Let's have a look at the `haiku.txt` file:
 
-{: .bash}
 ~~~
 $ cat haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -76,10 +75,10 @@ Software is like that.
 
 Let's find lines that contain the word "not":
 
-{: .bash}
 ~~~
 $ grep not haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -96,10 +95,10 @@ The output is the three lines in the file that contain the letters "not".
 
 Let's try a different pattern: "day".
 
-{: .bash}
 ~~~
 $ grep day haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -114,19 +113,19 @@ To restrict matches to lines containing the word "day" on its own,
 we can give `grep` with the `-w` flag.
 This will limit matches to word boundaries.
 
-{: .bash}
 ~~~
 $ grep -w day haiku.txt
 ~~~
+{: .language-bash}
 
 In this case, there aren't any, so `grep`'s output is empty. Sometimes we don't
 want to search for a single word, but a phrase. This is also easy to do with
 `grep` by putting the phrase in quotes.
 
-{: .bash}
 ~~~
 $ grep -w "is not" haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -137,10 +136,11 @@ We've now seen that you don't have to have quotes around single words, but it is
 
 Another useful option is `-n`, which numbers the lines that match:
 
-{: .bash}
 ~~~
 $ grep -n "it" haiku.txt
 ~~~
+{: .language-bash}
+
 
 {: .output}
 ~~~
@@ -155,10 +155,10 @@ We can combine options (i.e. flags) as we do with other Bash commands.
 For example, let's find the lines that contain the word "the". We can combine
 the option `-w` to find the lines that contain the word "the" and `-n` to number the lines that match:
 
-{: .bash}
 ~~~
 $ grep -n -w "the" haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -168,10 +168,10 @@ $ grep -n -w "the" haiku.txt
 
 Now we want to use the option `-i` to make our search case-insensitive:
 
-{: .bash}
 ~~~
 $ grep -n -w -i "the" haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -183,10 +183,10 @@ $ grep -n -w -i "the" haiku.txt
 Now, we want to use the option `-v` to invert our search, i.e., we want to output
 the lines that *do not* contain the word "the".
 
-{: .bash}
 ~~~
 $ grep -n -w -v "the" haiku.txt
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -204,10 +204,10 @@ $ grep -n -w -v "the" haiku.txt
 Another powerful feature is that `grep` can search multiple files. For example we can find files that
 contain the complete word "saw" in all files within the `data` directory:
 
-{: .bash}
 ~~~
 $ grep -w saw data/*
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -222,10 +222,10 @@ with the file in which the match was found.
 Or, we can find where "format" occurs in all files including those in every subdirectory. We use the `-R`
 argument to specify that we want to search recursively into every subdirectory:
 
-{: .bash}
 ~~~
 $ grep -R format *
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -236,30 +236,38 @@ tools/format:This is the format of the file
 This is where `grep` becomes really useful. If we had thousands of research data files we needed
 to quickly search for a particular word or data point, `grep` is invaluable.
 
-> ## Wildcards
+> ## Grep and Regular Expressions
 >
 > `grep`'s real power doesn't come from its options, though; it comes from
-> the fact that search patterns can also include wildcards. (The technical name for
+> the fact that search patterns can also include wildcards. The technical name for
 > these is **regular expressions**, which
-> is what the "re" in "grep" stands for.) Regular expressions are both complex
-> and powerful; if you want to do complex searches, please look at the lesson
-> on [our website](https://v4.software-carpentry.org/regexp/index.html). As a taster, we can
-> find lines that have an 'o' in the second position like this:
+> is what the "re" in "grep" stands for. Unlike standard wildcards (`*` and `?`), regular expressions 
+> provide a more advanced and flexible way to express complex patterns for text searches. If you want to do 
+> complex searches, please look at the lesson on [our website](https://librarycarpentry.org/lc-data-intro/
+> 01-regular-expressions.html). 
 >
->   $ grep -E '^.o' haiku.txt
->   You bring fresh toner.
->   Today it is not working
->   Software is like that.
+> To give you a glimpse of `grep` with regular expressions, consider the following example:
+> ~~~
+> $ grep -E '^.o' haiku.txt
+> ~~~
+> {: .language-bash}
+> ~~~
+> You bring fresh toner.
+> Today it is not working
+> Software is like that.
+> ~~~
+> {: .output}
+> In this example, the `-E` flag indicates the use of regular expressions. We put the 
+> pattern `'^.o'` in quotes to prevent the shell from trying to interpret it. If the pattern contained a 
+> `*`, for 
+> example, the shell would try to expand it before running `grep`. Now, breaking down the pattern:
+> - The `^` (caret) anchors the match to the start of the line, much like the simple wildcards.
+> - The `.` (dot) matches any single character, similar to the `?` wildcard in the shell.
+> - The `o` matches the literal character 'o'.
 >
-> We use the `-E` flag and put the pattern in quotes to prevent the shell
-> from trying to interpret it. (If the pattern contained a '\*', for
-> example, the shell would try to expand it before running `grep`.) The
-> '\^' in the pattern anchors the match to the start of the line. The '.'
-> matches a single character (just like '?' in the shell), while the 'o'
-> matches an actual 'o'.
 {: .callout}
 
-### Finding files themselves
+### Finding Files Themselves
 
 While `grep` finds lines in files,
 the `find` command finds files themselves.
@@ -267,56 +275,75 @@ Again,
 it has a lot of options;
 to show how the simplest ones work, we'll use the directory tree shown below.
 
-![1. File Tree for Find Example](fig/find-file-tree.svg)
+<img src="fig/find-file-tree_new.png" height="550" width="850" style='zoom:200%;' alt='File Tree for Find Example'/>
 
 Nelle's `writing` directory contains one file called `haiku.txt` and four subdirectories:
-`thesis` (which is sadly empty),
+`thesis` (which contains a sadly empty file, `empty-draft.md`),
 `data` (which contains two files `one.txt` and `two.txt`),
 a `tools` directory that contains the programs `format` and `stats`,
-and an empty subdirectory called `old`.
+and a subdirectory called `old`, with a file `oldtool`.
 
-For our first command,
-let's run `find . -type d`.
-As always,
-the `.` on its own means the current working directory,
-which is where we want our search to start;
-`-type d` means "things that are directories".
-Sure enough,
-`find`'s output is the names of the five directories in our little tree
-(including `.`):
+For our first command, let's run `find .`:
 
-{: .bash}
 ~~~
-$ find . -type d
+$ find .
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
-./
-./data
+.
 ./thesis
+./thesis/empty-draft.md
+./old
+./old/.gitkeep
+./tools
+./tools/format
+./tools/old
+./tools/old/oldtool
+./tools/stats
+./haiku.txt
+./data
+./data/one.txt
+./data/two.txt
+~~~
+As always, the `.` on its own means the current working directory, which is where we want our search to start. `find`’s output is the names of every file and directory under the current working directory. This can seem useless at first but `find` has many options to filter the output and in this episode we will discover some of them.
+
+The first option in our list is `-type d` that means **“things that are directories”**. Sure enough, `find`’s output is the names of the five directories in our little tree (including `.`):
+
+~~~
+$ find . -type d
+~~~
+{: .language-bash}
+
+~~~
+.
+./thesis
+./old
 ./tools
 ./tools/old
+./data
 ~~~
+{: .output}
 
-When using `find`, note that he order the results are shown in may differ depending on whether you're using
-Windows or a Mac.
+When using `find`, note that the order of the results shown may differ depending on whether you're using Windows or a Mac.
 
 If we change `-type d` to `-type f`,
 we get a listing of all the files instead:
 
-{: .bash}
 ~~~
 $ find . -type f
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
-./haiku.txt
-./tools/stats
-./tools/old/oldtool
-./tools/format
 ./thesis/empty-draft.md
+./old/.gitkeep
+./tools/format
+./tools/old/oldtool
+./tools/stats
+./haiku.txt
 ./data/one.txt
 ./data/two.txt
 ~~~
@@ -327,10 +354,10 @@ and so on to find everything that matches the pattern we've given it.
 If we don't want it to,
 we can use `-maxdepth` to restrict the depth of search:
 
-{: .bash}
 ~~~
 $ find . -maxdepth 1 -type f
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -341,28 +368,29 @@ The opposite of `-maxdepth` is `-mindepth`,
 which tells `find` to only report things that are at or below a certain depth.
 `-mindepth 2` therefore finds all the files that are two or more levels below us:
 
-{: .bash}
 ~~~
 $ find . -mindepth 2 -type f
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
-./data/one.txt
-./data/two.txt
+/thesis/empty-draft.md
 ./old/.gitkeep
-./thesis/empty-draft.md
 ./tools/format
 ./tools/old/oldtool
 ./tools/stats
+./data/one.txt
+./data/two.txt
 ~~~
 
 Now let's try matching by name:
 
-{: .bash}
 ~~~
 $ find . -name *.txt
 ~~~
+{: .language-bash}
+
 
 {: .output}
 ~~~
@@ -375,10 +403,10 @@ The problem is that the shell expands wildcard characters like `*` *before* comm
 Since `*.txt` in the current directory expands to `haiku.txt`,
 the command we actually ran was:
 
-{: .bash}
 ~~~
 $ find . -name haiku.txt
 ~~~
+{: .language-bash}
 
 `find` did what we asked; we just asked for the wrong thing.
 
@@ -388,16 +416,17 @@ put `*.txt` in single quotes to prevent the shell from expanding the `*` wildcar
 This way,
 `find` actually gets the pattern `*.txt`, not the expanded filename `haiku.txt`:
 
-{: .bash}
 ~~~
 $ find . -name '*.txt'
 ~~~
+{: .language-bash}
+
 
 {: .output}
 ~~~
+./haiku.txt
 ./data/one.txt
 ./data/two.txt
-./haiku.txt
 ~~~
 
 > ## Listing vs. Finding
@@ -410,20 +439,14 @@ $ find . -name '*.txt'
 
 ### Another way to combine command-line tools
 
-As we said earlier,
-the command line's power lies in combining tools.
-We've seen how to do that with pipes;
-let's look at another technique.
-As we just saw,
-`find . -name '*.txt'` gives us a list of all text files in or below the current directory.
-How can we combine that with `wc -l` to count the lines in all those files?
+As we said earlier, the command line’s power lies in combining tools. We’ve seen how to do that with pipes; let’s explore another technique. In a previous encounter, we introduced the caret (`^`) character in regular expressions, which typically signifies the beginning of a line. Now, let’s meet its counterpart: the dollar sign (`$`). While in regular expressions, the dollar sign typically denotes the end of a line, in our command line context, its role takes a different form. This technique involves using `$()` expression to integrate commands. Let's apply this technique in practice.
 
-The simplest way is to put the `find` command inside `$()`:
+As we just saw, `find . -name '*.txt'` gives us a list of all text files in or below the current directory. So, how can we combine that with `wc -l` to count the lines in all those files? The simplest way is to put the `find` command inside `$()`. Note that instead of its usual role in regular expressions, the dollar sign now helps define the argument in the parenthesis.
 
-{: .bash}
 ~~~
 $ wc -l $(find . -name '*.txt')
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -439,10 +462,10 @@ It then replaces the `$()` expression with that command's output.
 Since the output of `find` is the three filenames `./data/one.txt`, `./data/two.txt`, and `./haiku.txt`,
 the shell constructs the command:
 
-{: .bash}
 ~~~
 $ wc -l ./data/one.txt ./data/two.txt ./haiku.txt
 ~~~
+{: .language-bash}
 
 which is what we wanted.
 This expansion is exactly what the shell does when it expands wildcards like `*` and `?`,
@@ -454,10 +477,10 @@ the second looks for lines inside those files that match another pattern.
 Here, for example, we can find PDB files that contain iron atoms
 by looking for the string "FE" in all the `.pdb` files above the current directory:
 
-{: .bash}
 ~~~
 $ grep "FE" $(find .. -name '*.pdb')
 ~~~
+{: .language-bash}
 
 {: .output}
 ~~~
@@ -505,6 +528,11 @@ about them."
 > ## Using grep
 >
 > ~~~
+> cat haiku.txt
+> ~~~
+> {: .language-bash}
+>
+> ~~~
 > The Tao that is seen
 > Is not the true Tao, until
 > You bring fresh toner.
@@ -517,6 +545,7 @@ about them."
 > Today it is not working
 > Software is like that.
 > ~~~
+> {: .output}
 >
 > From the above text, contained in the file `haiku.txt`, which command would result in the
 > following output:
@@ -524,7 +553,7 @@ about them."
 > ~~~
 > and the presence of absence:
 > ~~~
->
+> {: .output}
 > 1. `grep "of" haiku.txt`
 > 2. `grep -E "of" haiku.txt`
 > 3. `grep -w "of" haiku.txt`
@@ -549,7 +578,7 @@ about them."
 > ~~~
 > find . -name '*.dat' | wc -l | sort -n
 > ~~~
-> {: .bash}
+> {: .language-bash}
 > 
 > > ## Solution
 > >
@@ -559,7 +588,7 @@ about them."
 >
 {: .challenge}
 
-> ## Matching `ose.dat` but not `temp` {}
+> ## Matching `ose.dat` but not `temp`
 >
 > The `-v` flag to `grep` inverts pattern matching, so that only lines
 > which do *not* match the pattern are printed. Given that, which of
