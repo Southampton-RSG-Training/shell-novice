@@ -1,17 +1,22 @@
 ---
 title: Files and Directories
 slug: shell-novice-files-and-directories
-teaching: 10
+teaching: 15
 exercises: 5
+math: true
 questions:
-- "How do I run programs using the shell?"
-- "How do I navigate my computer using the shell?"
+- "How can I move around on my computer?"
+- "How can I see what files and directories I have?"
+- "How can I specify the location of a file or directory on my computer"
+- "What is the general structure of a shell command and how can I get help about the commands?"
 objectives:
 - "Explain the similarities and differences between a file and a directory."
 - "Translate an absolute path into a relative path and vice versa."
 - "Construct absolute and relative paths that identify specific files and directories."
 - "Use options and arguments to change the behaviour of a shell command."
 - "Demonstrate the use of tab completion and explain its advantages."
+- "Understand and describe the components of a shell command."
+- "Learn how to access help documentation for shell commands."
 keypoints:
 - "The file system is responsible for managing information on the disk."
 - "Information is stored in files, which are stored in directories (folders)."
@@ -24,7 +29,9 @@ keypoints:
 - "A relative path specifies a location starting from the current location."
 - "An absolute path specifies a location from the root of the file system."
 - "Directory names in a path are separated with `/` on Unix, but `\\` on Windows."
-- "`..` means ‘the directory above the current one’; `.` on its own means ‘the current directory’."
+- " `.` on its own means ‘the current directory’; `..`` means ‘the directory above the current one’."
+- "`--help` is an option supported by many bash commands, and programs that can be run from within Bash, to display more information on how to use these commands or programs."
+- "`man [command]` displays the manual page for a given command."
 ---
 
 The part of the operating system responsible for managing files and directories is called the **file system**.
@@ -160,7 +167,7 @@ which is why `nelle` is the last part of the directory's name.
 
 ![2. Home Directories](fig/home-directories.svg)
 
-> ## Path
+> ## Slashes
 >
 > Notice that there are two meanings for the `/` character.
 > When it appears at the front of a file or directory name,
@@ -180,7 +187,7 @@ $ ls
 ~~~
 {: .language-bash}
 ~~~
-shell-novice       Misc                   Solar.pdf
+shell-novice           Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -234,8 +241,7 @@ $ pwd
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
-If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/shell-novice`,
+If we run `ls` once again now, it lists the contents of `/Users/nelle/shell-novice`,
 because that's where we now are:
 
 ~~~
@@ -244,39 +250,33 @@ $ ls
 {: .language-bash}
 
 ~~~
-AUTHORS			Gemfile			_config.yml		_includes		bin			files			setup.md
-CITATION		LICENSE.md		_episodes		_layouts		code			index.md		shell
-CODE_OF_CONDUCT.md	Makefile		_episodes_rmd		aio.md			data			reference.md		slides
-CONTRIBUTING.md		README.md		_extras			assets			fig			requirements.txt
+assets      code           fig           LICENSE           shell
+AUTHORS     _config.yml    files         README.md         _site
+bin         data           Gemfile       reference.md      submodules
+blurb.html  _episodes      Gemfile.lock  requirements.txt
+CITATION    _episodes_rmd  _includes     setup.md
 ~~~
 {: .output}
 
-`ls` prints the names of the files and directories in the current directory in alphabetical order,
-arranged neatly into columns (where there is space to do so).
-We can make its output more comprehensible by using the **flag** `-F`,
-which tells `ls` to add a trailing `/` to the names of directories:
+When you use the `ls` command, it displays the names of files and folders in the current directory, arranging them neatly in alphabetical order and columns  (when there's enough space). But `ls` has some handy features! One of these features is the `-F` **flag**. When you use the `-F` flag, it adds a trailing `/` at the end of directory names. It might seem minor, but it's quite useful. The trailing `/` helps you quickly identify which names are directories and which are regular files. If you see a name with a `/` at the end, it means it's a directory.
 
 ~~~
 $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-AUTHORS			Gemfile			_config.yml		_includes/		bin/			files/			setup.md
-CITATION		LICENSE.md		_episodes/		_layouts/		code/			index.md		shell/
-CODE_OF_CONDUCT.md	Makefile		_episodes_rmd/		aio.md			data/			reference.md		slides/
-CONTRIBUTING.md		README.md		_extras/		assets/			fig/			requirements.txt
+assets/     code/           fig/          LICENSE           shell/
+AUTHORS     _config.yml     files/        README.md         _site/
+bin/        data/           Gemfile       reference.md      submodules/
+blurb.html  _episodes/      Gemfile.lock  requirements.txt
+CITATION    _episodes_rmd/  _includes/    setup.md
 ~~~
 {: .output}
 
-Here,
-we can see that this directory contains a number of **sub-directories**.
-The names that don't have trailing slashes,
-like `reference.html`, `setup.md`, and `requirements.txt`,
-are plain old files.
-And note that there is a space between `ls` and `-F`:
-without it,
-the shell thinks we're trying to run a command called `ls-F`,
-which doesn't exist.
+Here, we can see that this directory contains a number of **sub-directories**.
+The names that don't have trailing slashes, like `blurb.html`, `setup.md`, and `requirements.txt`,
+are plain old files. And note that there is a space between `ls` and `-F`:
+without it, the shell thinks we're trying to run a command called `ls-F`, which doesn't exist.
 
 > ## What's In A Name?
 >
@@ -299,6 +299,7 @@ which doesn't exist.
 > when someone double-clicks it.
 {: .callout}
 
+
 For this exercise, we need to change our working directory to `shell-novice`, and then `shell` (within the `shell-novice` directory). As we have already used cd to move into `shell-novice` we can get to `shell` by using `cd` again:
 
 ~~~
@@ -314,7 +315,7 @@ $ ls -F
 ~~~
 {: .language-bash}
 ~~~
-shell-novice-data.zip	tools/ test_directory/
+shell-novice-data.zip	test_directory/
 ~~~
 {: .output}
 
@@ -328,8 +329,9 @@ $ ls -F test_directory
 ~~~
 {: .language-bash}
 ~~~
-creatures/          molecules/          notes.txt           solar.pdf
-data/               north-pacific-gyre/ pizza.cfg           writing/
+co2_data/          molecules/                pizza.cfg            
+creatures/         north-pacific-gyre/       solar.pdf           
+data/              notes.txt                 writing/
 ~~~
 {: .output}
 
@@ -343,21 +345,7 @@ Notice, by the way, that we spelled the directory name `test_directory`, and it 
 That's added to directory names by `ls` when we use the `-F` flag to help us tell things apart.
 And it doesn't begin with a slash because it's a **relative path** -
 it tells `ls` how to find something from where we are,
-rather than from the root of the file system.
-
-> ## Parameters vs. Arguments
->
-> According to [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments),
-> the terms argument and **parameter**
-> mean slightly different things.
-> In practice,
-> however,
-> most people use them interchangeably or inconsistently,
-> so we will too.
-{: .callout}
-
-If we run `ls -F /test_directory` (*with* a leading slash) we get a different response,
-because `/test_directory` is an **absolute path**:
+rather than from the root of the file system. If we run `ls -F /test_directory` (*with* a leading slash) we get a different response, because `/test_directory` is an **absolute path**:
 
 ~~~
 $ ls -F /test_directory
@@ -380,7 +368,7 @@ $ ls -F tes
 ~~~
 {: .language-bash}
 
-Pressing *TAB*, the shell automatically completes the directory name:
+Pressing ***TAB***, the shell automatically completes the directory name:
 
 ~~~
 $ ls -F test_directory/
@@ -445,19 +433,30 @@ $ ls -F -a
 ~~~
 {: .language-bash}
 ~~~
-./			creatures/		molecules/		notes.txt		solar.pdf
-../			data/			north-pacific-gyre/	pizza.cfg		writing/
+./   co2_data/   data/       north-pacific-gyre/  pizza.cfg  writing/
+../  creatures/  molecules/  notes.txt            solar.pdf
 ~~~
 {: .output}
 
-`-a` stands for "show all";
-it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle/shell-novice/novice/shell/test_directory`, refers to the `/Users/nelle/shell-novice/novice/shell` directory).
-As you can see,
-it also displays another special directory that's just called `.`,
-which means "the current working directory".
-It may seem redundant to have a name for it,
-but we'll see some uses for it soon.
+`-a` stands for "show all"; it forces `ls` to show us file and directory names that begin with `.`,
+such as `..` (which, if we're in `/Users/nelle/shell-novice/novice/shell/test_directory`, refers to the `/Users/nelle/shell-novice/novice/shell` directory). As you can see, it also displays another special directory that's just called `.`, which means "the current working directory". It may seem redundant to have a name for it, but we'll see some uses for it soon.
+
+Another handy feature is that we can reference our home directory with `~`, e.g.:
+~~~
+$ ls ~/shell-novice
+~~~
+{: .language-bash}
+~~~
+assets   blurb.html  _config.yml  _episodes_rmd  Gemfile    reference.md
+AUTHORS  CITATION    data         fig            LICENSE    requirements.txt
+bin      code        _episodes    files          README.md  shell
+~~~
+{: .output}
+
+Which again shows us our repository directory.
+
+Note that `~` only works if it is the first character in the
+path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 
 > ## Special Names
 >
@@ -472,28 +471,123 @@ but we'll see some uses for it soon.
 > your computer's file system, not any particular program you can run in it.
 {: .callout}
 
-Another handy feature is that we can reference our home directory with `~`, e.g.:
+## Understanding the Shell Command Syntax and Getting Help
+Let's make using shell commands easier by understanding their syntax and how to get help when you need it. We'll break it down step by step.
+
+### Command Structure
+We have now encountered commands, options, and arguments, but it is perhaps useful to formalise some terminology.
+Consider the command below as a general example of a command, which we will dissect into its component parts:
 
 ~~~
-$ ls ~/shell-novice
+$ ls -F /
 ~~~
 {: .language-bash}
-~~~
-AUTHORS			Gemfile			_config.yml		_includes		bin			files			setup.md
-CITATION		LICENSE.md		_episodes		_layouts		code			index.md		shell
-CODE_OF_CONDUCT.md	Makefile		_episodes_rmd		aio.md			data			reference.md		slides
-CONTRIBUTING.md		README.md		_extras			assets			fig			requirements.txt
-~~~
-{: .output}
 
-Which again shows us our repository directory.
+A typical shell command consists of three main components:
 
-Note that `~` only works if it is the first character in the
-path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
+![3. Shell Command Syntax](fig/shell_command_syntax.svg)
+
+- **`ls`** is the **command** you want to run. So this is the action you want to perform.
+- **`-F`** is an **option**, which allows you to modify the behavior of the command `ls`. Options can be single-letter (short options) prefixed with a single dash (`-`) or longer and more descriptive (long options) with two dashes (`--`). For example, here `-F` is a short option, and `--format` is its long form. Long options provide a more human-readable way to modify command behavior. Note that some options, like `-n`, always require an argument to work. If you use an option that needs an argument without providing one, the command will report an error.
+- **`/`** is an **argument** or sometimes referred to as a **parameter** that provides additional pieces of information that a command might require. Basically, arguments tell the command what to operate on, like files and directories or other data. In our example, the **`/`** specifically denotes the root directory of the filesystem. While the terms argument and parameter are often used interchangeably, they can have subtle differences in computer programming jargon, as explained on [Wikipedia](https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments).
+
+
+In addition to options and arguments, you may encounter **switches** or **flags** in commands. These are special types of options that can be used with or without arguments, essentially acting as on/off switches for specific features. For example, using `-F` in a command can modify the output format, and it is a special type of option known as a **flag**. 
+
+Moreover, you can combine multiple short options in a single command. For instance, the command `ls -Fa` combines the `-F` and `-a` options. This technique, known as **concatenation**, allows you to provide multiple options in a concise manner, making your commands more efficient. Importantly, the order of options in concatenation is generally not important, so you could also write the command as `ls -aF`.
+
+### Finding Help
+Nobody expects you to memorize everything about commands. That's where getting help comes in handy. You have two common ways to get guidance on a command and its options:
+
+1. **Using `--help`**: The `--help` option is widely supported in Bash, providing detailed information on how to use commands and programs. You can apply the `--help` option to a command (available on Linux and Git Bash), as shown below:
+    ~~~
+    $ ls --help
+    ~~~
+    {: .language-bash}
+    
+    ~~~
+    Usage: ls [OPTION]... [FILE]...
+    List information about the FILEs (the current directory by default).
+    Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+    Mandatory arguments to long options are mandatory for short options too.
+      -a, --all                  do not ignore entries starting with .
+      -A, --almost-all           do not list implied . and ..
+          --author               with -l, print the author of each file
+      -b, --escape               print C-style escapes for non-graphic characters
+          --block-size=SIZE      with -l, scale sizes by SIZE when printing them;
+                                   e.g., '--block-size=M'; see SIZE format below
+      -B, --ignore-backups       do not list implied entries ending with ~
+      -c                         with -lt: sort by, and show, ctime (time of last
+                                   modification of file status information);
+                                   with -l: show ctime and sort by name;
+                                   otherwise: sort by ctime, newest first
+      -C                         list entries by columns
+          --color[=WHEN]         colorize the output; WHEN can be 'always' (default
+                                   if omitted), 'auto', or 'never'; more info below
+     -d, --directory            list directories themselves, not their contents
+     -D, --dired                generate output designed for Emacs' dired mode
+     -f                         do not sort, enable -aU, disable -ls --color
+     -F, --classify             append indicator (one of */=>@|) to entries
+         --file-type            likewise, except do not append '*'
+         --format=WORD          across -x, commas -m, horizontal -x, long -l,
+                                  single-column -1, verbose -l, vertical -C
+         --full-time            like -l --time-style=full-iso
+    ...        ...         ...
+    ~~~
+    {: .output}
+
+2. **Using `man`**: The `man` command (available on Linux and macOS), short for '**manual**', provides 
+comprehensive documentation for most commands and programs. To access the manual for a specific command, 
+simply use `man` followed by the command's name, such as:
+
+    ~~~
+    $ man ls
+    ~~~
+    {: .language-bash}
+
+    ~~~
+    LS(1)                                               User Commands                                                                  LS(1)
+
+    NAME
+           ls - list directory contents
+
+    SYNOPSIS
+           ls [OPTION]... [FILE]...
+
+    DESCRIPTION
+           List information about the FILEs (the current directory by default).  Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+           Mandatory arguments to long options are mandatory for short options too.
+
+           -a, --all
+                  do not ignore entries starting with .
+
+           -A, --almost-all
+                  do not list implied . and ..
+
+           --author
+                  with -l, print the author of each file
+
+           -b, --escape
+                  print C-style escapes for nongraphic characters
+
+           --block-size=SIZE
+                  with -l, scale sizes by SIZE when printing them; e.g., '--block-size=M'; see SIZE format below
+ 
+           -B, --ignore-backups
+                  do not list implied entries ending with ~
+
+           -c     with -lt: sort by, and show, ctime (time of last modification of file status information); with -l: show ctime and sort by name; otherwise: sort by ctime, newest first
+    Manual page ls(1) line 1 (press h for help or q to quit)
+    ~~~
+    {: .output}
+
+Once you're inside the manual, you might see a message like "**Manual page ls(1) line 1 (press h for help or q to quit)**" at the end of the page. Don't worry; this message is there to help you. To navigate the manual, you can press '**h**' for help if you need assistance or '**q**' to quit and go back to your command prompt when you're done reading.
 
 ## Exercises
 
-![3. File System for Challenge Questions](fig/filesystem-challenge.svg)
+<img src="fig/filesystem_challenge_updated.png" height="500" style='zoom:60%;' alt='File System for Challenge Questions'/>
 
 > ## Relative path resolution
 >
