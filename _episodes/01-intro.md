@@ -132,5 +132,3 @@ Upon inspecting these subfolders, you'll notice an issue with the data labeling.
 > Now in your file explorer have a look and see that a new file has been created with all of the data.
 > (Don't worry about the contents of this command - it will become clear as we progress through the lesson).
 {: .callout}
-
-{% include links.md %}

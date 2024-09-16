@@ -633,4 +633,3 @@ Once you're inside the manual, you might see a message like "**Manual page ls(1)
 > 
 {: .challenge}
 
-{% include links.md %}

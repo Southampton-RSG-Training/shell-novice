@@ -622,4 +622,3 @@ For those interested in the technical details of how pipes work:
 > ![1. Redirects and Pipes](fig/redirects-and-pipes.png)
 {: .callout}
 
-{% include links.md %}
