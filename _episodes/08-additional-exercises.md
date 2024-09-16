@@ -100,4 +100,3 @@ The `-d` argument specifies, within quotes, the delimiter that separates the col
 >
 {: .challenge}
 
-{% include links.md %}

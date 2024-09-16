@@ -604,5 +604,3 @@ but it does find the copy in `thesis` that we didn't delete.
 > {: .solution}
 >
 {: .challenge}
-
-{% include links.md %}
