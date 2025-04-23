@@ -9,8 +9,8 @@ delivery: "static"
 type: "episode" # The other valid option is "episode_r"
 
 # Overall title for pages.
-title: "The Bash Shell"
-form_title: "The+Bash+Shell"
+title: "Automating Tasks with the Unix Shell"
+form_title: "Automating+Tasks+with+the+Unix+Shell"
 
 # Email address, no mailto:
 email: "rsginfo@soton.ac.uk"
