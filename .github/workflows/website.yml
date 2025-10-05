@@ -79,6 +79,7 @@ jobs:
           python bin/get_setup.py
 
       - name: Build the slides
+        if: steps.check_files.outputs.files_exists == 'true'
         run: |
           cd slides
           bash build_slides.sh
