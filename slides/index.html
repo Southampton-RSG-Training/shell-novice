@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>The Bash Shell</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./dist/reset.css">
+  <link rel="stylesheet" href="./dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="./dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">The Bash Shell</h1>
+</section>
+
+<section>
+<section id="introduction" class="title-slide slide level2">
+<h2>0. Introduction</h2>
+
+</section>
+<section id="before-we-start" class="slide level3">
+<h3>Before We Start</h3>
+<ul>
+<li>Open up a terminal
+<ul>
+<li><strong>Windows:</strong> Git Bash
+<ul>
+<li>Get it here: <a
+href="https://git-scm.com/downloads/win">https://git-scm.com/downloads/win</a></li>
+</ul></li>
+<li><strong>Mac/Linux:</strong> Your default terminal</li>
+</ul></li>
+<li>Download the data
+<ul>
+<li><code>$ git clone https://github.com/Southampton-RSG-Training/shell-novice.git</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="how-this-works" class="slide level3">
+<h3>How This Works</h3>
+<ul>
+<li>I’ll work through on my machine and you follow along</li>
+<li>Feel free to ask questions!</li>
+<li>Let me know if I’m going too fast</li>
+<li>Course materials are all online</li>
+</ul>
+</section>
+<section id="exercises" class="slide level3">
+<h3>Exercises</h3>
+<ul>
+<li>You do these on your own. When you finish one:
+<ul>
+<li><strong>Offline</strong> put a green post-it on your laptop 🟩</li>
+<li><strong>Online</strong> 👍 the exercise message in chat</li>
+</ul></li>
+<li>If you hit a problem:
+<ul>
+<li><strong>Offline</strong> put a red post-it note on your laptop
+🟥</li>
+<li><strong>Online</strong> ✋ raise your hand</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="introducing-the-shell" class="title-slide slide level2">
+<h2>1. Introducing the Shell</h2>
+
+</section>
+<section id="what-is-it" class="slide level3">
+<h3>What Is It</h3>
+<ul>
+<li>The original way of using computers</li>
+<li>An alternative way of looking at the same things</li>
+<li>No clicking or graphics - type text, get text back
+<ul>
+<li>Not a ‘graphical user interface’ (GUI)</li>
+</ul></li>
+<li>A ‘conversation’</li>
+</ul>
+</section>
+<section id="example-interaction" class="slide level3">
+<h3>Example Interaction</h3>
+<table>
+<tr>
+<td>
+Input
+</td>
+<td>
+<blockquote>
+“Hey Siri, what’s the date?”
+</td>
+<td>
+</blockquote>
+<blockquote>
+<pre><code>$ date</code></pre>
+</td>
+</tr>
+<tr>
+<td>
+Output
+</td>
+<td>
+</blockquote>
+<blockquote>
+“It’s Sunday, October the 5th”
+</td>
+<td>
+</blockquote>
+<blockquote>
+<pre><code>Sun Oct  5 19:58:42 BST 2025</code></pre>
+</td>
+</tr>
+</table>
+</blockquote>
+</section>
+<section id="why-use-it" class="slide level3">
+<h3>Why Use It?</h3>
+<ul>
+<li>Record what you’ve done to repeat
+<ul>
+<li>Easier, faster, less chance of misclicking!</li>
+<li>Share your process with others</li>
+</ul></li>
+<li>Available everywhere, and works the same
+<ul>
+<li>Mac/PC/Linux</li>
+<li>Supercomputers like Iridis (no GUI!)</li>
+</ul></li>
+<li>Many scientific codes don’t have a GUI!
+<ul>
+<li>They’re hard to write and break easily</li>
+</ul></li>
+</ul>
+</section>
+<section id="definitions" class="slide level3">
+<h3>Definitions</h3>
+<ul>
+<li>A <strong>Terminal</strong> has a <strong>Command Line</strong>, a
+<strong>Shell</strong> interprets those commands</li>
+<li>We’re teaching <strong>Bash</strong>, a common
+<strong>Shell</strong>.
+<ul>
+<li>Windows also has <strong>PowerShell</strong> (different
+commands!)</li>
+<li>Mac uses <strong>zsh</strong>, which does everything
+<strong>Bash</strong> does</li>
+</ul></li>
+</ul>
+</section>
+<section id="anatomy" class="slide level3">
+<h3>Anatomy</h3>
+<div style="text-align: left; float: left; width: 49%;">
+<ul>
+<li><font color="red"><strong>Prompt</strong> (<code>$</code>)</font> is
+waiting for a command</li>
+<li><font color="orange"><strong>Commands</strong></font> are
+independent programs</li>
+<li>Commands take
+<font color="aqua"><strong>arguments</strong></font></li>
+<li>Some have <font color="green"><strong>options</strong></font> for
+how they work</li>
+</ul>
+</div>
+<div style="text-align: right; float: right; width: 49%">
+<p><br><br>
+<font style="font-family:Courier;font-weight:bold;font-size:72px"><font color="red">$</font>
+<font color="orange">ls</font> <font color="green">-F</font>
+<font color="aqua">/</font></font></p>
+</div>
+</section>
+<section id="caveats" class="slide level3">
+<h3>Caveats</h3>
+<ul>
+<li>Commands can be complicated</li>
+<li>Shell doesn’t help you out (much)</li>
+<li><em>No undo - actions are <strong>permanent!</strong></em></li>
+</ul>
+</section>
+<section id="live-demo-problem" class="slide level3">
+<h3>Live Demo: Problem</h3>
+<ul>
+<li>Open <code>shell-novice/shell/test_directory/co2_data/</code> in
+your file browser</li>
+<li>Look at the data files - how would you fix the names?</li>
+<li>How long would it take…?</li>
+</ul>
+</section>
+<section id="live-demo-solution" class="slide level3">
+<h3>Live Demo: Solution</h3>
+<blockquote>
+<pre><code>$ cd /path/to/shell-novice/shell/test_directory/co2_data/
+$ for file in 2023*/*; do new_file=&quot;${file/c2o/co2}&quot;; mv &quot;$file&quot; &quot;$new_file&quot;; done</code></pre>
+</blockquote>
+<ul>
+<li>Moves to the directory</li>
+<li>For every file in the subdirectories…
+<ul>
+<li>Get the name, and swap c2o &amp; co2</li>
+<li>Move the file to the new name</li>
+</ul></li>
+</ul>
+</section>
+<section id="live-demo-problem-2" class="slide level3">
+<h3>Live Demo: Problem 2</h3>
+<ul>
+<li>We want to combine all the data</li>
+<li>How would you do it by hand?</li>
+<li>How long would it take…?</li>
+</ul>
+</section>
+<section id="live-demo-solution-2" class="slide level3">
+<h3>Live Demo: Solution 2</h3>
+<blockquote>
+<pre><code>$ cat 2023*/* | grep -v city &gt; co2_emissions.csv</code></pre>
+</blockquote>
+<ul>
+<li>Prints the contents of all the files</li>
+<li>Removes the lines with <code>city</code> in</li>
+<li>Saves the output to a new file</li>
+</ul>
+</section></section>
+<section>
+<section id="files-and-directories" class="title-slide slide level2">
+<h2>1. Files and Directories</h2>
+
+</section>
+<section id="getting-started" class="slide level3">
+<h3>Getting Started</h3>
+<ul>
+<li>Open a terminal &amp; follow along
+<ul>
+<li>If you’re on <strong>Windows</strong>, make sure it’s <strong>Git
+Bash</strong></li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="./plugin/notes/notes.js"></script>
+  <script src="./plugin/search/search.js"></script>
+  <script src="./plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
