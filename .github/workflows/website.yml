@@ -75,6 +75,11 @@ jobs:
           python bin/get_schedules.py
           python bin/get_setup.py
 
+      - name: Build the slides
+        run: |
+          cd slides
+          bash build_slides.sh
+
       - name: Deploy the website to gh-pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
