@@ -8,29 +8,14 @@ title: The Bash Shell
 ### Before We Start
 
 - Open up a terminal
-  - **Windows:** Git Bash
-    - Get it here: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
-  - **Mac/Linux:** Your default terminal
+  - **Windows:** Git Bash - [bit.ly/git-bash-win](https://git-scm.com/downloads/win)
 - Download the data
-  - `$ git clone https://github.com/Southampton-RSG-Training/shell-novice.git`
 
+> ```
+> git clone https://github.com/Southampton-RSG-Training/shell-novice.git
+> ```
 
-### How This Works
-
-- I'll work through on my machine and you follow along
-- Feel free to ask questions!
-- Let me know if I'm going too fast
-- Course materials are all online
-
-
-### Exercises
-
-- You do these on your own. When you finish one:
-  - **Offline** put a green post-it on your laptop 🟩
-  - **Online** 👍 the exercise message in chat
-- If you hit a problem:
-  - **Offline** put a red post-it note on your laptop 🟥
-  - **Online** ✋ raise your hand
+- **Let us know if you hit a problem!**
 
 
 ## 1. Introducing the Shell
@@ -116,14 +101,23 @@ title: The Bash Shell
 * *No undo - actions are **permanent!***
 
 
-### Live Demo: Problem
+### Live Demo
 
-* Open `shell-novice/shell/test_directory/co2_data/` in your file browser
+* Example of a common problem
+* You've been given a zip with a ton of data
+* It's in hundreds of individual files
+* Some of them are misnamed
+
+
+### Live Demo: Problem 🐛
+
+* The data's in your home directory (e.g. `C:\Users\MyName`)
+* Open **shell-novice** → **shell** → **test_directory** → **co2_data**
 * Look at the data files - how would you fix the names?
 * How long would it take...?
 
 
-### Live Demo: Solution
+### Live Demo: Solution 🔧
 
 > ```
 > $ cd /path/to/shell-novice/shell/test_directory/co2_data/
@@ -132,32 +126,75 @@ title: The Bash Shell
 
 * Moves to the directory
 * For every file in the subdirectories...
-  * Get the name, and swap c2o & co2
+  * Get the name, and replace `c2o` → `co2`
   * Move the file to the new name
 
 
-### Live Demo: Problem 2
+### Live Demo: Problem 🐛
 
 * We want to combine all the data
 * How would you do it by hand?
 * How long would it take...?
 
 
-### Live Demo: Solution 2
+### Live Demo: Solution 🔧
 
 > ```
 > $ cat 2023*/* | grep -v city > co2_emissions.csv
 > ```
 
 * Prints the contents of all the files
-* Removes the lines with `city` in
+* Removes the header lines with `city` in
 * Saves the output to a new file
+
+
+### How This Works
+
+- I'll work through on my machine and you follow along
+- Feel free to ask questions!
+- Let me know if I'm going too fast
+
+
+### Exercises
+
+- You do these on your own. When you finish one:
+  - **Offline** put a green post-it on your laptop 🟩
+  - **Online** 👍 the exercise message in chat
+- If you hit a problem:
+  - **Offline** put a red post-it note on your laptop 🟥
+  - **Online** ✋ raise your hand
+
+
+### Problem Solving
+
+* If you run into problems, don't worry
+  * It's usually just a typo
+* **Online:** Copy the command you entered and the output into the chat, e.g.
+
+> Help, I ran:
+> ```
+> $ ls-F /
+> ```
+> and got:
+> ```
+> bash: ls-F: command not found
+> ```
 
 
 ## 2. Files and Directories
 
 
-### Getting Started
+## 3. Creating Things
 
-* Open a terminal & follow along
-  * If you're on **Windows**, make sure it's **Git Bash**
+
+## 4. Pipes & Filters
+
+
+## 5. Finding Things
+
+
+## 6. Shell Scripts
+
+
+## 7. Loops
+

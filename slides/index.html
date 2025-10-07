@@ -49,42 +49,16 @@
 <ul>
 <li>Open up a terminal
 <ul>
-<li><strong>Windows:</strong> Git Bash
-<ul>
-<li>Get it here: <a
-href="https://git-scm.com/downloads/win">https://git-scm.com/downloads/win</a></li>
+<li><strong>Windows:</strong> Git Bash - <a
+href="https://git-scm.com/downloads/win">bit.ly/git-bash-win</a></li>
 </ul></li>
-<li><strong>Mac/Linux:</strong> Your default terminal</li>
-</ul></li>
-<li>Download the data
-<ul>
-<li><code>$ git clone https://github.com/Southampton-RSG-Training/shell-novice.git</code></li>
-</ul></li>
+<li>Download the data</li>
 </ul>
-</section>
-<section id="how-this-works" class="slide level3">
-<h3>How This Works</h3>
+<blockquote>
+<pre><code>git clone https://github.com/Southampton-RSG-Training/shell-novice.git</code></pre>
+</blockquote>
 <ul>
-<li>I’ll work through on my machine and you follow along</li>
-<li>Feel free to ask questions!</li>
-<li>Let me know if I’m going too fast</li>
-<li>Course materials are all online</li>
-</ul>
-</section>
-<section id="exercises" class="slide level3">
-<h3>Exercises</h3>
-<ul>
-<li>You do these on your own. When you finish one:
-<ul>
-<li><strong>Offline</strong> put a green post-it on your laptop 🟩</li>
-<li><strong>Online</strong> 👍 the exercise message in chat</li>
-</ul></li>
-<li>If you hit a problem:
-<ul>
-<li><strong>Offline</strong> put a red post-it note on your laptop
-🟥</li>
-<li><strong>Online</strong> ✋ raise your hand</li>
-</ul></li>
+<li><strong>Let us know if you hit a problem!</strong></li>
 </ul>
 </section></section>
 <section>
@@ -202,17 +176,28 @@ how they work</li>
 <li><em>No undo - actions are <strong>permanent!</strong></em></li>
 </ul>
 </section>
-<section id="live-demo-problem" class="slide level3">
-<h3>Live Demo: Problem</h3>
+<section id="live-demo" class="slide level3">
+<h3>Live Demo</h3>
 <ul>
-<li>Open <code>shell-novice/shell/test_directory/co2_data/</code> in
-your file browser</li>
+<li>Example of a common problem</li>
+<li>You’ve been given a zip with a ton of data</li>
+<li>It’s in hundreds of individual files</li>
+<li>Some of them are misnamed</li>
+</ul>
+</section>
+<section id="live-demo-problem" class="slide level3">
+<h3>Live Demo: Problem 🐛</h3>
+<ul>
+<li>The data’s in your home directory
+(e.g. <code>C:\Users\MyName</code>)</li>
+<li>Open <strong>shell-novice</strong> → <strong>shell</strong> →
+<strong>test_directory</strong> → <strong>co2_data</strong></li>
 <li>Look at the data files - how would you fix the names?</li>
 <li>How long would it take…?</li>
 </ul>
 </section>
 <section id="live-demo-solution" class="slide level3">
-<h3>Live Demo: Solution</h3>
+<h3>Live Demo: Solution 🔧</h3>
 <blockquote>
 <pre><code>$ cd /path/to/shell-novice/shell/test_directory/co2_data/
 $ for file in 2023*/*; do new_file=&quot;${file/c2o/co2}&quot;; mv &quot;$file&quot; &quot;$new_file&quot;; done</code></pre>
@@ -221,45 +206,100 @@ $ for file in 2023*/*; do new_file=&quot;${file/c2o/co2}&quot;; mv &quot;$file&q
 <li>Moves to the directory</li>
 <li>For every file in the subdirectories…
 <ul>
-<li>Get the name, and swap c2o &amp; co2</li>
+<li>Get the name, and replace <code>c2o</code> → <code>co2</code></li>
 <li>Move the file to the new name</li>
 </ul></li>
 </ul>
 </section>
-<section id="live-demo-problem-2" class="slide level3">
-<h3>Live Demo: Problem 2</h3>
+<section id="live-demo-problem-1" class="slide level3">
+<h3>Live Demo: Problem 🐛</h3>
 <ul>
 <li>We want to combine all the data</li>
 <li>How would you do it by hand?</li>
 <li>How long would it take…?</li>
 </ul>
 </section>
-<section id="live-demo-solution-2" class="slide level3">
-<h3>Live Demo: Solution 2</h3>
+<section id="live-demo-solution-1" class="slide level3">
+<h3>Live Demo: Solution 🔧</h3>
 <blockquote>
 <pre><code>$ cat 2023*/* | grep -v city &gt; co2_emissions.csv</code></pre>
 </blockquote>
 <ul>
 <li>Prints the contents of all the files</li>
-<li>Removes the lines with <code>city</code> in</li>
+<li>Removes the header lines with <code>city</code> in</li>
 <li>Saves the output to a new file</li>
 </ul>
-</section></section>
-<section>
-<section id="files-and-directories" class="title-slide slide level2">
-<h2>1. Files and Directories</h2>
-
 </section>
-<section id="getting-started" class="slide level3">
-<h3>Getting Started</h3>
+<section id="how-this-works" class="slide level3">
+<h3>How This Works</h3>
 <ul>
-<li>Open a terminal &amp; follow along
+<li>I’ll work through on my machine and you follow along</li>
+<li>Feel free to ask questions!</li>
+<li>Let me know if I’m going too fast</li>
+</ul>
+</section>
+<section id="exercises" class="slide level3">
+<h3>Exercises</h3>
 <ul>
-<li>If you’re on <strong>Windows</strong>, make sure it’s <strong>Git
-Bash</strong></li>
+<li>You do these on your own. When you finish one:
+<ul>
+<li><strong>Offline</strong> put a green post-it on your laptop 🟩</li>
+<li><strong>Online</strong> 👍 the exercise message in chat</li>
+</ul></li>
+<li>If you hit a problem:
+<ul>
+<li><strong>Offline</strong> put a red post-it note on your laptop
+🟥</li>
+<li><strong>Online</strong> ✋ raise your hand</li>
 </ul></li>
 </ul>
+</section>
+<section id="problem-solving" class="slide level3">
+<h3>Problem Solving</h3>
+<ul>
+<li>If you run into problems, don’t worry
+<ul>
+<li>It’s usually just a typo</li>
+</ul></li>
+<li><strong>Online:</strong> Copy the command you entered and the output
+into the chat, e.g.</li>
+</ul>
+<blockquote>
+<p>Help, I ran:</p>
+<pre><code>$ ls-F /</code></pre>
+<p>and got:</p>
+<pre><code>bash: ls-F: command not found</code></pre>
+</blockquote>
 </section></section>
+<section id="files-and-directories" class="title-slide slide level2">
+<h2>2. Files and Directories</h2>
+
+</section>
+
+<section id="creating-things" class="title-slide slide level2">
+<h2>3. Creating Things</h2>
+
+</section>
+
+<section id="pipes-filters" class="title-slide slide level2">
+<h2>4. Pipes &amp; Filters</h2>
+
+</section>
+
+<section id="finding-things" class="title-slide slide level2">
+<h2>5. Finding Things</h2>
+
+</section>
+
+<section id="shell-scripts" class="title-slide slide level2">
+<h2>6. Shell Scripts</h2>
+
+</section>
+
+<section id="loops" class="title-slide slide level2">
+<h2>7. Loops</h2>
+
+</section>
     </div>
   </div>
 
